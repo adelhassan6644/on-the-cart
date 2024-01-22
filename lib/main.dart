@@ -20,11 +20,11 @@ import 'navigation/routes.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp();
-
-  // FirebaseNotifications.setUpFirebase();
+  await Firebase.initializeApp();
+  FirebaseNotifications.setUpFirebase();
   await di.init();
-  runApp(MultiBlocProvider(providers: ProviderList.providers, child: const MyApp()));
+  runApp(MultiBlocProvider(
+      providers: ProviderList.providers, child: const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -47,7 +47,8 @@ class _MyAppState extends State<MyApp> {
       locals.add(Locale(language.languageCode!, language.countryCode));
     }
 
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
@@ -57,7 +58,8 @@ class _MyAppState extends State<MyApp> {
       builder: (context, state) {
         return MaterialApp(
           builder: (context, child) => MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: UnFocus(child: child!)),
           initialRoute: Routes.SPLASH,
           navigatorKey: CustomNavigator.navigatorState,
