@@ -4,6 +4,8 @@ class Images {
   static const String homeLogo = 'assets/images/home_logo.png';
   static const String onBoarding1 = 'assets/images/on_boarding_1.png';
   static const String onBoarding2 = 'assets/images/on_boarding_2.png';
+  static const String onBoarding3 = 'assets/images/on_boarding_3.png';
+  static const String onBoarding4 = 'assets/images/on_boarding_4.png';
   static const String authBG = 'assets/images/auth_bg.png';
   static const String profileBGImage = 'assets/images/profile_bg.png';
   static const String cancelCircle = 'assets/images/cancel_circle.png';

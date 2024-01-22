@@ -8,8 +8,8 @@ import '../../../app/core/images.dart';
 import '../../../app/core/styles.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../app/localization/language_constant.dart';
-import '../../../components/custom_button.dart';
 import '../../../components/custom_images.dart';
+import '../widgets/step_widget.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -28,73 +28,130 @@ class _OnBoardingState extends State<OnBoarding> {
     currentIndex = pageController.page!.toInt();
   }
 
+  List<String> images = [
+    Images.onBoarding1,
+    Images.onBoarding2,
+    Images.onBoarding3,
+    Images.onBoarding4,
+  ];
+
+  List<String> titles = [
+    "on_boarding_header_1",
+    "on_boarding_header_2",
+    "on_boarding_header_3",
+    "on_boarding_header_4",
+  ];
+  List<String> descriptions = [
+    "on_boarding_description_1",
+    "on_boarding_description_2",
+    "on_boarding_description_3",
+    "on_boarding_description_4",
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Styles.WHITE_COLOR,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              InkWell(
-                onTap: () =>
-                    CustomNavigator.push(Routes.DASHBOARD, clean: true),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: Dimensions.PADDING_SIZE_SMALL.h),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.arrow_back_ios,
-                        size: 16,
-                      ),
-                      Text(
-                        getTranslated("skip"),
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.medium.copyWith(
-                            fontSize: 14, color: Styles.PRIMARY_COLOR),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: PageView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: pageController,
-                            onPageChanged: ((index) => setState(() {
-                                  currentIndex = index;
-                                })),
-                            itemBuilder: (_, i) => ListAnimator(
-                              data: [
-                                SizedBox(
-                                  height: context.height * 0.1,
+        top: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Center(
+                child: PageView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: pageController,
+                  onPageChanged: ((index) => setState(() {
+                        currentIndex = index;
+                      })),
+                  itemBuilder: (_, i) => ListAnimator(
+                    data: [
+                      Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Container(
+                              height: context.height * 0.75,
+                              width: context.width,
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                                vertical: Dimensions.PADDING_SIZE_DEFAULT.h,
+                              ),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fitHeight,
+                                  image: AssetImage(images[i]),
                                 ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: context.toPadding,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: InkWell(
+                                      onTap: () => CustomNavigator.push(
+                                          Routes.DASHBOARD,
+                                          clean: true),
+                                      child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: Dimensions
+                                                  .PADDING_SIZE_SMALL.w,
+                                              vertical: Dimensions
+                                                  .PADDING_SIZE_EXTRA_SMALL.h),
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xFF343131)
+                                                  .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(24)),
+                                          child: Text(
+                                            getTranslated("skip"),
+                                            textAlign: TextAlign.center,
+                                            style: AppTextStyles.medium
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    height: 1,
+                                                    color: Styles.WHITE_COLOR),
+                                          )),
+                                    ),
+                                  ),
+                                  const Expanded(child: SizedBox()),
+                                  customImageIcon(
+                                    imageName: Images.logo,
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                  SizedBox(
+                                    height: 12.h,
+                                  ),
 
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 40.h,
-                                      horizontal: context.width * 0.1),
-                                  child: customImageIcon(
-                                      imageName: Images.onBoarding1,
-                                      height: 180,
-                                      width: context.width),
-                                ),
-
+                                  ///header
+                                  Text(
+                                    "On the cart",
+                                    textAlign: TextAlign.center,
+                                    style: AppTextStyles.semiBold.copyWith(
+                                        fontSize: 24,
+                                        color: Styles.WHITE_COLOR),
+                                  ),
+                                ],
+                              )),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                              vertical: Dimensions.PADDING_SIZE_DEFAULT.h,
+                            ),
+                            decoration: const BoxDecoration(
+                                color: Styles.WHITE_COLOR,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(22),
+                                  topLeft: Radius.circular(22),
+                                )),
+                            child: Column(
+                              children: [
                                 ///header
                                 Text(
-                                  getTranslated(i == 0
-                                      ? "on_boarding_header_1"
-                                      : "on_boarding_header_2"),
+                                  getTranslated(titles[i]),
                                   textAlign: TextAlign.center,
                                   style: AppTextStyles.semiBold.copyWith(
                                       fontSize: 24,
@@ -107,9 +164,7 @@ class _OnBoardingState extends State<OnBoarding> {
 
                                 ///description
                                 Text(
-                                  getTranslated(i == 0
-                                      ? "on_boarding_description_1"
-                                      : "on_boarding_description_2"),
+                                  getTranslated(descriptions[i]),
                                   textAlign: TextAlign.center,
                                   style: AppTextStyles.medium.copyWith(
                                       fontSize: 14, color: Styles.ACCENT_COLOR),
@@ -117,55 +172,36 @@ class _OnBoardingState extends State<OnBoarding> {
                               ],
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              Center(
-                child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                        2,
-                        (index) => AnimatedContainer(
-                              width: index == currentIndex ? 10 : 6,
-                              height: index == currentIndex ? 10 : 6,
-                              duration: const Duration(
-                                milliseconds: 500,
-                              ),
-                              margin: EdgeInsets.symmetric(horizontal: 4.w),
-                              decoration: BoxDecoration(
-                                color: index == currentIndex
-                                    ? Styles.PRIMARY_COLOR
-                                    : Styles.ACCENT_COLOR,
-                                borderRadius: BorderRadius.circular(100.w),
-                              ),
-                            ))),
+            ),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  if (currentIndex < 3) {
+                    setState(() {
+                      nextPage();
+                    });
+                  } else {
+                    CustomNavigator.push(Routes.DASHBOARD, clean: true);
+                  }
+                },
+                child: SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: StepWidget(
+                    value: ((currentIndex + 1) / 4) * 100,
+                    backgroundColor: Styles.SMOKED_WHITE_COLOR,
+                    foregroundColor: Styles.PRIMARY_COLOR,
+                  ),
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: SafeArea(
-        top: false,
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimensions.PADDING_SIZE_DEFAULT.h,
-              horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
-          child: CustomButton(
-            text: getTranslated(currentIndex == 0 ? "next" : "start"),
-            onTap: () {
-              if (currentIndex == 0) {
-                setState(() {
-                  nextPage();
-                });
-              } else {
-                CustomNavigator.push(Routes.DASHBOARD, clean: true);
-              }
-            },
-          ),
+            ),
+          ],
         ),
       ),
     );

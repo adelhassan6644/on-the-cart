@@ -82,6 +82,7 @@ dependencies:
   country_code_picker: ^3.0.0
   external_path: ^1.0.3
   open_filex: ^4.3.4
+  intro_screen_onboarding_flutter: ^1.0.0
 
 
 
