@@ -180,7 +180,7 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             Center(
-              child: InkWell(
+              child: GestureDetector(
                 onTap: () {
                   if (currentIndex < 3) {
                     setState(() {
@@ -194,7 +194,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   height: 80,
                   width: 80,
                   child: StepWidget(
-                    value: ((currentIndex + 1) / 4) * 100,
+                    value: ((currentIndex + 1) / 4),
                     backgroundColor: Styles.SMOKED_WHITE_COLOR,
                     foregroundColor: Styles.PRIMARY_COLOR,
                   ),

@@ -1,14 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:math' as math;
 
-import 'package:flutter/widgets.dart';
-
 import '../../../app/core/styles.dart';
 
 class StepWidget extends StatefulWidget {
-  final double? value;
+  final double value;
   final Color foregroundColor;
   final Color backgroundColor;
 
@@ -16,7 +13,7 @@ class StepWidget extends StatefulWidget {
     Key? key,
     required this.foregroundColor,
     required this.backgroundColor,
-    this.value = 0,
+    this.value = 25,
   }) : super(key: key);
 
   @override
@@ -45,7 +42,7 @@ class StepWidgetState extends State<StepWidget>
 
     curve = CurvedAnimation(
       parent: _controller!,
-      curve: Curves.easeInOut,
+      curve: Curves.easeIn,
     );
     valueTween = Tween<double>(
       begin: 0,
@@ -61,7 +58,7 @@ class StepWidgetState extends State<StepWidget>
     if (widget.value != oldWidget.value) {
       // Try to start with the previous tween's end value. This ensures that we
       // have a smooth transition from where the previous animation reached.
-      double beginValue = valueTween?.evaluate(curve) ?? oldWidget.value!;
+      double beginValue = valueTween?.evaluate(curve) ?? oldWidget.value;
 
       // Update the value tween.
       valueTween = Tween<double>(
@@ -116,7 +113,7 @@ class StepWidgetState extends State<StepWidget>
             foregroundPainter: CircleProgressBarPainter(
               backgroundColor: backgroundColor,
               foregroundColor: foregroundColor,
-              percentage: valueTween!.evaluate(curve),
+              percentage: widget.value,
             ),
             child: Container(
               margin: const EdgeInsets.all(10),
