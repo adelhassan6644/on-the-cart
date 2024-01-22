@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "78696176564",
+    "project_id": "on-the-cart-a660a",
+    "storage_bucket": "on-the-cart-a660a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78696176564:android:db494fb4d63b28616770e1",
+        "android_client_info": {
+          "package_name": "com.SoftwareCloud2.onTheCart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3W5cKw4yAm4Wiu6ui_woUDQkr6BEliRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
