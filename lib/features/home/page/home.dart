@@ -17,9 +17,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return SafeArea(
-      top: true,
-      child: SizedBox(),
+    return Scaffold(
+      body: Column(
+        children: [],
+      ),
     );
   }
 

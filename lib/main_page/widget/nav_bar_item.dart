@@ -73,14 +73,17 @@ class BottomNavBarItem extends StatelessWidget {
                     width: width,
                   ),
             if (label != null)
-              Text(
-                label!,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                  color: isSelected ? Styles.PRIMARY_COLOR : Styles.DISABLED,
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: 11,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Text(
+                  label!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                    color: isSelected ? Styles.PRIMARY_COLOR : Styles.DISABLED,
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 11,
+                  ),
                 ),
               )
           ],

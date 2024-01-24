@@ -34,10 +34,28 @@ class MoreOptions extends StatelessWidget {
                 onTap: () => CustomNavigator.push(Routes.PROFILE),
               ),
             ),
+            ///orders
+            Visibility(
+              visible: !UserBloc.instance.isLogin,
+              child: MoreButton(
+                title: getTranslated("orders_history"),
+                icon: SvgImages.orders,
+                onTap: () => CustomNavigator.push(Routes.PROFILE),
+              ),
+            ),
+            ///orders
+            Visibility(
+              visible: !UserBloc.instance.isLogin,
+              child: MoreButton(
+                title: getTranslated("favorite"),
+                icon: SvgImages.favorite,
+                onTap: () => CustomNavigator.push(Routes.PROFILE),
+              ),
+            ),
 
             ///Notifications
             Visibility(
-              visible: UserBloc.instance.isLogin,
+              visible:! UserBloc.instance.isLogin,
               child: MoreButton(
                 title: getTranslated("notifications"),
                 icon: SvgImages.notification,

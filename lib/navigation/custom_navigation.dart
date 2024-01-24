@@ -3,6 +3,7 @@ import 'package:stepOut/features/profile/page/profile.dart';
 import 'package:flutter/material.dart';
 import '../features/auth/forget_password/page/forget_password.dart';
 import '../features/auth/login/page/login.dart';
+import '../features/auth/registar/page/register.dart';
 import '../features/auth/reset_password/page/reset_password.dart';
 import '../features/auth/verification/model/verification_model.dart';
 import '../features/auth/verification/page/verification.dart';
@@ -43,8 +44,8 @@ abstract class CustomNavigator {
           email: settings.arguments as String,
         ));
 
-      // case Routes.REGISTER:
-      //   return _pageRoute(const Register());
+      case Routes.REGISTER:
+        return _pageRoute(const Register());
       // case Routes.CHANGE_PASSWORD:
       //   return _pageRoute(const ChangePassword());
 

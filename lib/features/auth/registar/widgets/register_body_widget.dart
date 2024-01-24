@@ -13,23 +13,23 @@ import '../../../../components/custom_button.dart';
 import '../../../../components/custom_text_form_field.dart';
 import '../../../../navigation/custom_navigation.dart';
 import '../../../../navigation/routes.dart';
-import '../bloc/login_bloc.dart';
+import '../bloc/register_bloc.dart';
 
-class LoginBodyWidget extends StatefulWidget {
-  const LoginBodyWidget({super.key});
+class RegisterBodyWidget extends StatefulWidget {
+  const RegisterBodyWidget({super.key});
 
   @override
-  State<LoginBodyWidget> createState() => _LoginBodyWidgetState();
+  State<RegisterBodyWidget> createState() => _RegisterBodyWidgetState();
 }
 
-class _LoginBodyWidgetState extends State<LoginBodyWidget> {
+class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
   final _formKey = GlobalKey<FormState>();
   final FocusNode emailNode = FocusNode();
   final FocusNode passwordNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, AppState>(
+    return BlocBuilder<RegisterBloc, AppState>(
       builder: (context, state) {
         return Container(
           margin: EdgeInsets.only(top: context.toPadding),
@@ -40,7 +40,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
               color: Styles.WHITE_COLOR,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(20), topLeft: Radius.circular(20))),
-          child: BlocBuilder<LoginBloc, AppState>(
+          child: BlocBuilder<RegisterBloc, AppState>(
             builder: (context, state) {
               return ListAnimator(
                 data: [
@@ -51,9 +51,29 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                       key: _formKey,
                       child: Column(
                         children: [
+                          ///name
+                          CustomTextField(
+                            controller: context.read<RegisterBloc>().mailTEC,
+                            focusNode: emailNode,
+                            label: getTranslated("name"),
+                            hint: getTranslated("enter_your_name"),
+                            withLabel: true,
+                            inputType: TextInputType.emailAddress,
+                            validate: Validations.mail,
+                          ),
+                          ///phone
+                          CustomTextField(
+                            controller: context.read<RegisterBloc>().mailTEC,
+                            focusNode: emailNode,
+                            label: getTranslated("phone"),
+                            hint: getTranslated("enter_your_phone"),
+                            withLabel: true,
+                            inputType: TextInputType.emailAddress,
+                            validate: Validations.mail,
+                          ),
                           ///Mail
                           CustomTextField(
-                            controller: context.read<LoginBloc>().mailTEC,
+                            controller: context.read<RegisterBloc>().mailTEC,
                             focusNode: emailNode,
                             label: getTranslated("mail"),
                             hint: getTranslated("enter_your_mail"),
@@ -64,7 +84,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
 
                           ///Password
                           CustomTextField(
-                            controller: context.read<LoginBloc>().passwordTEC,
+                            controller: context.read<RegisterBloc>().passwordTEC,
                             keyboardAction: TextInputAction.done,
                             label: getTranslated("password"),
                             hint: getTranslated("enter_your_password"),
@@ -85,33 +105,18 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                               children: [
                                 StreamBuilder<bool?>(
                                   stream: context
-                                      .read<LoginBloc>()
+                                      .read<RegisterBloc>()
                                       .rememberMeStream,
                                   builder: (_, snapshot) {
                                     return _RememberMe(
                                       check: snapshot.data ?? false,
                                       onChange: (v) => context
-                                          .read<LoginBloc>()
+                                          .read<RegisterBloc>()
                                           .updateRememberMe(v),
                                     );
                                   },
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    context.read<LoginBloc>().clear();
-                                    CustomNavigator.push(
-                                        Routes.FORGET_PASSWORD);
-                                  },
-                                  child: Text(
-                                    getTranslated("forget_password"),
-                                    style: AppTextStyles.medium.copyWith(
-                                      color: Styles.PRIMARY_COLOR,
-                                      fontSize: 12,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Styles.PRIMARY_COLOR,
-                                    ),
-                                  ),
-                                ),
+
                               ],
                             ),
                           ),
@@ -121,29 +126,15 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                               vertical: 24.h,
                             ),
                             child: CustomButton(
-                                text: getTranslated("login"),
+                                text: getTranslated("signup"),
                                 onTap: () {
-                                  CustomNavigator.push(Routes.DASHBOARD, clean: true, arguments: 0);
                                   if (_formKey.currentState!.validate()) {
-                                    // context.read<LoginBloc>().add(Click());
+                                    context.read<RegisterBloc>().add(Click());
                                   }
                                 },
                                 isLoading: state is Loading),
                           ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 0.h,
-                            ),
-                            child: CustomButton(
-                                text: getTranslated("signup"),
-                                onTap: () {
-                                  CustomNavigator.push(Routes.REGISTER, );
-                                  // if (_formKey.currentState!.validate()) {
-                                  //   context.read<LoginBloc>().add(Click());
-                                  // }
-                                },
-                                isLoading: state is Loading),
-                          ),
+
                         ],
                       )),
                 ],

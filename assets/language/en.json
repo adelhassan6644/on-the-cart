@@ -1,6 +1,8 @@
 {
   "login_header" : "Welcome Back",
   "next": "Next",
+  "welcome" : "welcome",
+
   "start": "Let’s get started",
   "on_boarding_header_1": "Easier, Faster",
   "on_boarding_header_2": "Easier, Faster",
@@ -19,6 +21,10 @@
   "signup_description" : "Welcome On Step Out!",
   "welcome_description": "Complete your data so that the percentages of your trip are compatible\nDaily with Min Captains!",
   "mail": "E-mail",
+  "cart": "Cart",
+  "favorite": "favorite",
+  "orders_history": "order history",
+
   "phone": "Phone",
   "your_profile_successfully_updated": "Your profile successfully updated",
   "you_must_change_something": "Oops! you must change something",

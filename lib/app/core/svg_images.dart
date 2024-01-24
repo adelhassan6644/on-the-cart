@@ -7,6 +7,7 @@ class SvgImages {
   static const String cameraIcon = 'assets/svgs/camera.svg';
   static const String appLogo = 'assets/svgs/app_logo.svg';
   static const String homeIcon = 'assets/svgs/home.svg';
+  static const String categoryIcon = 'assets/svgs/category.svg';
   static const String heartIcon = 'assets/svgs/heart.svg';
   static const String location = 'assets/svgs/location.svg';
   static const String moreIcon = 'assets/svgs/more.svg';
@@ -23,6 +24,7 @@ class SvgImages {
   static const String map = 'assets/svgs/map.svg';
   static const String down = 'assets/svgs/down.svg';
   static const String userIcon = 'assets/svgs/user.svg';
+  static const String orders = 'assets/svgs/orders.svg';
   static const String rate = 'assets/svgs/rate.svg';
   static const String call = 'assets/svgs/call.svg';
   static const String logout = 'assets/svgs/logout.svg';
@@ -61,6 +63,7 @@ class SvgImages {
   static const String information = 'assets/svgs/information.svg';
   static const String security = 'assets/svgs/security.svg';
   static const String notification = 'assets/svgs/notification.svg';
+  static const String favorite = 'assets/svgs/favorite.svg';
   static const String message = 'assets/svgs/message.svg';
   static const String edit = 'assets/svgs/edit.svg';
   static const String login = 'assets/svgs/login.svg';

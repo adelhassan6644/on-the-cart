@@ -25,7 +25,7 @@ class ProfileCard extends StatelessWidget {
               ///Profile Date
               Container(
                 margin: EdgeInsets.only(
-                    top: 40,
+                    top: 0,
                     bottom: 40,
                     right: Dimensions.PADDING_SIZE_DEFAULT.w,
                     left: Dimensions.PADDING_SIZE_DEFAULT.w),

@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
       this.withBorderColor = false,
       this.withShadow = false,
       required this.text,
-      this.backgroundColor,
+      this.backgroundColor=Styles.PRIMARY_COLOR,
       this.isError = false})
       : super(key: key);
 
@@ -74,12 +74,12 @@ class CustomButton extends StatelessWidget {
                 color: withBorderColor
                     ? borderColor ?? Styles.PRIMARY_COLOR
                     : Colors.transparent),
-            borderRadius: BorderRadius.circular(radius ?? 15),
-            gradient: backgroundColor != null
-                ? null
-                : const LinearGradient(
-                    colors: Styles.kBackgroundGradient,
-                  ),
+            borderRadius: BorderRadius.circular(radius ?? 30),
+            // gradient: backgroundColor != null
+            //     ? null
+            //     : const LinearGradient(
+            //         colors: Styles.kBackgroundGradient,
+            //       ),
           ),
           child: Center(
             child: isLoading

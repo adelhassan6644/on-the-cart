@@ -40,8 +40,8 @@ class NavBar extends StatelessWidget {
                     ),
                     Expanded(
                       child: BottomNavBarItem(
-                        label: getTranslated("notifications", context: context),
-                        svgIcon: SvgImages.notification,
+                        label: getTranslated("categories", context: context),
+                        svgIcon: SvgImages.categoryIcon,
                         isSelected: (snapshot.data ?? 0) == 1,
                         onTap: () =>
                             DashboardBloc.instance.updateSelectIndex(1),
@@ -49,11 +49,31 @@ class NavBar extends StatelessWidget {
                     ),
                     Expanded(
                       child: BottomNavBarItem(
-                        label: getTranslated("more", context: context),
-                        svgIcon: SvgImages.moreIcon,
+                        label: getTranslated("cart", context: context),
+                        svgIcon: SvgImages.cartIcon,
                         isSelected: (snapshot.data ?? 0) == 2,
                         onTap: () =>
                             DashboardBloc.instance.updateSelectIndex(2),
+                      ),
+                    ),
+                    Expanded(
+                      child: BottomNavBarItem(
+                        label: getTranslated("favorite", context: context),
+                        svgIcon: SvgImages.favorite,
+                        isSelected: (snapshot.data ?? 0) == 3,
+                        onTap: () =>
+                            DashboardBloc.instance.updateSelectIndex(3),
+                      ),
+                    ),
+                    Expanded(
+                      child: BottomNavBarItem(
+                        label: getTranslated("more", context: context),
+                        svgIcon: SvgImages.moreIcon,
+                        width: 15,
+                        height: 19,
+                        isSelected: (snapshot.data ?? 0) == 4,
+                        onTap: () =>
+                            DashboardBloc.instance.updateSelectIndex(4),
                       ),
                     ),
                   ]));

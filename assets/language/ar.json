@@ -1,5 +1,6 @@
 {
   "login_header" : "مرحبًا بعودتك",
+  "welcome" : "مرحبًا",
   "login_description" : "سعداء لرؤيتكم مرة أخرى!",
   "forget_password_header" : "نسيت كلمة المرور",
   "on_boarding_header_1" : "أسهل, أسرع",
@@ -105,6 +106,10 @@
   "news": "الأخبار",
   "offers": "العروض",
   "categories": "الأقسام",
+  "cart": "العربة",
+  "favorite": "المفضلة",
+  "orders_history": "سجل الطلبات",
+
   "there_is_no_data": "لا يوجود بيانات",
   "search_hint": "ابحث هنا...",
   "search_description": "ابحث عن ما تريد",

@@ -45,7 +45,7 @@ class _DashBoardState extends State<DashBoard> {
         return const Home();
       case 1:
         return Container();
-      case 2:
+      case 4:
         return const More();
       default:
         return Container();

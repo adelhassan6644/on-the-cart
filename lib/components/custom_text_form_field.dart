@@ -111,7 +111,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   color: widget.alignLabel!
                       ? Styles.PRIMARY_COLOR
                       : Styles.BORDER_COLOR),
-              borderRadius: BorderRadius.circular(15.0)),
+              borderRadius: BorderRadius.circular(30.0)),
           height: widget.height ?? 65,
           child: Center(
             child: TextFormField(

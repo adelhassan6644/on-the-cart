@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stepOut/features/auth/registar/page/register.dart';
+import 'package:stepOut/features/auth/registar/repo/register_repo.dart';
 import '../../app/theme/theme_provider/theme_provider.dart';
 import '../../features/auth/forget_password/repo/forget_password_repo.dart';
 import '../../features/auth/login/repo/login_repo.dart';
@@ -52,6 +54,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => UserRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(() => LoginRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => RegisterRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(() => VerificationRepo(sharedPreferences: sl(), dioClient: sl()));
 
