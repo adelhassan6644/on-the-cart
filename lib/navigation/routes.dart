@@ -18,6 +18,7 @@ class Routes {
   static const ABOUT_US = "ABOUT_US";
   static const TERMS = "TERMS";
   static const PROFILE = "PROFILE";
+  static const addresses = "ADDRESSES";
   static const NOTIFICATIONS = "NOTIFICATIONS";
   static const SEARCH = "SEARCH";
   static const SUCCESS_PAGE = "SUCCESS_PAGE";

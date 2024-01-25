@@ -24,20 +24,11 @@ class MoreOptions extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            ///Profile
-            Visibility(
-              visible: UserBloc.instance.isLogin,
-              child: MoreButton(
-                title: getTranslated("profile"),
-                icon: SvgImages.userIcon,
-                onTap: () => CustomNavigator.push(Routes.PROFILE),
-              ),
-            ),
-
             ///Orders
             Visibility(
               visible: !UserBloc.instance.isLogin,
               child: MoreButton(
+                withTopBorder: false,
                 title: getTranslated("orders_history"),
                 icon: SvgImages.orders,
                 onTap: () => CustomNavigator.push(Routes.PROFILE),
@@ -96,28 +87,6 @@ class MoreOptions extends StatelessWidget {
                     });
               },
             ),
-
-            // ///Contact with us
-            // MoreButton(
-            //   title: getTranslated("contact_with_us", context: context),
-            //   icon: SvgImages.contactWithUs,
-            //   // onTap: () => CustomNavigator.push(Routes.CONTACT_WITH_US),
-            // ),
-
-            ///Terms and Conditions
-            MoreButton(
-              title: getTranslated("terms_conditions", context: context),
-              icon: SvgImages.terms,
-              onTap: () => CustomNavigator.push(Routes.TERMS),
-            ),
-
-            ///About US
-            MoreButton(
-              title: getTranslated("more_about_us", context: context),
-              icon: SvgImages.infoSquare,
-              onTap: () => CustomNavigator.push(Routes.ABOUT_US),
-            ),
-
           ],
         );
       },

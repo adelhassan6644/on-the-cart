@@ -12,12 +12,13 @@ class MoreButton extends StatelessWidget {
   const MoreButton(
       {required this.title,
       this.withBottomBorder = false,
+      this.withTopBorder = true,
       required this.icon,
       this.onTap,
       Key? key})
       : super(key: key);
   final String title, icon;
-  final bool withBottomBorder;
+  final bool withBottomBorder, withTopBorder;
   final void Function()? onTap;
 
   @override
@@ -30,8 +31,8 @@ class MoreButton extends StatelessWidget {
             horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
         decoration: BoxDecoration(
             border: Border(
-          top: const BorderSide(
-            color: Styles.BORDER_COLOR,
+          top: BorderSide(
+            color: withTopBorder ? Styles.BORDER_COLOR : Colors.transparent,
           ),
           bottom: BorderSide(
             color: withBottomBorder ? Styles.BORDER_COLOR : Colors.transparent,
