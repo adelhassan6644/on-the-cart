@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/app_state.dart';
 import 'package:stepOut/app/core/dimensions.dart';
-import 'package:stepOut/app/core/extensions.dart';
 import 'package:stepOut/components/animated_widget.dart';
-import '../../../../app/core/app_event.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../app/core/text_styles.dart';
 import '../../../../app/core/validation.dart';
@@ -29,129 +27,119 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, AppState>(
-      builder: (context, state) {
-        return Container(
-          margin: EdgeInsets.only(top: context.toPadding),
-          padding: EdgeInsets.symmetric(
-              horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-              vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
-          decoration: const BoxDecoration(
-              color: Styles.WHITE_COLOR,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20), topLeft: Radius.circular(20))),
-          child: BlocBuilder<LoginBloc, AppState>(
-            builder: (context, state) {
-              return ListAnimator(
-                data: [
-                  SizedBox(
-                    height: Dimensions.PADDING_SIZE_DEFAULT.h,
-                  ),
-                  Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          ///Mail
-                          CustomTextField(
-                            controller: context.read<LoginBloc>().mailTEC,
-                            focusNode: emailNode,
-                            label: getTranslated("mail"),
-                            hint: getTranslated("enter_your_mail"),
-                            withLabel: true,
-                            inputType: TextInputType.emailAddress,
-                            validate: Validations.mail,
-                          ),
+    return Expanded(
+      child: BlocBuilder<LoginBloc, AppState>(
+        builder: (context, state) {
+          return ListAnimator(
+            customPadding: EdgeInsets.symmetric(
+                horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
+            data: [
+              SizedBox(
+                height: Dimensions.PADDING_SIZE_DEFAULT.h,
+              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      ///Mail
+                      CustomTextField(
+                        controller: context.read<LoginBloc>().mailTEC,
+                        focusNode: emailNode,
+                        nextFocus: passwordNode,
+                        label: getTranslated("mail"),
+                        hint: getTranslated("enter_your_mail"),
+                        inputType: TextInputType.emailAddress,
+                        validate: Validations.mail,
+                      ),
 
-                          ///Password
-                          CustomTextField(
-                            controller: context.read<LoginBloc>().passwordTEC,
-                            keyboardAction: TextInputAction.done,
-                            label: getTranslated("password"),
-                            hint: getTranslated("enter_your_password"),
-                            withLabel: true,
-                            focusNode: passwordNode,
-                            inputType: TextInputType.visiblePassword,
-                            validate: Validations.password,
-                            isPassword: true,
-                          ),
+                      ///Password
+                      CustomTextField(
+                        controller: context.read<LoginBloc>().passwordTEC,
+                        keyboardAction: TextInputAction.done,
+                        label: getTranslated("password"),
+                        hint: getTranslated("enter_your_password"),
+                        focusNode: passwordNode,
+                        inputType: TextInputType.visiblePassword,
+                        validate: Validations.password,
+                        isPassword: true,
+                      ),
 
-                          ///Forget Password && Remember me
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL.h,
-                                horizontal:
-                                    Dimensions.PADDING_SIZE_EXTRA_SMALL.w),
-                            child: Row(
-                              children: [
-                                StreamBuilder<bool?>(
-                                  stream: context
+                      ///Forget Password && Remember me
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL.h,
+                            horizontal: Dimensions.PADDING_SIZE_EXTRA_SMALL.w),
+                        child: Row(
+                          children: [
+                            StreamBuilder<bool?>(
+                              stream:
+                                  context.read<LoginBloc>().rememberMeStream,
+                              builder: (_, snapshot) {
+                                return _RememberMe(
+                                  check: snapshot.data ?? false,
+                                  onChange: (v) => context
                                       .read<LoginBloc>()
-                                      .rememberMeStream,
-                                  builder: (_, snapshot) {
-                                    return _RememberMe(
-                                      check: snapshot.data ?? false,
-                                      onChange: (v) => context
-                                          .read<LoginBloc>()
-                                          .updateRememberMe(v),
-                                    );
-                                  },
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    context.read<LoginBloc>().clear();
-                                    CustomNavigator.push(
-                                        Routes.FORGET_PASSWORD);
-                                  },
-                                  child: Text(
-                                    getTranslated("forget_password"),
-                                    style: AppTextStyles.medium.copyWith(
-                                      color: Styles.PRIMARY_COLOR,
-                                      fontSize: 12,
-                                      decoration: TextDecoration.underline,
-                                      decorationColor: Styles.PRIMARY_COLOR,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                      .updateRememberMe(v),
+                                );
+                              },
                             ),
-                          ),
+                            InkWell(
+                              onTap: () {
+                                context.read<LoginBloc>().clear();
+                                CustomNavigator.push(Routes.FORGET_PASSWORD);
+                              },
+                              child: Text(
+                                getTranslated("forget_password"),
+                                style: AppTextStyles.medium.copyWith(
+                                  color: Styles.PRIMARY_COLOR,
+                                  fontSize: 13,
+                                  decoration: TextDecoration.underline,
+                                  decorationColor: Styles.PRIMARY_COLOR,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 24.h,
-                            ),
-                            child: CustomButton(
-                                text: getTranslated("login"),
-                                onTap: () {
-                                  CustomNavigator.push(Routes.DASHBOARD, clean: true, arguments: 0);
-                                  if (_formKey.currentState!.validate()) {
-                                    // context.read<LoginBloc>().add(Click());
-                                  }
-                                },
-                                isLoading: state is Loading),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 0.h,
-                            ),
-                            child: CustomButton(
-                                text: getTranslated("signup"),
-                                onTap: () {
-                                  CustomNavigator.push(Routes.REGISTER, );
-                                  // if (_formKey.currentState!.validate()) {
-                                  //   context.read<LoginBloc>().add(Click());
-                                  // }
-                                },
-                                isLoading: state is Loading),
-                          ),
-                        ],
-                      )),
-                ],
-              );
-            },
-          ),
-        );
-      },
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 24.h,
+                        ),
+                        child: CustomButton(
+                            text: getTranslated("login"),
+                            onTap: () {
+                              CustomNavigator.push(Routes.DASHBOARD,
+                                  clean: true, arguments: 0);
+                              if (_formKey.currentState!.validate()) {
+                                // context.read<LoginBloc>().add(Click());
+                              }
+                            },
+                            isLoading: state is Loading),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 0.h,
+                        ),
+                        child: CustomButton(
+                            text: getTranslated("signup"),
+                            onTap: () {
+                              CustomNavigator.push(
+                                Routes.REGISTER,
+                              );
+                              // if (_formKey.currentState!.validate()) {
+                              //   context.read<LoginBloc>().add(Click());
+                              // }
+                            },
+                            isLoading: state is Loading),
+                      ),
+                    ],
+                  )),
+            ],
+          );
+        },
+      ),
     );
   }
 }
@@ -195,13 +183,13 @@ class _RememberMe extends StatelessWidget {
                   : null,
             ),
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: 8.w),
           Expanded(
             child: Text(
               getTranslated("remember_me"),
               maxLines: 1,
               style: AppTextStyles.medium.copyWith(
-                  fontSize: 12,
+                  fontSize: 13,
                   overflow: TextOverflow.ellipsis,
                   color: check ? Styles.PRIMARY_COLOR : Styles.DETAILS_COLOR),
             ),

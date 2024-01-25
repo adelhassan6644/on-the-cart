@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stepOut/app/core/dimensions.dart';
-import 'package:stepOut/app/core/extensions.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
-import 'package:stepOut/components/custom_images.dart';
 import '../../../../app/core/app_event.dart';
-import '../../../../app/core/images.dart';
-import '../../../../app/core/styles.dart';
-import '../../../../app/core/svg_images.dart';
 import '../../../../app/core/text_styles.dart';
 import '../../../../app/localization/language_constant.dart';
 import '../../../../data/config/di.dart';
@@ -25,7 +19,7 @@ class Login extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginBloc(repo: sl<LoginRepo>())..add(Remember()),
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: const CustomAppBar(),
         body: Column(
          children: [
            Text(
@@ -34,7 +28,7 @@ class Login extends StatelessWidget {
              style: AppTextStyles.semiBold
                  .copyWith(fontSize: 24, ),
            ),
-           LoginBodyWidget(),
+           const LoginBodyWidget(),
          ],
                     ),
       ),

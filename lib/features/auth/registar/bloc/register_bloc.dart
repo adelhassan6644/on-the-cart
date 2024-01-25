@@ -26,16 +26,22 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
     on<Remember>(onRemember);
   }
 
+  TextEditingController nameTEC = TextEditingController();
+  TextEditingController phoneTEC = TextEditingController();
   TextEditingController mailTEC = TextEditingController();
   TextEditingController passwordTEC = TextEditingController();
+  TextEditingController confirmPasswordTEC = TextEditingController();
 
   Function(bool?) get updateRememberMe => rememberMe.sink.add;
 
   Stream<bool?> get rememberMeStream => rememberMe.stream.asBroadcastStream();
 
   clear() {
+    nameTEC.clear();
+    phoneTEC.clear();
     mailTEC.clear();
     passwordTEC.clear();
+    confirmPasswordTEC.clear();
     updateRememberMe(null);
   }
 

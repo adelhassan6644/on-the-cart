@@ -18,7 +18,7 @@ class CustomTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final bool isPassword;
   final void Function(String)? onSubmit;
-  final FocusNode? focusNode;
+  final FocusNode? focusNode, nextFocus;
   final FormFieldValidator<String>? validate;
   final int? maxLines;
   final int? minLines;
@@ -30,7 +30,7 @@ class CustomTextField extends StatefulWidget {
   final bool obscureText;
   final bool? autoFocus;
   final bool? alignLabel;
-  final dynamic errorText;
+  final String? errorText;
   final String? initialValue;
   final bool isEnabled;
   final bool? alignLabelWithHint;
@@ -69,6 +69,7 @@ class CustomTextField extends StatefulWidget {
     this.maxLength,
     this.formattedType,
     this.focusNode,
+    this.nextFocus,
     this.iconColor,
     this.keyboardPadding = false,
     this.autoFocus,
@@ -77,7 +78,7 @@ class CustomTextField extends StatefulWidget {
     this.prefixIcon,
     this.onlyBorderColor,
     this.suffixWidget,
-    this.withLabel = false,
+    this.withLabel = true,
     this.label,
     this.onTap,
     this.onTapOutside,
@@ -88,8 +89,16 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  bool _isHidden = true;
+  final InputBorder _borders = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(30),
+    borderSide: const BorderSide(
+      style: BorderStyle.solid,
+      color: Styles.HINT_COLOR,
+      width: 1,
+    ),
+  );
 
+  bool _isHidden = true;
   void _visibility() {
     setState(() {
       _isHidden = !_isHidden;
@@ -104,18 +113,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (widget.label != null)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 6.0),
-              child: Text(
-                widget.label ?? "",
-                style: AppTextStyles.semiBold.copyWith(
-                  color: Styles.PRIMARY_COLOR,
-                  fontSize: 14,
-                ),
+          if (widget.withLabel)
+            Text(
+              widget.label ?? "",
+              style: AppTextStyles.semiBold.copyWith(
+                color: Styles.PRIMARY_COLOR,
+                fontSize: 14,
               ),
             ),
-          if (widget.label != null) SizedBox(height: widget.labelSpace),
+          if (widget.withLabel) SizedBox(height: widget.labelSpace),
           TextFormField(
             focusNode: widget.focusNode,
             initialValue: widget.initialValue,
@@ -126,7 +132,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
             onTap: widget.onTap,
             autofocus: widget.autoFocus ?? false,
             maxLength: widget.maxLength,
-            onFieldSubmitted: widget.onSubmit,
+
+            onFieldSubmitted: (v) {
+              widget.onSubmit?.call(v);
+              FocusScope.of(context).requestFocus(widget.nextFocus);
+            },
             readOnly: widget.readOnly,
             obscureText:
                 widget.isPassword == true ? _isHidden : widget.obscureText,
@@ -143,8 +153,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               widget.onTapOutside?.call(v);
               FocusManager.instance.primaryFocus?.unfocus();
             },
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
+            style: AppTextStyles.medium.copyWith(
               fontSize: 14,
               overflow: TextOverflow.ellipsis,
               color: Styles.HEADER,
@@ -158,11 +167,30 @@ class _CustomTextFieldState extends State<CustomTextField> {
               hintText: widget.hint ?? '',
               alignLabelWithHint:
                   widget.alignLabelWithHint ?? widget.alignLabel,
-              disabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              border: InputBorder.none,
+              disabledBorder: _borders.copyWith(
+                  borderSide: const BorderSide(
+                width: 1,
+                color: Styles.DISABLED,
+              )),
+              focusedBorder: _borders.copyWith(
+                  borderSide: const BorderSide(
+                width: 1,
+                color: Styles.PRIMARY_COLOR,
+              )),
+              errorBorder: _borders.copyWith(
+                  borderSide: const BorderSide(
+                width: 1,
+                color: Styles.ERORR_COLOR,
+              )),
+              enabledBorder: _borders,
+              border: _borders,
+              fillColor: Styles.FILL_COLOR,
               errorMaxLines: 2,
+              errorText: widget.errorText,
+              errorStyle: AppTextStyles.semiBold.copyWith(
+                color: Styles.ERORR_COLOR,
+                fontSize: 14,
+              ),
               labelStyle: const TextStyle(
                   color: Styles.PRIMARY_COLOR,
                   fontSize: 13,

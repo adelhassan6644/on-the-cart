@@ -1,8 +1,8 @@
 {
   "login_header" : "Welcome Back",
+  "more_header" : "Log in to save your data",
   "next": "Next",
   "welcome" : "welcome",
-
   "start": "Let’s get started",
   "on_boarding_header_1": "Easier, Faster",
   "on_boarding_header_2": "Easier, Faster",
@@ -96,7 +96,7 @@
   "forget_password_description": "Enter your email then check it",
   "about_us": "About us",
   "terms_conditions": "Terms & Conditions",
-  "agree_to": "Agree to ",
+  "i_agree_to": "I Agree to ",
   "share": "Share",
   "location": "Location",
   "register_with_us": "Register with us",

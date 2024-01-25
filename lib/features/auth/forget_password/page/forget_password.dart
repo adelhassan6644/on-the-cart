@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/dimensions.dart';
-import 'package:stepOut/app/core/extensions.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/features/auth/forget_password/bloc/forget_password_bloc.dart';
 import 'package:stepOut/features/auth/forget_password/repo/forget_password_repo.dart';
-
-import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_state.dart';
-import '../../../../app/core/images.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../app/core/text_styles.dart';
 import '../../../../app/core/validation.dart';
@@ -39,35 +35,30 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       child: BlocBuilder<ForgetPasswordBloc, AppState>(
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(),
-            body: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                  vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
+            appBar: const CustomAppBar(),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListAnimator(
+                    customPadding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                        vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
+                    data: [
                       Text(
                         getTranslated("forget_password_header"),
-                        textAlign: TextAlign.start,
+                        textAlign: TextAlign.center,
                         style: AppTextStyles.semiBold.copyWith(
                           fontSize: 24,
                         ),
                       ),
-                    ],
-                  ),
-                  Text(
-                    getTranslated("forget_password_description"),
-                    textAlign: TextAlign.start,
-                    style: AppTextStyles.semiBold.copyWith(
-                      fontSize: 14,
-                    ),
-                  ),
-                  ListAnimator(
-                    data: [
+                      Text(
+                        getTranslated("forget_password_description"),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.medium.copyWith(
+                            fontSize: 14, color: Styles.DETAILS_COLOR),
+                      ),
                       SizedBox(
                         height: Dimensions.PADDING_SIZE_DEFAULT.h,
                       ),
@@ -80,7 +71,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     context.read<ForgetPasswordBloc>().mailTEC,
                                 label: getTranslated("mail"),
                                 hint: getTranslated("enter_your_mail"),
-                                withLabel: true,
                                 focusNode: emailNode,
                                 inputType: TextInputType.emailAddress,
                                 validate: Validations.mail,
@@ -93,13 +83,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     text: getTranslated("submit"),
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
-                                        CustomNavigator.push(Routes.VERIFICATION,
+                                        CustomNavigator.push(
+                                            Routes.VERIFICATION,
                                             replace: true,
-                                            arguments:
-                                            VerificationModel(context
-                                                .read<ForgetPasswordBloc>()
-                                                .mailTEC
-                                                .text, fromRegister: false));
+                                            arguments: VerificationModel(
+                                                context
+                                                    .read<ForgetPasswordBloc>()
+                                                    .mailTEC
+                                                    .text,
+                                                fromRegister: false));
 
                                         // context
                                         //     .read<ForgetPasswordBloc>()
@@ -112,8 +104,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           )),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         },

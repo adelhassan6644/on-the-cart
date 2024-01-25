@@ -90,13 +90,15 @@ class CustomButton extends StatelessWidget {
                 : Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        text,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.medium.copyWith(
-                          fontSize: textSize ?? 16,
-                          overflow: TextOverflow.ellipsis,
-                          color: textColor ?? Styles.WHITE_COLOR,
+                      Expanded(
+                        child: Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: AppTextStyles.medium.copyWith(
+                            fontSize: textSize ?? 16,
+                            overflow: TextOverflow.ellipsis,
+                            color: textColor ?? Styles.WHITE_COLOR,
+                          ),
                         ),
                       ),
                       if (assetIcon != null || svgIcon != null)

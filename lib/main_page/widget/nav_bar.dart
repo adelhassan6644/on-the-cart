@@ -31,20 +31,13 @@ class NavBar extends StatelessWidget {
                   children: [
                     Expanded(
                       child: BottomNavBarItem(
-                        label: getTranslated("dashboard", context: context),
-                        svgIcon: SvgImages.homeIcon,
-                        isSelected: (snapshot.data ?? 0) == 0,
+                        label: getTranslated("more", context: context),
+                        svgIcon: SvgImages.moreIcon,
+                        width: 15,
+                        height: 19,
+                        isSelected: (snapshot.data ?? 0) == 4,
                         onTap: () =>
-                            DashboardBloc.instance.updateSelectIndex(0),
-                      ),
-                    ),
-                    Expanded(
-                      child: BottomNavBarItem(
-                        label: getTranslated("categories", context: context),
-                        svgIcon: SvgImages.categoryIcon,
-                        isSelected: (snapshot.data ?? 0) == 1,
-                        onTap: () =>
-                            DashboardBloc.instance.updateSelectIndex(1),
+                            DashboardBloc.instance.updateSelectIndex(4),
                       ),
                     ),
                     Expanded(
@@ -58,6 +51,15 @@ class NavBar extends StatelessWidget {
                     ),
                     Expanded(
                       child: BottomNavBarItem(
+                        label: getTranslated("dashboard", context: context),
+                        svgIcon: SvgImages.homeIcon,
+                        isSelected: (snapshot.data ?? 0) == 0,
+                        onTap: () =>
+                            DashboardBloc.instance.updateSelectIndex(0),
+                      ),
+                    ),
+                    Expanded(
+                      child: BottomNavBarItem(
                         label: getTranslated("favorite", context: context),
                         svgIcon: SvgImages.favorite,
                         isSelected: (snapshot.data ?? 0) == 3,
@@ -67,13 +69,11 @@ class NavBar extends StatelessWidget {
                     ),
                     Expanded(
                       child: BottomNavBarItem(
-                        label: getTranslated("more", context: context),
-                        svgIcon: SvgImages.moreIcon,
-                        width: 15,
-                        height: 19,
-                        isSelected: (snapshot.data ?? 0) == 4,
+                        label: getTranslated("categories", context: context),
+                        svgIcon: SvgImages.categoryIcon,
+                        isSelected: (snapshot.data ?? 0) == 1,
                         onTap: () =>
-                            DashboardBloc.instance.updateSelectIndex(4),
+                            DashboardBloc.instance.updateSelectIndex(1),
                       ),
                     ),
                   ]));

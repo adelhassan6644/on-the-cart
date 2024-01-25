@@ -1,5 +1,6 @@
 {
   "login_header" : "مرحبًا بعودتك",
+  "more_header" : "قم بتسجيل الدخول لحفظ بياناتك",
   "welcome" : "مرحبًا",
   "login_description" : "سعداء لرؤيتكم مرة أخرى!",
   "forget_password_header" : "نسيت كلمة المرور",
@@ -17,7 +18,7 @@
   "reset_password_description": "قم بتعيين كلمة المرور الجديدة لحسابك",
   "change_password_header" : "تغيير كلمة المرور",
   "signup_header" : "انشاء حساب جديد",
-  "agree_to": "أوافق على",
+  "i_agree_to": "انا أوافق على",
   "forget_password_description": "أدخل بريدك الإلكتروني ثم قم بالتحقق منه",
   "signup_description" : "مرحبًا بك في Step Out",
   "welcome_description": "اكمل بياناتك حتى تكون نسب توافق مشوارك\nاليومي مع الكباتن دقيقة!",
