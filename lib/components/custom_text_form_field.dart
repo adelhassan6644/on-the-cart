@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/extensions.dart';
+import 'package:stepOut/app/core/text_styles.dart';
 import '../app/core/styles.dart';
 import '../app/core/svg_images.dart';
-import 'custom_error_widget.dart';
 import 'custom_images.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -14,6 +14,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? inputType;
   final String? hint;
   final String? label;
+  final double labelSpace;
   final void Function(String)? onChanged;
   final bool isPassword;
   final void Function(String)? onSubmit;
@@ -36,8 +37,6 @@ class CustomTextField extends StatefulWidget {
   final Widget? prefixIcon;
   final bool? withPadding;
   final Widget? suffixWidget;
-  final bool withWidth;
-  final bool? customError;
   final GestureTapCallback? onTap;
   final Color? onlyBorderColor;
   final List<TextInputFormatter>? formattedType;
@@ -53,13 +52,13 @@ class CustomTextField extends StatefulWidget {
     this.align,
     this.inputType,
     this.hint,
-    this.alignLabelWithHint,
+    this.alignLabelWithHint = false,
     this.onChanged,
     this.validate,
     this.obscureText = false,
     this.isPassword = false,
-    this.withWidth = false,
     this.readOnly = false,
+    this.labelSpace = 8,
     this.maxLines = 1,
     this.minLines = 1,
     this.isEnabled = true,
@@ -78,7 +77,6 @@ class CustomTextField extends StatefulWidget {
     this.prefixIcon,
     this.onlyBorderColor,
     this.suffixWidget,
-    this.customError = false,
     this.withLabel = false,
     this.label,
     this.onTap,
@@ -100,133 +98,132 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: widget.withWidth ? context.width * .8 : context.width,
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-              color: Styles.FILL_COLOR,
-              border: Border.all(
-                  color: widget.alignLabel!
-                      ? Styles.PRIMARY_COLOR
-                      : Styles.BORDER_COLOR),
-              borderRadius: BorderRadius.circular(30.0)),
-          height: widget.height ?? 65,
-          child: Center(
-            child: TextFormField(
-              focusNode: widget.focusNode,
-              initialValue: widget.initialValue,
-              textInputAction: widget.keyboardAction,
-              textAlignVertical: widget.inputType == TextInputType.phone
-                  ? TextAlignVertical.center
-                  : TextAlignVertical.top,
-              onTap: widget.onTap,
-              autofocus: widget.autoFocus ?? false,
-              maxLength: widget.maxLength,
-              onFieldSubmitted: widget.onSubmit,
-              readOnly: widget.readOnly,
-              obscureText:
-                  widget.isPassword == true ? _isHidden : widget.obscureText,
-              controller: widget.controller,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              validator: widget.validate,
-              keyboardType: widget.inputType,
-              onChanged: widget.onChanged,
-              inputFormatters: widget.inputType == TextInputType.phone
-                  ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
-                  : widget.formattedType ?? [],
-              onTapOutside: (v) {
-                widget.onTapOutside?.call(v);
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 14,
-                overflow: TextOverflow.ellipsis,
-                color: Styles.HEADER,
-              ),
-              scrollPhysics: const BouncingScrollPhysics(),
-              scrollPadding: EdgeInsets.only(
-                  bottom: widget.keyboardPadding ? context.bottom : 0.0),
-              decoration: InputDecoration(
-                enabled: widget.isEnabled,
-                labelText: widget.label,
-                hintText: widget.hint ?? '',
-                alignLabelWithHint:
-                    widget.alignLabelWithHint ?? widget.alignLabel,
-                disabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                border: InputBorder.none,
-                errorMaxLines: 2,
-                labelStyle: const TextStyle(
-                    color: Styles.PRIMARY_COLOR,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600),
-                floatingLabelStyle: const TextStyle(
-                    color: Styles.PRIMARY_COLOR,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                hintStyle: const TextStyle(
-                  color: Styles.HINT_COLOR,
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500,
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          if (widget.label != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 6.0),
+              child: Text(
+                widget.label ?? "",
+                style: AppTextStyles.semiBold.copyWith(
+                  color: Styles.PRIMARY_COLOR,
+                  fontSize: 14,
                 ),
-                suffixIcon: widget.isPassword == true
-                    ? IconButton(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: widget.withPadding! ? 16.w : 0,
-                        ),
-                        onPressed: _visibility,
-                        alignment: Alignment.center,
-                        icon: _isHidden
-                            ? customImageIconSVG(
-                                imageName: SvgImages.hiddenEyeIcon,
-                                height: 16.55.h,
-                                width: 19.59.w,
-                                color: const Color(0xFF8B97A3),
-                              )
-                            : customImageIconSVG(
-                                imageName: SvgImages.eyeIcon,
-                                height: 16.55.h,
-                                width: 19.59.w,
-                                color: Styles.PRIMARY_COLOR,
-                              ),
-                      )
-                    : Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: widget.withPadding! ? 16.w : 0,
-                        ),
-                        child: widget.suffixIcon != null
-                            ? Icon(
-                                widget.suffixIcon,
-                                size: 18,
-                                color: widget.iconColor ?? Colors.grey[400],
-                              )
-                            : widget.suffixWidget),
-                prefixIcon: widget.withPadding!
-                    ? Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: widget.withPadding! ? 16.w : 0,
-                        ),
-                        child: widget.prefixIcon,
-                      )
-                    : widget.prefixIcon,
-                prefixIconConstraints: BoxConstraints(maxHeight: 25.h),
-                suffixIconConstraints: BoxConstraints(maxHeight: 25.h),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
               ),
             ),
+          if (widget.label != null) SizedBox(height: widget.labelSpace),
+          TextFormField(
+            focusNode: widget.focusNode,
+            initialValue: widget.initialValue,
+            textInputAction: widget.keyboardAction,
+            textAlignVertical: widget.inputType == TextInputType.phone
+                ? TextAlignVertical.center
+                : TextAlignVertical.top,
+            onTap: widget.onTap,
+            autofocus: widget.autoFocus ?? false,
+            maxLength: widget.maxLength,
+            onFieldSubmitted: widget.onSubmit,
+            readOnly: widget.readOnly,
+            obscureText:
+                widget.isPassword == true ? _isHidden : widget.obscureText,
+            controller: widget.controller,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            validator: widget.validate,
+            keyboardType: widget.inputType,
+            onChanged: widget.onChanged,
+            inputFormatters: widget.inputType == TextInputType.phone
+                ? [FilteringTextInputFormatter.allow(RegExp('[0-9]'))]
+                : widget.formattedType ?? [],
+            onTapOutside: (v) {
+              widget.onTapOutside?.call(v);
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              overflow: TextOverflow.ellipsis,
+              color: Styles.HEADER,
+            ),
+            scrollPhysics: const BouncingScrollPhysics(),
+            scrollPadding: EdgeInsets.only(
+                bottom: widget.keyboardPadding ? context.bottom : 0.0),
+            decoration: InputDecoration(
+              enabled: widget.isEnabled,
+              // labelText: widget.label,
+              hintText: widget.hint ?? '',
+              alignLabelWithHint:
+                  widget.alignLabelWithHint ?? widget.alignLabel,
+              disabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              border: InputBorder.none,
+              errorMaxLines: 2,
+              labelStyle: const TextStyle(
+                  color: Styles.PRIMARY_COLOR,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600),
+              floatingLabelStyle: const TextStyle(
+                  color: Styles.PRIMARY_COLOR,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              hintStyle: AppTextStyles.medium.copyWith(
+                color: Styles.HINT_COLOR,
+                fontSize: 12.0,
+              ),
+              suffixIcon: widget.isPassword == true
+                  ? IconButton(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: widget.withPadding! ? 16.w : 0,
+                      ),
+                      onPressed: _visibility,
+                      alignment: Alignment.center,
+                      icon: _isHidden
+                          ? customImageIconSVG(
+                              imageName: SvgImages.hiddenEyeIcon,
+                              height: 16.55.h,
+                              width: 19.59.w,
+                              color: const Color(0xFF8B97A3),
+                            )
+                          : customImageIconSVG(
+                              imageName: SvgImages.eyeIcon,
+                              height: 16.55.h,
+                              width: 19.59.w,
+                              color: Styles.PRIMARY_COLOR,
+                            ),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: widget.withPadding! ? 16.w : 0,
+                      ),
+                      child: widget.suffixIcon != null
+                          ? Icon(
+                              widget.suffixIcon,
+                              size: 18,
+                              color: widget.iconColor ?? Colors.grey[400],
+                            )
+                          : widget.suffixWidget),
+              prefixIcon: widget.withPadding!
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: widget.withPadding! ? 16.w : 0,
+                      ),
+                      child: widget.prefixIcon,
+                    )
+                  : widget.prefixIcon,
+              prefixIconConstraints: BoxConstraints(maxHeight: 25.h),
+              suffixIconConstraints: BoxConstraints(maxHeight: 25.h),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
+            ),
           ),
-        ),
-        widget.customError!
-            ? CustomErrorWidget(error: widget.errorText)
-            : Container()
-      ],
+        ],
+      ),
     );
   }
 }
