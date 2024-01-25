@@ -28,7 +28,6 @@ class MoreOptions extends StatelessWidget {
             Visibility(
               visible: !UserBloc.instance.isLogin,
               child: MoreButton(
-                withTopBorder: false,
                 title: getTranslated("orders_history"),
                 icon: SvgImages.orders,
                 onTap: () => CustomNavigator.push(Routes.PROFILE),
