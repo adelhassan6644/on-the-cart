@@ -5,6 +5,7 @@ import 'package:flutter_bloc/src/bloc_provider.dart'
 import 'package:stepOut/main_blocs/user_bloc.dart';
 
 import '../../app/core/app_event.dart';
+import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/maps/bloc/map_bloc.dart';
 import '../../features/more/bloc/logout_bloc.dart';
@@ -12,7 +13,6 @@ import '../../features/notifications/bloc/notifications_bloc.dart';
 import '../../features/notifications/bloc/turn_notification_bloc.dart';
 import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
-import '../../features/splash/bloc/splash_bloc.dart';
 
 abstract class ProviderList {
   static List<BlocProviderSingleChildWidget> providers = [
@@ -26,5 +26,6 @@ abstract class ProviderList {
     BlocProvider<NotificationsBloc>(create: (_) => di.sl<NotificationsBloc>()),
     BlocProvider<TurnNotificationsBloc>(
         create: (_) => di.sl<TurnNotificationsBloc>()),
+    BlocProvider<HomeAdsBloc>(create: (_) => di.sl<HomeAdsBloc>()),
   ];
 }

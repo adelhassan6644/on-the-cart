@@ -9,6 +9,8 @@ import '../../features/auth/login/repo/login_repo.dart';
 import '../../features/auth/reset_password/repo/reset_password_repo.dart';
 import '../../features/auth/verification/repo/verification_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
+import '../../features/home/bloc/home_ads_bloc.dart';
+import '../../features/home/repo/home_repo.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/language/repo/language_repo.dart';
 import '../../features/maps/bloc/map_bloc.dart';
@@ -72,6 +74,8 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => NotificationsRepo(sharedPreferences: sl(), dioClient: sl()));
 
+  sl.registerLazySingleton(() => HomeRepo(sharedPreferences: sl(), dioClient: sl()));
+
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
   sl.registerLazySingleton(() => LanguageBloc(repo: sl()));
@@ -85,6 +89,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => NotificationsBloc(repo: sl()));
   sl.registerLazySingleton(() => TurnNotificationsBloc(repo: sl()));
   sl.registerLazySingleton(() => MapBloc(repo: sl()));
+  sl.registerLazySingleton(() => HomeAdsBloc(repo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stepOut/app/core/dimensions.dart';
+
+import '../widgets/home_ads.dart';
+import '../widgets/home_app_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,8 +22,15 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin<Home> {
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: Column(
-        children: [],
+      backgroundColor: const Color(0xFFFAF6F3),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const HomeAppBar(),
+            SizedBox(height: 24.h),
+            const HomeAds(),
+          ],
+        ),
       ),
     );
   }

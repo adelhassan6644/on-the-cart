@@ -29,6 +29,7 @@ class NavBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+
                     Expanded(
                       child: BottomNavBarItem(
                         label: getTranslated("more", context: context),
@@ -40,15 +41,17 @@ class NavBar extends StatelessWidget {
                             DashboardBloc.instance.updateSelectIndex(4),
                       ),
                     ),
+
                     Expanded(
                       child: BottomNavBarItem(
                         label: getTranslated("cart", context: context),
                         svgIcon: SvgImages.cartIcon,
-                        isSelected: (snapshot.data ?? 0) == 2,
+                        isSelected: (snapshot.data ?? 0) == 3,
                         onTap: () =>
-                            DashboardBloc.instance.updateSelectIndex(2),
+                            DashboardBloc.instance.updateSelectIndex(3),
                       ),
                     ),
+
                     Expanded(
                       child: BottomNavBarItem(
                         label: getTranslated("dashboard", context: context),
@@ -58,15 +61,17 @@ class NavBar extends StatelessWidget {
                             DashboardBloc.instance.updateSelectIndex(0),
                       ),
                     ),
+
                     Expanded(
                       child: BottomNavBarItem(
                         label: getTranslated("favorite", context: context),
                         svgIcon: SvgImages.favorite,
-                        isSelected: (snapshot.data ?? 0) == 3,
+                        isSelected: (snapshot.data ?? 0) == 2,
                         onTap: () =>
-                            DashboardBloc.instance.updateSelectIndex(3),
+                            DashboardBloc.instance.updateSelectIndex(2),
                       ),
                     ),
+
                     Expanded(
                       child: BottomNavBarItem(
                         label: getTranslated("categories", context: context),

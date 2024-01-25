@@ -18,7 +18,7 @@ class EndPoints {
   static const String deleteProfile = 'client/destroy';
   static getFavourites(id) => 'favorites/$id';
   static const String postFavourite = 'favorite';
-  static const String banners = 'banner';
+  static const String ads = 'ads';
   static const String news = 'news';
   static const String services = 'service';
   static getItemDetails(id) => 'place/$id';

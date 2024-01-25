@@ -45,11 +45,11 @@ class _DashBoardState extends State<DashBoard> {
   Widget fragment(int index) {
     switch (index) {
       case 0:
-        return Container();
+        return const Home();
       case 1:
         return Container();
       case 2:
-        return const Home();
+        return  Container();
       case 3:
         return Container();
       case 4:

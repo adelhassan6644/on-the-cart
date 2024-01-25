@@ -79,17 +79,9 @@ Widget customContainerSvgIcon(
     child: Container(
       height: height ?? 50,
       width: width ?? 50,
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          boxShadow: withShadow
-              ? [
-                  BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      offset: const Offset(2, 2),
-                      spreadRadius: 3,
-                      blurRadius: 5)
-                ]
-              : null,
+         border: Border.all(color: Styles.LIGHT_BORDER_COLOR),
           color: backGround ?? Styles.PRIMARY_COLOR.withOpacity(0.2),
           borderRadius: BorderRadius.circular(radius ?? 12)),
       child: SvgPicture.asset(
