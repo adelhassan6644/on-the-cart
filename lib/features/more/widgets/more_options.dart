@@ -13,7 +13,6 @@ import '../../../navigation/routes.dart';
 import '../../language/bloc/language_bloc.dart';
 import '../../language/page/language_bottom_sheet.dart';
 import '../../notifications/bloc/turn_notification_bloc.dart';
-import 'logout_button.dart';
 import 'more_button.dart';
 
 class MoreOptions extends StatelessWidget {
@@ -34,7 +33,8 @@ class MoreOptions extends StatelessWidget {
                 onTap: () => CustomNavigator.push(Routes.PROFILE),
               ),
             ),
-            ///orders
+
+            ///Orders
             Visibility(
               visible: !UserBloc.instance.isLogin,
               child: MoreButton(
@@ -43,7 +43,8 @@ class MoreOptions extends StatelessWidget {
                 onTap: () => CustomNavigator.push(Routes.PROFILE),
               ),
             ),
-            ///orders
+
+            ///Favourites
             Visibility(
               visible: !UserBloc.instance.isLogin,
               child: MoreButton(
@@ -55,7 +56,7 @@ class MoreOptions extends StatelessWidget {
 
             ///Notifications
             Visibility(
-              visible:! UserBloc.instance.isLogin,
+              visible: !UserBloc.instance.isLogin,
               child: MoreButton(
                 title: getTranslated("notifications"),
                 icon: SvgImages.notification,
@@ -96,12 +97,12 @@ class MoreOptions extends StatelessWidget {
               },
             ),
 
-            ///Contact with us
-            MoreButton(
-              title: getTranslated("contact_with_us", context: context),
-              icon: SvgImages.contactWithUs,
-              // onTap: () => CustomNavigator.push(Routes.CONTACT_WITH_US),
-            ),
+            // ///Contact with us
+            // MoreButton(
+            //   title: getTranslated("contact_with_us", context: context),
+            //   icon: SvgImages.contactWithUs,
+            //   // onTap: () => CustomNavigator.push(Routes.CONTACT_WITH_US),
+            // ),
 
             ///Terms and Conditions
             MoreButton(
@@ -112,13 +113,11 @@ class MoreOptions extends StatelessWidget {
 
             ///About US
             MoreButton(
-              title: getTranslated("about_us", context: context),
-              icon: SvgImages.aboutUs,
+              title: getTranslated("more_about_us", context: context),
+              icon: SvgImages.infoSquare,
               onTap: () => CustomNavigator.push(Routes.ABOUT_US),
             ),
 
-            /// Logout
-            const LogOutButton(),
           ],
         );
       },

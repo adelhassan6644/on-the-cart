@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stepOut/features/more/page/more.dart';
 import 'package:stepOut/main_blocs/user_bloc.dart';
+import '../../app/core/app_event.dart';
 import '../../app/core/styles.dart';
 import '../../data/network/network_info.dart';
 import '../../features/home/page/home.dart';
@@ -20,6 +21,7 @@ class _DashBoardState extends State<DashBoard> {
     if (widget.index != null) {
       DashboardBloc.instance.updateSelectIndex(widget.index!);
     }
+    UserBloc.instance.add(Click());
 
     if (UserBloc.instance.isLogin) {
       // sl<ProfileBloc>().add(Get());
@@ -30,6 +32,7 @@ class _DashBoardState extends State<DashBoard> {
 
   initData() {
     Future.delayed(Duration.zero, () {
+      // UserBloc.instance.add(Click());
       // sl<HomeProvider>().getBanners();
       // sl<HomeProvider>().getCategories();
       // sl<HomeProvider>().getOffers();

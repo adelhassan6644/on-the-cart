@@ -44,6 +44,7 @@ class SvgImages {
   static const String tiktok = 'assets/svgs/tiktok.svg';
   static const String mailIcon = 'assets/svgs/mail.svg';
   static const String contactWithUs = 'assets/svgs/contact_with_us.svg';
+  static const String infoSquare = 'assets/svgs/info_square.svg';
   static const String aboutUs = 'assets/svgs/about_us.svg';
   static const String terms = 'assets/svgs/terms.svg';
   static const String lockIcon = 'assets/svgs/lock.svg';

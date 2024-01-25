@@ -20,56 +20,53 @@ class LogOutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LogoutBloc, AppState>(
       builder: (context, state) {
-        return InkWell(
-          onTap: () {
-            if (LogoutBloc.instance.isLogin) {
-              LogoutBloc.instance.add(Add());
-            } else {
-              CustomNavigator.push(Routes.LOGIN, arguments: true);
-            }
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(
-                vertical: Dimensions.PADDING_SIZE_SMALL.h,
-                horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
-            decoration: const BoxDecoration(
-                border: Border(
-              top: BorderSide(
-                color: Styles.BORDER_COLOR,
+        return Visibility(
+          visible: LogoutBloc.instance.isLogin,
+          child: InkWell(
+            onTap: () {
+              if (LogoutBloc.instance.isLogin) {
+                LogoutBloc.instance.add(Add());
+              } else {
+                CustomNavigator.push(Routes.LOGIN, arguments: true);
+              }
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: Dimensions.PADDING_SIZE_SMALL.h,
+                  horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  customImageIconSVG(
+                      imageName: SvgImages.logout,
+                      height: 20,
+                      width: 20,
+                      color: LogoutBloc.instance.isLogin
+                          ? Styles.ERORR_COLOR
+                          : Styles.ACTIVE),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  state is Loading
+                      ? const SpinKitThreeBounce(
+                          color: Styles.ERORR_COLOR,
+                          size: 25,
+                        )
+                      : Text(
+                          getTranslated(
+                              LogoutBloc.instance.isLogin ? "logout" : "login",
+                              context: context),
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: AppTextStyles.medium.copyWith(
+                              fontSize: 18,
+                              overflow: TextOverflow.ellipsis,
+                              color: LogoutBloc.instance.isLogin
+                                  ? Styles.ERORR_COLOR
+                                  : Styles.ACTIVE)),
+                ],
               ),
-            )),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                customImageIconSVG(
-                    imageName: SvgImages.logout,
-                    height: 20,
-                    width: 20,
-                    color: LogoutBloc.instance.isLogin
-                        ? Styles.ERORR_COLOR
-                        : Styles.ACTIVE),
-                const SizedBox(
-                  width: 16,
-                ),
-                state is Loading
-                    ? const SpinKitThreeBounce(
-                        color: Styles.ERORR_COLOR,
-                        size: 25,
-                      )
-                    : Expanded(
-                        child: Text(
-                            getTranslated(LogoutBloc.instance.isLogin
-                                ? "logout"
-                                : "login",context: context),
-                            maxLines: 1,
-                            style: AppTextStyles.medium.copyWith(
-                                fontSize: 18,
-                                overflow: TextOverflow.ellipsis,
-                                color: LogoutBloc.instance.isLogin
-                                    ? Styles.ERORR_COLOR
-                                    : Styles.ACTIVE)),
-                      ),
-              ],
             ),
           ),
         );

@@ -41,7 +41,7 @@ class MoreButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             customImageIconSVG(
-                imageName: icon, height: 24, width: 24, color: Styles.TITLE),
+                imageName: icon, height: 22, width: 22, color: Styles.TITLE),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
