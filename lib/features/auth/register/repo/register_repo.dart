@@ -14,11 +14,6 @@ import '../../../../main_repos/base_repo.dart';
 class RegisterRepo extends BaseRepo {
   RegisterRepo({required super.sharedPreferences, required super.dioClient});
 
-  bool isLoggedIn() {
-    return sharedPreferences.containsKey(AppStorageKey.isLogin);
-  }
-
-  String? get userId => sharedPreferences.getString(AppStorageKey.token);
 
   setLoggedIn() {
     removeGuestMode();
@@ -65,7 +60,7 @@ class RegisterRepo extends BaseRepo {
 
   Future subscribeToTopic() async {
     await FirebaseMessaging.instance
-        .subscribeToTopic("$userId")
+        .subscribeToTopic(userId)
         .then((v) async {
       await sharedPreferences.setBool(AppStorageKey.isSubscribe, true);
     });
@@ -73,7 +68,7 @@ class RegisterRepo extends BaseRepo {
 
   Future unSubscribeToTopic() async {
     await FirebaseMessaging.instance
-        .unsubscribeFromTopic("$userId")
+        .unsubscribeFromTopic(userId)
         .then((v) async {
       await sharedPreferences.remove(AppStorageKey.isSubscribe);
     });

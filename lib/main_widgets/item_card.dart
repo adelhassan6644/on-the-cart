@@ -1,166 +1,80 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/extensions.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_network_image.dart';
+import 'package:stepOut/main_models/items_model.dart';
+import 'package:stepOut/main_widgets/wishlist_button.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
 import 'package:stepOut/navigation/routes.dart';
-import '../app/core/methods.dart';
 import '../app/core/styles.dart';
-import '../app/core/svg_images.dart';
 import '../app/core/text_styles.dart';
-import '../components/custom_images.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({super.key, this.width, this.item});
-  final double? width;
-  final dynamic item;
+  const ItemCard({super.key, this.item});
+  final ItemModel? item;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () =>
-          CustomNavigator.push(Routes.ITEM_DETAILS, arguments: item?.id),
-      focusColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      child: Container(
-        width: width ?? context.width,
-        decoration: BoxDecoration(
-            color: Styles.SMOKED_WHITE_COLOR,
-            borderRadius: BorderRadius.circular(20)),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomNetworkImage.containerNewWorkImage(
-              edges: true,
-              radius: 20,
-              width: context.width,
-              height: 100.h,
-              image: item?.cover ?? "",
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                  vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ///Name
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+    return Stack(
+      children: [
+        InkWell(
+          // onTap: () => CustomNavigator.push(Routes.ITEM_DETAILS, arguments: item?.id),
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          child: Container(
+            width: 195.w,
+            decoration: BoxDecoration(
+                border: Border.all(color: Styles.BORDER_COLOR),
+                color: Styles.WHITE_COLOR,
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CustomNetworkImage.containerNewWorkImage(
+                  topEdges: true,
+                  width: context.width,
+                  height: 135.h,
+                  radius: 20,
+                  image: item?.image ?? "",
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.PADDING_SIZE_SMALL.w,
+                      vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL.h),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Text(
-                          item?.label ?? "Item Name",
-                          style: AppTextStyles.semiBold.copyWith(
-                              fontSize: 14, color: Styles.ACCENT_COLOR),
-                        ),
-                      ),
-                      SizedBox(width: 16.w),
+                      ///Name
                       Text(
-                        "${item?.rating?.toStringAsFixed(2) ?? 0}",
+                        item?.title ?? "Item Tile",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.semiBold
+                            .copyWith(fontSize: 14, color: Styles.HEADER),
+                      ),
+                      SizedBox(height: 6.h),
+
+                      ///Price
+                      Text(
+                        "${item?.discount ?? 100} ${getTranslated("sar")}",
+                        textAlign: TextAlign.center,
                         style: AppTextStyles.medium.copyWith(
-                            fontSize: 14,
-                            height: 1.2,
-                            color: Styles.PRIMARY_COLOR),
-                      ),
-                      SizedBox(width: 4.w),
-                      ...List.generate(
-                        item?.rating?.ceil() != 0
-                            ? item?.rating?.ceil() ?? 0
-                            : 1,
-                        (index) => customImageIconSVG(
-                            imageName: SvgImages.fillStar,
-                            height: 20,
-                            width: 20),
-                      )
-                    ],
-                  ),
-
-                  /// Description
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 6.0),
-                    child: Text(
-                      item?.description ?? "description",
-                      maxLines: 1,
-                      style: AppTextStyles.medium.copyWith(
-                          fontSize: 14,
-                          overflow: TextOverflow.ellipsis,
-                          color: Styles.TITLE),
-                    ),
-                  ),
-
-                  /// Location
-                  Row(
-                    children: [
-                      customImageIconSVG(
-                          imageName: SvgImages.location,
-                          width: 20,
-                          height: 20,
-                          color: Styles.PRIMARY_COLOR),
-                      SizedBox(width: 8.w),
-                      Expanded(
-                        child: Text(
-                          item?.address ?? "Location",
-                          maxLines: 1,
-                          style: AppTextStyles.medium.copyWith(
-                              overflow: TextOverflow.ellipsis,
-                              fontSize: 14,
-                              color: Styles.PRIMARY_COLOR),
-                        ),
+                            fontSize: 14, color: Styles.DETAILS_COLOR),
                       ),
                     ],
                   ),
-
-                  /// Distance
-                  const SizedBox(height: 6),
-                  // Consumer<LocationProvider>(builder: (_, provider, child) {
-                  //   return Row(
-                  //     children: [
-                  //       customImageIconSVG(
-                  //           imageName: SvgImages.distance,
-                  //           width: 20,
-                  //           height: 20,
-                  //           color: Styles.SUBTITLE),
-                  //       SizedBox(width: 8.w),
-                  //       Expanded(
-                  //         child: FutureBuilder(
-                  //           future: Methods.calcLiveDistance(
-                  //               lat: item?.lat, long: item?.long),
-                  //           builder: (_, AsyncSnapshot<dynamic> snapshot) {
-                  //             return Expanded(
-                  //               child: Text(
-                  //                 "${getTranslated("away_from_you")} ${snapshot.data ?? "..."} ${getTranslated("km")}",
-                  //                 style: AppTextStyles.regular.copyWith(
-                  //                     overflow: TextOverflow.ellipsis,
-                  //                     fontSize: 12,
-                  //                     color: Styles.SUBTITLE),
-                  //               ),
-                  //             );
-                  //           },
-                  //         ),
-                  //
-                  //         // Text(
-                  //         //   "${getTranslated("away_from_you", context)} ${Methods.calcLiveDistance(lat: item?.lat, long: item?.long)} ${getTranslated("km", context)}",
-                  //         //   style: AppTextStyles.regular.copyWith(
-                  //         //       overflow: TextOverflow.ellipsis,
-                  //         //       fontSize: 12,
-                  //         //       color: Styles.SUBTITLE),
-                  //         // ),
-                  //       ),
-                  //     ],
-                  //   );
-                  // }),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        Positioned(top: -10, left: -10, child: WishlistButton(id: item?.id))
+      ],
     );
   }
 }

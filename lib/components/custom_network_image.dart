@@ -28,7 +28,7 @@ class CustomNetworkImage {
       Color? borderColor,
       double? widthOfShimmer,
       Widget? imageWidget,
-      bool edges = false}) {
+      bool topEdges = false}) {
     return CachedNetworkImage(
       imageUrl: EndPoints.imageUrl + image,
       fadeInDuration: const Duration(seconds: 1),
@@ -37,11 +37,11 @@ class CustomNetworkImage {
         width: width ?? 40.w,
         height: height ?? 40.h,
         decoration: BoxDecoration(
-          borderRadius: edges
+          borderRadius: topEdges
               ? BorderRadius.only(
-                  topRight: Radius.circular(radius ?? 10),
-                  topLeft: Radius.circular(radius ?? 10))
-              : BorderRadius.all(Radius.circular(radius ?? 10.0)),
+                  topRight: Radius.circular(radius ?? 12),
+                  topLeft: Radius.circular(radius ?? 12))
+              : BorderRadius.circular(radius ?? 12),
           color: Styles.GREY_BORDER,
         ),
         padding: padding ??
@@ -77,7 +77,7 @@ class CustomNetworkImage {
               width: width ?? 40.w,
               height: height ?? 40.h,
               decoration: BoxDecoration(
-                  borderRadius: edges
+                  borderRadius: topEdges
                       ? BorderRadius.only(
                           topRight: Radius.circular(radius ?? 10),
                           topLeft: Radius.circular(radius ?? 10))
@@ -91,7 +91,7 @@ class CustomNetworkImage {
           padding: padding,
           decoration: BoxDecoration(
             border: Border.all(color: borderColor ?? Colors.transparent),
-            borderRadius: edges
+            borderRadius: topEdges
                 ? BorderRadius.only(
                     topRight: Radius.circular(radius ?? 10),
                     topLeft: Radius.circular(radius ?? 10))

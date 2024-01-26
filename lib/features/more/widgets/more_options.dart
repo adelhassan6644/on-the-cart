@@ -8,6 +8,7 @@ import '../../../app/core/svg_images.dart';
 import '../../../app/localization/language_constant.dart';
 import '../../../components/custom_bottom_sheet.dart';
 import '../../../main_blocs/user_bloc.dart';
+import '../../../main_page/bloc/dashboard_bloc.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../../../navigation/routes.dart';
 import '../../language/bloc/language_bloc.dart';
@@ -40,7 +41,7 @@ class MoreOptions extends StatelessWidget {
               child: MoreButton(
                 title: getTranslated("favorite"),
                 icon: SvgImages.favorite,
-                onTap: () => CustomNavigator.push(Routes.PROFILE),
+                onTap: () => DashboardBloc.instance.updateSelectIndex(2),
               ),
             ),
 
@@ -50,7 +51,7 @@ class MoreOptions extends StatelessWidget {
               child: MoreButton(
                 title: getTranslated("notifications"),
                 icon: SvgImages.notification,
-                onTap: () => CustomNavigator.push(Routes.NOTIFICATIONS),
+                onTap: () => CustomNavigator.push(Routes.notifications),
               ),
             ),
 

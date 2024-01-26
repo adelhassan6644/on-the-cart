@@ -3,22 +3,27 @@ import '../app/core/dimensions.dart';
 
 class GridListAnimatorWidget extends StatelessWidget {
   const GridListAnimatorWidget(
-      {this.aspectRatio, required this.items, Key? key, this.columnCount})
+      {this.aspectRatio,
+      required this.items,
+      Key? key,
+      this.columnCount,
+      this.padding})
       : super(key: key);
   final List<Widget> items;
   final double? aspectRatio;
+  final EdgeInsetsGeometry? padding;
   final int? columnCount;
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      padding: EdgeInsets.only(top: 20.h),
-      crossAxisCount: columnCount??2,
+      padding: padding ?? EdgeInsets.only(top: 20.h),
+      crossAxisCount: columnCount ?? 2,
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       addAutomaticKeepAlives: true,
-      mainAxisSpacing: 8.h,
+      mainAxisSpacing: 16.h,
       childAspectRatio: aspectRatio ?? 0.748,
-      crossAxisSpacing: 8.w,
+      crossAxisSpacing: 16.w,
       children: items,
     );
   }

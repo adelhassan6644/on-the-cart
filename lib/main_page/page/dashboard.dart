@@ -4,7 +4,9 @@ import 'package:stepOut/main_blocs/user_bloc.dart';
 import '../../app/core/app_event.dart';
 import '../../app/core/styles.dart';
 import '../../data/network/network_info.dart';
+import '../../features/categories/page/categories.dart';
 import '../../features/home/page/home.dart';
+import '../../features/wishlist/page/wishlist.dart';
 import '../bloc/dashboard_bloc.dart';
 import '../widget/nav_bar.dart';
 
@@ -47,9 +49,9 @@ class _DashBoardState extends State<DashBoard> {
       case 0:
         return const Home();
       case 1:
-        return Container();
+        return const Categories();
       case 2:
-        return  Container();
+        return const Wishlist();
       case 3:
         return Container();
       case 4:

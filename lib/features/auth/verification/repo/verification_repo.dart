@@ -15,12 +15,6 @@ class VerificationRepo extends BaseRepo {
   VerificationRepo(
       {required super.sharedPreferences, required super.dioClient});
 
-  bool isLoggedIn() {
-    return sharedPreferences.containsKey(AppStorageKey.isLogin);
-  }
-
-  String? get userId => sharedPreferences.getString(AppStorageKey.token);
-
   setLoggedIn() {
     removeGuestMode();
     subscribeToTopic();
@@ -67,7 +61,7 @@ class VerificationRepo extends BaseRepo {
 
   Future subscribeToTopic() async {
     await FirebaseMessaging.instance
-        .subscribeToTopic("$userId")
+        .subscribeToTopic(userId)
         .then((v) async {
       await sharedPreferences.setBool(AppStorageKey.isSubscribe, true);
     });
@@ -75,7 +69,7 @@ class VerificationRepo extends BaseRepo {
 
   Future unSubscribeToTopic() async {
     await FirebaseMessaging.instance
-        .unsubscribeFromTopic("$userId")
+        .unsubscribeFromTopic(userId)
         .then((v) async {
       await sharedPreferences.remove(AppStorageKey.isSubscribe);
     });

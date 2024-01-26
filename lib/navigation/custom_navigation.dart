@@ -1,13 +1,18 @@
+import 'package:stepOut/features/best_seller/page/best_seller_page.dart';
+import 'package:stepOut/features/categories/model/categories_model.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
+import 'package:stepOut/features/offers/page/offers_page.dart';
 import 'package:stepOut/features/profile/page/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:stepOut/features/stores/page/stores_page.dart';
 import '../features/auth/forget_password/page/forget_password.dart';
 import '../features/auth/login/page/login.dart';
-import '../features/auth/registar/page/register.dart';
+import '../features/auth/register/page/register.dart';
 import '../features/auth/reset_password/page/reset_password.dart';
 import '../features/auth/verification/model/verification_model.dart';
 import '../features/auth/verification/page/verification.dart';
 import '../features/edit_profile/page/edit_profile.dart';
+import '../features/items/page/items_page.dart';
 import '../features/on_boarding/pages/on_boarding.dart';
 import '../features/setting/pages/about_us.dart';
 import '../features/setting/pages/terms.dart';
@@ -71,8 +76,22 @@ abstract class CustomNavigator {
       //           ? settings.arguments as BaseModel
       //           : null));
 
-      case Routes.NOTIFICATIONS:
+      case Routes.notifications:
         return _pageRoute(const Notifications());
+
+      case Routes.stores:
+        return _pageRoute(const StoresPage());
+
+      case Routes.bestSeller:
+        return _pageRoute(const BestSellerPage());
+
+      case Routes.offers:
+        return _pageRoute(const OffersPage());
+
+      case Routes.items:
+        return _pageRoute(ItemsPage(
+          category: settings.arguments as CategoryItem,
+        ));
 
       case Routes.ABOUT_US:
         return _pageRoute(const AboutUs());

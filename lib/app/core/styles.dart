@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class Styles {
-  static const Color ACCENT_COLOR = Color(0xFFDA6727);
+  static const Color ACCENT_COLOR = Color(0xFFB18A66);
   static const Color PRIMARY_COLOR = Color(0xff7D0000);
   static const Color APP_BAR_BACKGROUND_COLOR = Color(0xffFFF9F9);
   static const Color BACKGROUND_COLOR = Color(0xFFFfffff);
@@ -10,7 +10,6 @@ abstract class Styles {
   static const Color SYSTEM_COLOR = Color(0xff007AFF);
   static const Color RATE_COLOR = Color(0xffFFC600);
   static const Color NAV_BAR_BACKGROUND_COLOR = Color(0xFFFFFFFF);
-  static const Color ACCENT_PRIMARY_COLOR = Color(0xffF7F1FC);
   static const Color ACTIVE = Color(0xff209370);
   static const Color IN_ACTIVE = Color(0xFFDB5353);
   static const Color PENDING = Color(0xFFF1A129);

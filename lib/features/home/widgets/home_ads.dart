@@ -23,12 +23,12 @@ class HomeAds extends StatelessWidget {
           // AdsModel model = state.model as AdsModel;
           return CarouselSlider.builder(
             options: CarouselOptions(
-              height: context.height * 0.275,
+              height: context.height * 0.20,
               disableCenter: true,
               pageSnapping: true,
               autoPlay: true,
               aspectRatio: 1.0,
-              viewportFraction: 0.92,
+              viewportFraction: 0.8,
               autoPlayInterval: const Duration(seconds: 5),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.fastOutSlowIn,
@@ -63,7 +63,7 @@ class HomeAds extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
             child: CustomShimmerContainer(
-              height: context.height * 0.275,
+              height: context.height * 0.2,
               width: context.width,
               radius: 12,
             ),

@@ -19,7 +19,11 @@ class EndPoints {
   static getFavourites(id) => 'favorites/$id';
   static const String postFavourite = 'favorite';
   static const String ads = 'ads';
-  static const String news = 'news';
+  static const String categories = 'categories';
+  static const String offers = 'offers';
+  static const String bestSeller = 'best_seller';
+  static getItems(id) => 'categories/$id';
+  static const String stores = 'stores';
   static const String services = 'service';
   static getItemDetails(id) => 'place/$id';
   static getServices(id) => 'subcategory/services/$id';
@@ -28,7 +32,6 @@ class EndPoints {
   static const String searchPlaces = 'place/search';
   static getTagPlaces(id) => 'tag/places/$id';
 
-  static const String offers = 'offer';
   static const String aboutUs = 'about_us';
   static const String setting = 'setting';
 

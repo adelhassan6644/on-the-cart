@@ -1,16 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stepOut/features/auth/registar/page/register.dart';
-import 'package:stepOut/features/auth/registar/repo/register_repo.dart';
+import 'package:stepOut/features/auth/register/repo/register_repo.dart';
 import '../../app/theme/theme_provider/theme_provider.dart';
 import '../../features/auth/forget_password/repo/forget_password_repo.dart';
 import '../../features/auth/login/repo/login_repo.dart';
 import '../../features/auth/reset_password/repo/reset_password_repo.dart';
 import '../../features/auth/verification/repo/verification_repo.dart';
+import '../../features/best_seller/bloc/best_seller_bloc.dart';
+import '../../features/best_seller/repo/best_seller_repo.dart';
+import '../../features/categories/bloc/categories_bloc.dart';
+import '../../features/categories/repo/categories_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/repo/home_repo.dart';
+import '../../features/items/bloc/items_bloc.dart';
+import '../../features/items/repo/items_repo.dart';
 import '../../features/language/bloc/language_bloc.dart';
 import '../../features/language/repo/language_repo.dart';
 import '../../features/maps/bloc/map_bloc.dart';
@@ -19,11 +24,16 @@ import '../../features/more/bloc/logout_bloc.dart';
 import '../../features/notifications/bloc/notifications_bloc.dart';
 import '../../features/notifications/bloc/turn_notification_bloc.dart';
 import '../../features/notifications/repo/notifications_repo.dart';
+import '../../features/offers/bloc/offers_bloc.dart';
+import '../../features/offers/repo/offers_repo.dart';
 import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/profile/repo/profile_repo.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
 import '../../features/setting/repo/setting_repo.dart';
-import '../../features/splash/bloc/splash_bloc.dart';
+import '../../features/stores/bloc/stores_bloc.dart';
+import '../../features/stores/repo/stores_repo.dart';
+import '../../features/wishlist/bloc/wishlist_bloc.dart';
+import '../../features/wishlist/repo/wishlist_repo.dart';
 import '../../main_blocs/user_bloc.dart';
 import '../../main_page/bloc/dashboard_bloc.dart';
 import '../../main_repos/download_repo.dart';
@@ -56,6 +66,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => UserRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(() => LoginRepo(sharedPreferences: sl(), dioClient: sl()));
+
   sl.registerLazySingleton(() => RegisterRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(() => VerificationRepo(sharedPreferences: sl(), dioClient: sl()));
@@ -76,6 +87,19 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() => HomeRepo(sharedPreferences: sl(), dioClient: sl()));
 
+  sl.registerLazySingleton(() => OffersRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(() => CategoriesRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(() => StoresRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(() => BestSellerRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(() => ItemsRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(() => WishlistRepo(sharedPreferences: sl(), dioClient: sl()));
+
+
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
   sl.registerLazySingleton(() => LanguageBloc(repo: sl()));
@@ -90,6 +114,12 @@ Future<void> init() async {
   sl.registerLazySingleton(() => TurnNotificationsBloc(repo: sl()));
   sl.registerLazySingleton(() => MapBloc(repo: sl()));
   sl.registerLazySingleton(() => HomeAdsBloc(repo: sl()));
+  sl.registerLazySingleton(() => CategoriesBloc(repo: sl()));
+  sl.registerLazySingleton(() => OffersBloc(repo: sl()));
+  sl.registerLazySingleton(() => StoresBloc(repo: sl()));
+  sl.registerLazySingleton(() => BestSellerBloc(repo: sl()));
+  sl.registerLazySingleton(() => ItemsBloc(repo: sl()));
+  sl.registerLazySingleton(() => WishlistBloc(repo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

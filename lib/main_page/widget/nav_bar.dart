@@ -64,7 +64,7 @@ class NavBar extends StatelessWidget {
 
                     Expanded(
                       child: BottomNavBarItem(
-                        label: getTranslated("favorite", context: context),
+                        label: getTranslated("wishlist", context: context),
                         svgIcon: SvgImages.favorite,
                         isSelected: (snapshot.data ?? 0) == 2,
                         onTap: () =>

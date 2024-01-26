@@ -110,11 +110,10 @@
   "skip": "تخطي",
   "news": "الأخبار",
   "offers": "العروض",
-  "categories": "الأقسام",
+  "categories": "الفئات",
   "cart": "العربة",
   "favorite": "المفضلة",
   "orders_history": "سجل الطلبات",
-
   "there_is_no_data": "لا يوجود بيانات",
   "search_hint": "ابحث هنا...",
   "search_description": "ابحث عن ما تريد",
@@ -164,5 +163,13 @@
   "select_map": "اختر خريطة",
   "notification_deleted_successfully": "تم حذف الاشعار بنجاح",
   "away_from_you": "يبعد عنك ",
-  "more": "المزيد"
+  "more": "المزيد",
+  "view_all": "عرض الكل",
+  "stores": "المتاجر",
+  "explore_stores": "تصفح المتاجر",
+  "offers_this_week": "عروض هذا الأسبوع",
+  "sar": "ر.س",
+  "best_seller": "الأفضل مبيعا",
+  "wishlist": "المفضلة",
+  "login_first": "برجاء التسجيل اولا !"
 }
