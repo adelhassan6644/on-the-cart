@@ -1,10 +1,13 @@
-class BaseModel {
-  void Function(dynamic)? valueChanged;
-  dynamic object;
-  bool? boolean;
+abstract class BaseModel {
+  int? id;
+  String? image;
+  String? title;
+  bool? isStore;
+
   BaseModel({
-    this.valueChanged,
-    this.object,
-    this.boolean,
+    this.id,
+    this.image,
+    this.title,
+    this.isStore,
   });
 }

@@ -24,6 +24,7 @@ class EndPoints {
   static const String bestSeller = 'best_seller';
   static getItems(id) => 'categories/$id';
   static const String stores = 'stores';
+  static getStoreDetails(id) => 'stores/$id';
   static const String services = 'service';
   static getItemDetails(id) => 'place/$id';
   static getServices(id) => 'subcategory/services/$id';

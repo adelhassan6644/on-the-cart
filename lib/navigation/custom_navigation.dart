@@ -1,10 +1,10 @@
 import 'package:stepOut/features/best_seller/page/best_seller_page.dart';
-import 'package:stepOut/features/categories/model/categories_model.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
 import 'package:stepOut/features/offers/page/offers_page.dart';
 import 'package:stepOut/features/profile/page/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:stepOut/features/stores/page/stores_page.dart';
+import 'package:stepOut/main_models/base_model.dart';
 import '../features/auth/forget_password/page/forget_password.dart';
 import '../features/auth/login/page/login.dart';
 import '../features/auth/register/page/register.dart';
@@ -90,7 +90,7 @@ abstract class CustomNavigator {
 
       case Routes.items:
         return _pageRoute(ItemsPage(
-          category: settings.arguments as CategoryItem,
+          model: settings.arguments as BaseModel,
         ));
 
       case Routes.ABOUT_US:

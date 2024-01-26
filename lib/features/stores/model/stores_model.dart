@@ -1,5 +1,7 @@
 import 'package:stepOut/data/config/mapper.dart';
 
+import '../../../main_models/base_model.dart';
+
 class StoresModel extends SingleMapper {
   String? message;
   List<StoreItem>? data;
@@ -34,17 +36,14 @@ class StoresModel extends SingleMapper {
   }
 }
 
-class StoreItem {
-  int? id;
-  String? image;
-  String? title;
-
-  StoreItem({this.id, this.image, this.title});
+class StoreItem extends BaseModel {
+  StoreItem({super.id, super.isStore = true, super.image, super.title = "Store Title"});
 
   StoreItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
     title = json['title'];
+    isStore = true;
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +51,7 @@ class StoreItem {
     data['id'] = id;
     data['image'] = image;
     data['title'] = title;
+    data['is_store'] = isStore;
 
     return data;
   }

@@ -8,9 +8,12 @@ import '../../../data/error/failures.dart';
 class ItemsRepo extends BaseRepo {
   ItemsRepo({required super.dioClient, required super.sharedPreferences});
 
-  Future<Either<ServerFailure, Response>> getItems(id) async {
+  Future<Either<ServerFailure, Response>> getItems(data) async {
     try {
-      Response response = await dioClient.get(uri: EndPoints.getItems(id));
+      Response response = await dioClient.get(
+          uri: data["isStore"]
+              ? EndPoints.getStoreDetails(data["id"])
+              : EndPoints.getItems(data["id"]));
       if (response.statusCode == 200) {
         return Right(response);
       } else {

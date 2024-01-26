@@ -23,7 +23,7 @@ class ItemsBloc extends Bloc<AppEvent, AppState> {
       emit(Loading());
 
       Either<ServerFailure, Response> response =
-          await repo.getItems(event.arguments as int);
+          await repo.getItems(event.arguments as Map);
 
       response.fold((fail) {
         AppCore.showSnackBar(

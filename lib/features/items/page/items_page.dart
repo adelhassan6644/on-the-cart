@@ -5,7 +5,6 @@ import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/components/empty_widget.dart';
 import 'package:stepOut/components/grid_list_animator.dart';
-import 'package:stepOut/features/categories/model/categories_model.dart';
 import 'package:stepOut/features/items/bloc/items_bloc.dart';
 import 'package:stepOut/main_models/items_model.dart';
 import 'package:stepOut/main_widgets/item_card.dart';
@@ -14,10 +13,11 @@ import '../../../app/core/app_event.dart';
 import '../../../app/core/app_state.dart';
 import '../../../components/shimmer/custom_shimmer.dart';
 import '../../../data/config/di.dart';
+import '../../../main_models/base_model.dart';
 
 class ItemsPage extends StatefulWidget {
-  const ItemsPage({super.key, required this.category});
-  final CategoryItem category;
+  const ItemsPage({super.key, required this.model});
+  final BaseModel model;
 
   @override
   State<ItemsPage> createState() => _ItemsPageState();
@@ -26,8 +26,12 @@ class ItemsPage extends StatefulWidget {
 class _ItemsPageState extends State<ItemsPage> {
   @override
   void initState() {
-    // Future.delayed(Duration.zero,
-    //     () => sl<ItemsBloc>().add(Click(arguments: widget.category.id)));
+    // Future.delayed(
+    //     Duration.zero,
+    //     () => sl<ItemsBloc>().add(Click(arguments: {
+    //           "isStore": widget.model.isStore,
+    //           "id": widget.model.id,
+    //         })));
     super.initState();
   }
 
@@ -35,7 +39,7 @@ class _ItemsPageState extends State<ItemsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: widget.category.title ?? "Category Title",
+        title: widget.model.title ?? "Model Title",
       ),
       body: SafeArea(
           child: Padding(

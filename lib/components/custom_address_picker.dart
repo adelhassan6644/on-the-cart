@@ -23,8 +23,7 @@ class CustomAddressPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        CustomNavigator.push(Routes.MAP,
-            arguments: BaseModel(valueChanged: onPicked, object: location));
+
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
