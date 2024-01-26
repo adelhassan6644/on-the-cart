@@ -73,7 +73,7 @@ class ItemCard extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(top: -10, left: -10, child: WishlistButton(id: item?.id))
+        Positioned(top: 8, left: 8, child: WishlistButton(item: item)),
       ],
     );
   }

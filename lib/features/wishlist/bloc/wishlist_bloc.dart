@@ -60,15 +60,16 @@ class WishlistBloc extends Bloc<AppEvent, AppState> {
     try {
       Map data = event.arguments as Map;
       Either<ServerFailure, Response> response =
-          await repo.updateWishlist(data["id"]);
+          await repo.updateWishlist((data["item"] as ItemModel).id);
 
       response.fold((fail) {
         AppCore.showToast(fail.error);
       }, (success) {
         if (data["isFav"]) {
-          model?.data?.removeWhere((e) => e.id == data["id"]);
+          model?.data
+              ?.removeWhere((e) => e.id == (data["item"] as ItemModel).id);
         } else {
-          model?.data?.add(data["item"]);
+          model?.data?.add((data["item"] as ItemModel));
         }
         emit(Done(model: model));
       });

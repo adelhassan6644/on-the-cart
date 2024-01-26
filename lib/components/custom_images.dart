@@ -69,23 +69,26 @@ Widget customContainerSvgIcon(
     Color? color,
     Color? backGround,
     bool withShadow = false,
+    double? padding,
     double? width,
     double? height,
     double? radius}) {
   return InkWell(
     onTap: () {
-      onTap!();
+      onTap?.call();
     },
     child: Container(
       height: height ?? 50,
       width: width ?? 50,
-      padding: const EdgeInsets.all(16),
+      padding:  EdgeInsets.all(padding??16),
       decoration: BoxDecoration(
          border: Border.all(color: Styles.LIGHT_BORDER_COLOR),
           color: backGround ?? Styles.PRIMARY_COLOR.withOpacity(0.2),
           borderRadius: BorderRadius.circular(radius ?? 12)),
       child: SvgPicture.asset(
         imageName,
+        width:width ,
+        height: height,
         color: color,
       ),
     ),
