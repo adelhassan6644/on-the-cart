@@ -34,7 +34,6 @@ class SvgImages {
   static const String global = 'assets/svgs/global.svg';
   static const String favourite = 'assets/svgs/fav.svg';
   static const String fillFav = 'assets/svgs/fill_fav.svg';
-  static const String disFavourite = 'assets/svgs/dis_fav.svg';
   static const String share = 'assets/svgs/share.svg';
   static const String whatsApp = 'assets/svgs/whats_app_icon.svg';
   static const String faceBook = 'assets/svgs/facebook.svg';

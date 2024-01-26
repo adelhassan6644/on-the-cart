@@ -39,7 +39,7 @@ class MoreOptions extends StatelessWidget {
             Visibility(
               visible: !UserBloc.instance.isLogin,
               child: MoreButton(
-                title: getTranslated("favorite"),
+                title: getTranslated("wishlist"),
                 icon: SvgImages.favorite,
                 onTap: () => DashboardBloc.instance.updateSelectIndex(2),
               ),
