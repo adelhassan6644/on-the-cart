@@ -1,0 +1,1 @@
+ /Users/user/SoftweareCloud2/on-the-cart/.dart_tool/flutter_build/fb6d276ae353cd4b96c4318237eb9d45/native_assets.yaml: 
