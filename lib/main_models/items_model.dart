@@ -34,40 +34,62 @@ class ItemsModel extends SingleMapper {
   }
 }
 
-class ItemModel {
-  int? id;
+class ItemModel extends LocaleSingleMapper {
+  String? id;
+  int count = 1;
   String? image;
   String? title;
-  String? price;
+  String? size;
+  double? price;
   String? discountPrice;
   String? discount;
+  String? color;
 
   ItemModel(
       {this.id,
+      this.count = 1,
       this.image,
       this.title,
       this.discountPrice,
       this.price,
+      this.size,
+      this.color,
       this.discount});
 
   ItemModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'].toString();
+    count = json['count'] ?? 1;
     image = json['image'];
     title = json['title'];
     discountPrice = json['discount_price'];
     price = json['price'];
     discount = json['discount'];
+    size = json['size'];
+    color = json['color'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['count'] = count;
     data['image'] = image;
     data['title'] = title;
     data['price'] = price;
-    data['discount_price'] = discountPrice;
-    data['discount'] = discount;
+    // data['discount_price'] = discountPrice;
+    data['color'] = color;
+    data['size'] = size;
+    // data['discount'] = discount;
 
     return data;
+  }
+
+  @override
+  Mapper fromMapper(Map<String, dynamic> data) {
+    return ItemModel.fromJson(data);
+  }
+
+  @override
+  Map<String, dynamic> toMap() {
+    return toJson();
   }
 }

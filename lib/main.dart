@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:stepOut/app/core/app_state.dart';
+import 'package:stepOut/data/local_data/local_database.dart';
 import 'package:stepOut/features/language/bloc/language_bloc.dart';
 import 'app/core/app_storage_keys.dart';
 import 'app/core/un_focus.dart';
@@ -11,9 +12,10 @@ import 'app/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app/core/app_strings.dart';
+import 'data/config/di.dart' as di;
+import 'data/config/di.dart';
 import 'data/config/provider.dart';
 import 'navigation/custom_navigation.dart';
-import 'package:stepOut/data/config/di.dart' as di;
 
 import 'navigation/routes.dart';
 
@@ -23,6 +25,8 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseNotifications.setUpFirebase();
   await di.init();
+  await sl<LocaleDatabase>().initDatabase();
+
   runApp(MultiBlocProvider(
       providers: ProviderList.providers, child: const MyApp()));
 }

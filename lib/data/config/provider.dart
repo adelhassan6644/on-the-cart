@@ -6,6 +6,7 @@ import 'package:stepOut/main_blocs/user_bloc.dart';
 
 import '../../app/core/app_event.dart';
 import '../../features/best_seller/bloc/best_seller_bloc.dart';
+import '../../features/cart/bloc/cart_bloc.dart';
 import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/items/bloc/items_bloc.dart';
@@ -38,5 +39,6 @@ abstract class ProviderList {
     BlocProvider<OffersBloc>(create: (_) => di.sl<OffersBloc>()),
     BlocProvider<BestSellerBloc>(create: (_) => di.sl<BestSellerBloc>()),
     BlocProvider<WishlistBloc>(create: (_) => di.sl<WishlistBloc>()),
+    BlocProvider<CartBloc>(create: (_) => di.sl<CartBloc>()),
   ];
 }

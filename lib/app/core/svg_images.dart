@@ -76,4 +76,7 @@ class SvgImages {
   static const String supportCall = 'assets/svgs/support_call.svg';
   static const String filter = 'assets/svgs/filter.svg';
   static const String distance = 'assets/svgs/distance.svg';
+  static const String delete = 'assets/svgs/delete.svg';
+  static const String arrowLeft = 'assets/svgs/arrow_left.svg';
+  static const String arrowRightCart = 'assets/svgs/arrow_right_cart.svg';
 }

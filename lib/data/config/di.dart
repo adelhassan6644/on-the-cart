@@ -9,6 +9,8 @@ import '../../features/auth/reset_password/repo/reset_password_repo.dart';
 import '../../features/auth/verification/repo/verification_repo.dart';
 import '../../features/best_seller/bloc/best_seller_bloc.dart';
 import '../../features/best_seller/repo/best_seller_repo.dart';
+import '../../features/cart/bloc/cart_bloc.dart';
+import '../../features/cart/repo/cart_repo.dart';
 import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/repo/categories_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
@@ -39,6 +41,7 @@ import '../../main_page/bloc/dashboard_bloc.dart';
 import '../../main_repos/download_repo.dart';
 import '../../main_repos/user_repo.dart';
 import '../api/end_points.dart';
+import '../local_data/local_database.dart';
 import '../network/network_info.dart';
 import '../dio/dio_client.dart';
 import '../dio/logging_interceptor.dart';
@@ -48,6 +51,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Core
+  sl.registerLazySingleton(() => LocaleDatabase());
   sl.registerLazySingleton(() => NetworkInfo(sl()));
   sl.registerLazySingleton(() => DioClient(
         EndPoints.baseUrl,
@@ -57,48 +61,70 @@ Future<void> init() async {
       ));
 
   // Repository
-  sl.registerLazySingleton(() => LocalizationRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => LocalizationRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(() => DownloadRepo());
 
-  sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => UserRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => UserRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => LoginRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => LoginRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => RegisterRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => RegisterRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => VerificationRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => VerificationRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => ForgetPasswordRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => ForgetPasswordRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => ResetPasswordRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => ResetPasswordRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => ProfileRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => ProfileRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => EditProfileRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => EditProfileRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => MapRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => MapRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => SettingRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => SettingRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => NotificationsRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => NotificationsRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => HomeRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => HomeRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => OffersRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => OffersRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => CategoriesRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => CategoriesRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => StoresRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => StoresRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => BestSellerRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => BestSellerRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => ItemsRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => ItemsRepo(sharedPreferences: sl(), dioClient: sl()));
 
-  sl.registerLazySingleton(() => WishlistRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => WishlistRepo(sharedPreferences: sl(), dioClient: sl()));
 
+  sl.registerLazySingleton(() =>
+      CartRepo(localDatabase: sl(), sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
@@ -120,6 +146,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => BestSellerBloc(repo: sl()));
   sl.registerLazySingleton(() => ItemsBloc(repo: sl()));
   sl.registerLazySingleton(() => WishlistBloc(repo: sl()));
+  sl.registerLazySingleton(() => CartBloc(repo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

@@ -9,7 +9,7 @@ class Start extends AppState {}
 class Done extends AppState {
   Mapper? model;
   List<Widget>? cards;
-  List<CustomModelSheet>? list;
+  List<Mapper>? list;
   bool? reload;
   bool? loading;
   dynamic data;

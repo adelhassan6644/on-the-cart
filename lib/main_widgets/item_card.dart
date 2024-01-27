@@ -7,8 +7,11 @@ import 'package:stepOut/main_models/items_model.dart';
 import 'package:stepOut/main_widgets/wishlist_button.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
 import 'package:stepOut/navigation/routes.dart';
+import '../app/core/app_event.dart';
 import '../app/core/styles.dart';
 import '../app/core/text_styles.dart';
+import '../data/config/di.dart';
+import '../features/cart/bloc/cart_bloc.dart';
 import 'discount_widget.dart';
 
 class ItemCard extends StatelessWidget {
@@ -21,6 +24,17 @@ class ItemCard extends StatelessWidget {
       children: [
         InkWell(
           // onTap: () => CustomNavigator.push(Routes.ITEM_DETAILS, arguments: item?.id),
+          onTap: () => sl<CartBloc>().add(Add(
+            arguments: ItemModel(
+                id: "4",
+                image:
+                    "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                title: "Test Add To Cart 3",
+                price: 300,
+                size: "XXL",
+                color: "#22BB55",
+                count: 5),
+          )),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -62,7 +76,7 @@ class ItemCard extends StatelessWidget {
 
                       ///Price
                       Text(
-                        "${item?.discount ?? 100} ${getTranslated("sar")}",
+                        "${item?.price ?? 100} ${getTranslated("sar")}",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.medium.copyWith(
                             fontSize: 14, color: Styles.DETAILS_COLOR),

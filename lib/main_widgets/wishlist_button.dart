@@ -21,7 +21,6 @@ class WishlistButton extends StatelessWidget {
     return BlocBuilder<WishlistBloc, AppState>(
       builder: (context, state) {
         bool isFav = false;
-
         if (state is Done) {
           List<ItemModel> items = (state.model as ItemsModel).data ?? [];
           isFav = items
