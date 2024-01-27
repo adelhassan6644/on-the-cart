@@ -9,6 +9,7 @@ import 'package:stepOut/navigation/custom_navigation.dart';
 import 'package:stepOut/navigation/routes.dart';
 import '../app/core/styles.dart';
 import '../app/core/text_styles.dart';
+import 'discount_widget.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({super.key, this.item});
@@ -73,7 +74,16 @@ class ItemCard extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(top: 8, left: 8, child: WishlistButton(item: item)),
+        Positioned(
+          top: 8,
+          left: 8,
+          child: WishlistButton(item: item),
+        ),
+        Positioned(
+          top: 12,
+          right: 1,
+          child: DiscountWidget(discount: item?.discount),
+        ),
       ],
     );
   }
