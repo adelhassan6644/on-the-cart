@@ -36,7 +36,7 @@ class Categories extends StatelessWidget {
                       (state.model as CategoriesModel).data ?? [];
                   return GridListAnimatorWidget(
                       columnCount: 3,
-                      aspectRatio: 100.w / 101.h,
+                      aspectRatio: 100.w / 105.h,
                       items: List.generate(
                           categories.length,
                           (i) => CategoryCard(
@@ -46,7 +46,7 @@ class Categories extends StatelessWidget {
                 if (state is Loading) {
                   return GridListAnimatorWidget(
                       columnCount: 3,
-                      aspectRatio: 100.w / 101.h,
+                      aspectRatio: 100.w / 105.h,
                       items: List.generate(
                         3,
                         (index) => Padding(
@@ -69,7 +69,7 @@ class Categories extends StatelessWidget {
                 } else {
                   return GridListAnimatorWidget(
                       columnCount: 3,
-                      aspectRatio: 100.w / 101.h,
+                      aspectRatio: 100.w / 105.h,
                       items: List.generate(20, (i) => const CategoryCard()));
                 }
               }),

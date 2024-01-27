@@ -35,7 +35,7 @@ class OffersPage extends StatelessWidget {
                       (state.model as ItemsModel).data ?? [];
                   return GridListAnimatorWidget(
                       columnCount: 2,
-                      aspectRatio: 100.w / 118.h,
+                      aspectRatio: 100.w / 123.h,
                       items: List.generate(
                           items.length,
                           (i) => ItemCard(
@@ -45,7 +45,7 @@ class OffersPage extends StatelessWidget {
                 if (state is Loading) {
                   return GridListAnimatorWidget(
                       columnCount: 2,
-                      aspectRatio: 100.w / 118.h,
+                      aspectRatio: 100.w / 123.h,
                       items: List.generate(
                         15,
                         (index) => Padding(
@@ -65,11 +65,10 @@ class OffersPage extends StatelessWidget {
                   return EmptyState(
                     txt: getTranslated("something_went_wrong"),
                   );
-                }
-                else {
+                } else {
                   return GridListAnimatorWidget(
                       columnCount: 2,
-                      aspectRatio: 100.w / 118.h,
+                      aspectRatio: 100.w / 123.h,
                       items: List.generate(20, (i) => const ItemCard()));
                 }
               }),

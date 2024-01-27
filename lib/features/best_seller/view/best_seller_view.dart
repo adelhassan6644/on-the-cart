@@ -32,7 +32,7 @@ class HomeBestSellerView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
                 columnCount: 2,
-                aspectRatio: 100.w / 120.h,
+                aspectRatio: 100.w / 123.h,
                 items: List.generate(
                     items.length,
                     (i) => ItemCard(
@@ -49,7 +49,7 @@ class HomeBestSellerView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
                 columnCount: 2,
-                aspectRatio: 100.w / 120.h,
+                aspectRatio: 100.w / 123.h,
                 items: List.generate(
                   10,
                   (index) => Padding(
@@ -75,7 +75,7 @@ class HomeBestSellerView extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
                 columnCount: 2,
-                aspectRatio: 100.w / 120.h,
+                aspectRatio: 100.w / 123.h,
                 items: List.generate(10, (i) => const ItemCard())),
           ],
         );
