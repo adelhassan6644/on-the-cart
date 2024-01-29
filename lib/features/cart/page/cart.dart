@@ -98,19 +98,26 @@ class _CartState extends State<Cart> {
                 ),
               ],
             ),
-            Positioned(
-              bottom: 20,
-              child: CustomButton(
-                  svgIcon: sl<LanguageBloc>().isLtr
-                      ? SvgImages.arrowRightCart
-                      : SvgImages.arrowLeft,
-                  iconSize: 18,
-                  textColor: Styles.PRIMARY_COLOR,
-                  iconColor: Styles.PRIMARY_COLOR,
-                  backgroundColor: Styles.WHITE_COLOR,
-                  withBorderColor: true,
-                  width: 150.w,
-                  text: getTranslated("continue", context: context)),
+            BlocBuilder<CartBloc, AppState>(
+              builder: (context, state) {
+                return Visibility(
+                  visible: state is Done,
+                  child: Positioned(
+                    bottom: 20,
+                    child: CustomButton(
+                        svgIcon: sl<LanguageBloc>().isLtr
+                            ? SvgImages.arrowRightCart
+                            : SvgImages.arrowLeft,
+                        iconSize: 18,
+                        textColor: Styles.PRIMARY_COLOR,
+                        iconColor: Styles.PRIMARY_COLOR,
+                        backgroundColor: Styles.WHITE_COLOR,
+                        withBorderColor: true,
+                        width: 150.w,
+                        text: getTranslated("continue", context: context)),
+                  ),
+                );
+              },
             )
           ],
         ),

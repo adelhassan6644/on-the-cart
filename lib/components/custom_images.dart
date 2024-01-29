@@ -77,17 +77,21 @@ Widget customContainerSvgIcon(
     onTap: () {
       onTap?.call();
     },
+    highlightColor: Colors.transparent,
+    hoverColor: Colors.transparent,
+    focusColor: Colors.transparent,
+    splashColor: Colors.transparent,
     child: Container(
       height: height ?? 50,
       width: width ?? 50,
-      padding:  EdgeInsets.all(padding??16),
+      padding: EdgeInsets.all(padding ?? 16),
       decoration: BoxDecoration(
-         border: Border.all(color: Styles.LIGHT_BORDER_COLOR),
+          border: Border.all(color: Styles.LIGHT_BORDER_COLOR),
           color: backGround ?? Styles.PRIMARY_COLOR.withOpacity(0.2),
           borderRadius: BorderRadius.circular(radius ?? 12)),
       child: SvgPicture.asset(
         imageName,
-        width:width ,
+        width: width,
         height: height,
         color: color,
       ),
