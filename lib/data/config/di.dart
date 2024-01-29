@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stepOut/features/auth/register/repo/register_repo.dart';
 import '../../app/theme/theme_provider/theme_provider.dart';
+import '../../features/address/repo/address_repo.dart';
 import '../../features/auth/forget_password/repo/forget_password_repo.dart';
 import '../../features/auth/login/repo/login_repo.dart';
 import '../../features/auth/reset_password/repo/reset_password_repo.dart';
@@ -125,6 +126,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() =>
       CartRepo(localDatabase: sl(), sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => AddressRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
