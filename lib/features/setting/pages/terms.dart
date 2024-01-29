@@ -38,13 +38,13 @@ class Terms extends StatelessWidget {
                       horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
                     ),
                     data: [
-                      Center(
-                        child: Image.asset(
-                          Images.splash,
-                          width: context.width * 0.3,
-                          height: context.height * 0.23,
-                        ),
-                      ),
+                      // Center(
+                      //   child: Image.asset(
+                      //     Images.splash,
+                      //     width: context.width * 0.3,
+                      //     height: context.height * 0.23,
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 16.h,
                       ),

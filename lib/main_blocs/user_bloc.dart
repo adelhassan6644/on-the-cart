@@ -24,7 +24,9 @@ class UserBloc extends Bloc<AppEvent, AppState> {
 
   bool get isLogin => repo.isLogIn;
   UserModel? user;
-
+  TextEditingController nameTEC = TextEditingController();
+  TextEditingController mailTEC = TextEditingController();
+  TextEditingController phoneTEC = TextEditingController();
   onClick(Click event, Emitter<AppState> emit) async {
     try {
       emit(Loading());

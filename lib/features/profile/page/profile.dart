@@ -49,69 +49,71 @@ class Profile extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                            vertical: 40.h),
-                        child: const ProfileImageWidget(
-                          withEdit: true,
-                          radius: 60,
+                            ),
+                        child: Center(
+                          child: const ProfileImageWidget(
+                            withEdit: true,
+                            radius: 60,
+                          ),
                         ),
                       ),
                       const ProfileBody(),
                       SizedBox(height: 24.h),
-                      MoreButton(
-                        title: getTranslated("change_password"),
-                        icon: SvgImages.lockIcon,
-                        onTap: () =>
-                            CustomNavigator.push(Routes.CHANGE_PASSWORD),
-                      ),
-                      MoreButton(
-                        title: getTranslated("remove_acc"),
-                        icon: SvgImages.trash,
-                        withBottomBorder: true,
-                        onTap: () => CustomBottomSheet.show(
-                          height: 450,
-                          list: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 24.w),
-                            child: Column(
-                              children: [
-                                Text(
-                                  getTranslated("are_you_sure_remove_account"),
-                                  textAlign: TextAlign.center,
-                                  style: AppTextStyles.semiBold.copyWith(
-                                      fontSize: 16, color: Styles.TITLE),
-                                ),
-                                SizedBox(height: 16.h),
-                                customImageIcon(
-                                    imageName: Images.removeAcc,
-                                    height: 200,
-                                    width: 200),
-                              ],
-                            ),
-                          ),
-                          label: getTranslated("remove_acc"),
-                          child: Row(
-                            children: [
-                              BlocProvider(
-                                create: (context) =>
-                                    DeleteProfileBloc(repo: sl<ProfileRepo>()),
-                                child: Expanded(
-                                    child: CustomButton(
-                                        onTap: () => context
-                                            .read<DeleteProfileBloc>()
-                                            .add(Delete()),
-                                        text: getTranslated("remove"))),
-                              ),
-                              SizedBox(width: 16.w),
-                              Expanded(
-                                  child: CustomButton(
-                                      textColor: Styles.PRIMARY_COLOR,
-                                      onTap: () => CustomNavigator.pop(),
-                                      backgroundColor:
-                                          Styles.PRIMARY_COLOR.withOpacity(0.2),
-                                      text: getTranslated("cancel"))),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // MoreButton(
+                      //   title: getTranslated("change_password"),
+                      //   icon: SvgImages.lockIcon,
+                      //   onTap: () =>
+                      //       CustomNavigator.push(Routes.CHANGE_PASSWORD),
+                      // ),
+                      // MoreButton(
+                      //   title: getTranslated("remove_acc"),
+                      //   icon: SvgImages.trash,
+                      //   withBottomBorder: true,
+                      //   onTap: () => CustomBottomSheet.show(
+                      //     height: 450,
+                      //     list: Padding(
+                      //       padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      //       child: Column(
+                      //         children: [
+                      //           Text(
+                      //             getTranslated("are_you_sure_remove_account"),
+                      //             textAlign: TextAlign.center,
+                      //             style: AppTextStyles.semiBold.copyWith(
+                      //                 fontSize: 16, color: Styles.TITLE),
+                      //           ),
+                      //           SizedBox(height: 16.h),
+                      //           customImageIcon(
+                      //               imageName: Images.removeAcc,
+                      //               height: 200,
+                      //               width: 200),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     label: getTranslated("remove_acc"),
+                      //     child: Row(
+                      //       children: [
+                      //         BlocProvider(
+                      //           create: (context) =>
+                      //               DeleteProfileBloc(repo: sl<ProfileRepo>()),
+                      //           child: Expanded(
+                      //               child: CustomButton(
+                      //                   onTap: () => context
+                      //                       .read<DeleteProfileBloc>()
+                      //                       .add(Delete()),
+                      //                   text: getTranslated("remove"))),
+                      //         ),
+                      //         SizedBox(width: 16.w),
+                      //         Expanded(
+                      //             child: CustomButton(
+                      //                 textColor: Styles.PRIMARY_COLOR,
+                      //                 onTap: () => CustomNavigator.pop(),
+                      //                 backgroundColor:
+                      //                     Styles.PRIMARY_COLOR.withOpacity(0.2),
+                      //                 text: getTranslated("cancel"))),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ))
                 ],

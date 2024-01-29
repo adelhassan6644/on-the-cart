@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/app_state.dart';
+import 'package:stepOut/components/custom_button.dart';
 import 'package:stepOut/components/custom_images.dart';
 import 'package:stepOut/main_blocs/user_bloc.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
@@ -10,7 +11,9 @@ import '../../../app/core/dimensions.dart';
 import '../../../app/core/styles.dart';
 import '../../../app/core/svg_images.dart';
 import '../../../app/core/text_styles.dart';
+import '../../../app/core/validation.dart';
 import '../../../app/localization/language_constant.dart';
+import '../../../components/custom_text_form_field.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key});
@@ -25,86 +28,45 @@ class ProfileBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
               vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
-          decoration: const BoxDecoration(
-              color: Styles.WHITE_COLOR,
-              border: Border(
-                  top: BorderSide(color: Styles.BORDER_COLOR),
-                  bottom: BorderSide(color: Styles.BORDER_COLOR))),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  customImageIconSVG(
-                      imageName: SvgImages.userIcon, width: 24, height: 24),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Text(
-                      getTranslated("personal_information"),
-                      style: AppTextStyles.medium.copyWith(
-                          color: Styles.PRIMARY_COLOR,
-                          fontSize: 16,
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  customImageIconSVG(
-                      imageName: SvgImages.edit,
-                      onTap: () => CustomNavigator.push(Routes.EDIT_PROFILE)),
-                ],
+
+
+              CustomTextField(
+                controller: context.read<UserBloc>().nameTEC,
+
+                label: getTranslated("name"),
+                hint: getTranslated("enter_your_name"),
+                inputType: TextInputType.name,
+                validate: Validations.name,
               ),
-              SizedBox(height: 12.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ///Name
-                    Text(
-                      getTranslated("name"),
-                      style: AppTextStyles.regular
-                          .copyWith(fontSize: 14, color: Styles.HINT_COLOR),
-                    ),
-                    Text(
-                      UserBloc.instance.user?.name ?? "",
-                      style: AppTextStyles.medium
-                          .copyWith(fontSize: 14, color: Styles.TITLE),
-                    ),
-                    Divider(
-                      color: Styles.BORDER_COLOR,
-                      height: 24.h,
-                    ),
 
-                    ///Phone
-                    Text(
-                      getTranslated("phone"),
-                      style: AppTextStyles.regular
-                          .copyWith(fontSize: 14, color: Styles.HINT_COLOR),
-                    ),
-                    Text(
-                      UserBloc.instance.user?.phone ?? "",
-                      style: AppTextStyles.medium
-                          .copyWith(fontSize: 14, color: Styles.TITLE),
-                    ),
-                    Divider(
-                      color: Styles.BORDER_COLOR,
-                      height: 24.h,
-                    ),
+              ///phone
+              CustomTextField(
+                controller: context.read<UserBloc>().phoneTEC,
 
-                    ///Mail
-                    Text(
-                      getTranslated("mail"),
-                      style: AppTextStyles.regular
-                          .copyWith(fontSize: 14, color: Styles.HINT_COLOR),
-                    ),
-                    Text(
-                      UserBloc.instance.user?.email ?? "",
-                      style: AppTextStyles.medium
-                          .copyWith(fontSize: 14, color: Styles.TITLE),
-                    ),
-                  ],
-                ),
-              )
+                label: getTranslated("phone"),
+                hint: getTranslated("enter_your_phone"),
+                inputType: TextInputType.phone,
+                validate: Validations.phone,
+              ),
+
+              ///Mail
+              CustomTextField(
+                controller: context.read<UserBloc>().mailTEC,
+
+                label: getTranslated("mail"),
+                hint: getTranslated("enter_your_mail"),
+                inputType: TextInputType.emailAddress,
+                validate: Validations.mail,
+              ),
+
+              CustomButton(text:getTranslated("save"), )
+
+
+
             ],
           ),
         );

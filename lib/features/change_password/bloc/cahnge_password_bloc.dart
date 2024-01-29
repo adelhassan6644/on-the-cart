@@ -11,15 +11,14 @@ import '../../../../app/core/styles.dart';
 import '../../../../data/error/failures.dart';
 import '../../../../navigation/custom_navigation.dart';
 import '../../../../navigation/routes.dart';
-import '../repo/reset_password_repo.dart';
+import '../repo/change_password_repo.dart';
 
-class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
-  final ResetPasswordRepo repo;
-  ResetPasswordBloc({required this.repo}) : super(Start()) {
+class ChangePasswordBloc extends Bloc<AppEvent, AppState> {
+  final ChangePasswordRepo repo;
+  ChangePasswordBloc({required this.repo}) : super(Start()) {
     on<Click>(_resetPassword);
   }
 
-  TextEditingController currentPasswordTEC = TextEditingController();
   TextEditingController passwordTEC = TextEditingController();
   TextEditingController confirmPasswordTEC = TextEditingController();
 

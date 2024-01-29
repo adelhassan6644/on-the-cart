@@ -29,6 +29,7 @@ abstract class Styles {
   static const Color RED_COLOR = Color(0xffFF3B30);
   static const Color HEADER = PRIMARY_COLOR;
   static const Color TITLE = Color(0xFF151416);
+  static const Color BLACK = Color(0xFF151416);
   static const Color SUBTITLE = Color(0xff373737);
   static const Color DETAILS_COLOR = Color(0xff777777);
   static const Color HINT_COLOR = Color(0xffAEAEAE);
