@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/app_state.dart';
 import 'package:stepOut/app/core/dimensions.dart';
+import 'package:stepOut/app/core/svg_images.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/animated_widget.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
@@ -76,8 +77,10 @@ class AddressesPage extends StatelessWidget {
                         data: [
                           EmptyState(
                             txt: getTranslated(state is Empty
-                                ? "there_is_no_data"
+                                ? "there_is_no_addresses"
                                 : "something_went_wrong"),
+                            isSvg: true,
+                            img: SvgImages.emptyAddress,
                           ),
                         ],
                       );

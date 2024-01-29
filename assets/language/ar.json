@@ -184,6 +184,7 @@
   "edit_address": "تعديل العنوان",
   "address_details": "العنوان بالتفصيل",
   "enter_address_details": "ادخل العنوان بالتفصيل",
-  "make_as_a_default_address": "تعيين كعنوان الافتراضي"
+  "make_as_a_default_address": "تعيين كعنوان الافتراضي",
+  "there_is_no_addresses": "لا يوجد عناوين مسجلة"
 
 }

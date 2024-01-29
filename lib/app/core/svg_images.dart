@@ -79,4 +79,5 @@ class SvgImages {
   static const String delete = 'assets/svgs/delete.svg';
   static const String arrowLeft = 'assets/svgs/arrow_left.svg';
   static const String arrowRightCart = 'assets/svgs/arrow_right_cart.svg';
+  static const String emptyAddress = 'assets/svgs/empty_address.svg';
 }

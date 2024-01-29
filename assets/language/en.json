@@ -187,5 +187,6 @@
   "edit_address": "Edit Address",
   "address_details": "Address Details",
   "enter_address_details": "Enter Address Details",
-  "make_as_a_default_address": "Make as a default address"
+  "make_as_a_default_address": "Make as a default address",
+  "there_is_no_addresses": "There are no registered addresses"
 }

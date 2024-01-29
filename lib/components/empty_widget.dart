@@ -40,21 +40,16 @@ class EmptyState extends StatelessWidget {
       children: [
         if (withImage)
           !isSvg
-              ? SizedBox(
+              ? customImageIcon(
+                  imageName: img ?? Images.logo,
                   width: imgWidth ?? context.width * 0.45,
                   height: imgHeight ?? context.height * 0.19,
-                  child: customImageIcon(
-                    imageName: img ?? Images.logo,
-                  ),
                 ) //width: MediaQueryHelper.width*.8,),
-              : SizedBox(
-            width: imgWidth ?? context.width * 0.45,
-            height: imgHeight ?? context.height * 0.19,
-                child: customImageIconSVG(
-                    imageName: img ?? SvgImages.appLogo,
-
-                    color: Styles.PRIMARY_COLOR),
-              ),
+              : customImageIconSVG(
+                  imageName: img ?? SvgImages.appLogo,
+                  width: imgWidth ?? context.width * 0.45,
+                  height: imgHeight ?? context.height * 0.19,
+                ),
         SizedBox(
           height: spaceBtw ?? 12.h,
         ),
