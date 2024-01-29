@@ -5,6 +5,9 @@ import 'package:flutter_bloc/src/bloc_provider.dart'
 import 'package:stepOut/main_blocs/user_bloc.dart';
 
 import '../../app/core/app_event.dart';
+import '../../features/addresses/bloc/addresses_bloc.dart';
+import '../../features/add_address/bloc/area_bloc.dart';
+import '../../features/add_address/bloc/city_bloc.dart';
 import '../../features/best_seller/bloc/best_seller_bloc.dart';
 import '../../features/cart/bloc/cart_bloc.dart';
 import '../../features/categories/bloc/categories_bloc.dart';
@@ -40,5 +43,8 @@ abstract class ProviderList {
     BlocProvider<BestSellerBloc>(create: (_) => di.sl<BestSellerBloc>()),
     BlocProvider<WishlistBloc>(create: (_) => di.sl<WishlistBloc>()),
     BlocProvider<CartBloc>(create: (_) => di.sl<CartBloc>()),
+    BlocProvider<AddressesBloc>(create: (_) => di.sl<AddressesBloc>()),
+    BlocProvider<CityBloc>(create: (_) => di.sl<CityBloc>()),
+    BlocProvider<AreaBloc>(create: (_) => di.sl<AreaBloc>()),
   ];
 }

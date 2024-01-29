@@ -23,6 +23,9 @@ class EndPoints {
   static const String offers = 'offers';
   static const String bestSeller = 'best_seller';
   static getItems(id) => 'categories/$id';
+
+  static const String areas = 'areas';
+  static const String cities = 'cities';
   static getAddresses(id) => 'address/$id';
   static editAddresses(id) => 'address/$id';
   static deleteAddresses(id) => 'address/$id';

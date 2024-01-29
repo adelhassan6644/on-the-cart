@@ -79,7 +79,7 @@ class MoreOptions extends StatelessWidget {
                 LanguageBloc.instance.add(Init());
                 CustomBottomSheet.show(
                     height: 450,
-                    list: const LanguageBottomSheet(),
+                    widget: const LanguageBottomSheet(),
                     label: getTranslated("select_language"),
                     onConfirm: () {
                       CustomNavigator.pop();

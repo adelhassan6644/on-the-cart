@@ -18,7 +18,7 @@ import '../../../components/shimmer/custom_shimmer.dart';
 import '../../../data/config/di.dart';
 import '../bloc/cart_bloc.dart';
 import '../widgets/cart_item.dart';
-import '../widgets/delete_cart_item.dart';
+import '../../../main_widgets/delete_item_widget.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -63,7 +63,7 @@ class _CartState extends State<Cart> {
                                   key: UniqueKey(),
                                   onDismissed: (v) => sl<CartBloc>()
                                       .add(Delete(arguments: items[i])),
-                                  background: const DeleteCartItem(),
+                                  background: const DeleteItemWidget(),
                                   child: CartItem(
                                     item: items[i],
                                   ),

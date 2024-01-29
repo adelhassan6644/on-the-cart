@@ -14,7 +14,7 @@ abstract class CustomBottomSheet {
       {Function()? onConfirm,
       String? label,
       String? buttonText,
-      required Widget? list,
+      required Widget? widget,
       double? height,
       Widget? child,
       bool? isLoading,
@@ -46,79 +46,66 @@ abstract class CustomBottomSheet {
             ),
             child: Column(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10.0, 0, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 8.h,
-                          ),
-                          child: Container(
-                            height: 5.h,
-                            width: 50.w,
-                            decoration: const BoxDecoration(
-                                color: Styles.BORDER_COLOR,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0))),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                              vertical: 8.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                label ?? "",
-                                style: AppTextStyles.medium.copyWith(
-                                  fontSize: 18,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  CustomNavigator.pop();
-                                  onDismiss?.call();
-                                },
-                                child: const Icon(
-                                  Icons.highlight_remove,
-                                  size: 24,
-                                  color: Styles.DISABLED,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 8.h,
-                            right: 24.w,
-                            left: 24.w,
-                          ),
-                          child: const Divider(
-                            color: Styles.BORDER_COLOR,
-                          ),
-                        ),
-                        Expanded(
-                            child: ListAnimator(
-                          controller: ScrollController(),
-                          data: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: withPadding
-                                      ? Dimensions.PADDING_SIZE_DEFAULT.w
-                                      : 0),
-                              child: list!,
-                            )
-                          ],
-                        )),
-                      ],
-                    ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  child: Container(
+                    height: 5.h,
+                    width: 50.w,
+                    decoration: const BoxDecoration(
+                        color: Styles.BORDER_COLOR,
+                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                      vertical: 8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        label ?? "",
+                        style: AppTextStyles.medium.copyWith(
+                          fontSize: 18,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          CustomNavigator.pop();
+                          onDismiss?.call();
+                        },
+                        child: const Icon(
+                          Icons.highlight_remove,
+                          size: 24,
+                          color: Styles.DISABLED,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: 8.h,
+                    right: 24.w,
+                    left: 24.w,
+                  ),
+                  child: const Divider(
+                    color: Styles.BORDER_COLOR,
+                  ),
+                ),
+                Expanded(
+                    child: ListAnimator(
+                  controller: ScrollController(),
+                  data: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: withPadding
+                              ? Dimensions.PADDING_SIZE_DEFAULT.w
+                              : 0),
+                      child: widget!,
+                    )
+                  ],
+                )),
                 Visibility(
                   visible: child != null || onConfirm != null,
                   child: Padding(

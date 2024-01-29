@@ -55,7 +55,7 @@ class ProfileOptions extends StatelessWidget {
               MoreButton(
                 title: getTranslated("addresses"),
                 icon: SvgImages.location,
-                // onTap: () => CustomNavigator.push(Routes.addresses),
+                onTap: () => CustomNavigator.push(Routes.addresses),
               ),
 
               ///Change Password
@@ -71,7 +71,7 @@ class ProfileOptions extends StatelessWidget {
                 icon: SvgImages.trash,
                 onTap: () => CustomBottomSheet.show(
                   height: 450,
-                  list: Padding(
+                  widget: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Column(
                       children: [

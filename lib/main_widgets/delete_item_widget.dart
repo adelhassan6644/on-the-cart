@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 
-import '../../../app/core/styles.dart';
-import '../../../app/core/svg_images.dart';
-import '../../../app/core/text_styles.dart';
-import '../../../app/localization/language_constant.dart';
-import '../../../components/custom_images.dart';
+import '../app/core/styles.dart';
+import '../app/core/svg_images.dart';
+import '../app/core/text_styles.dart';
+import '../app/localization/language_constant.dart';
+import '../components/custom_images.dart';
 
-class DeleteCartItem extends StatelessWidget {
-  const DeleteCartItem({super.key});
+class DeleteItemWidget extends StatelessWidget {
+  const DeleteItemWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

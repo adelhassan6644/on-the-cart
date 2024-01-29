@@ -3,7 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stepOut/features/auth/register/repo/register_repo.dart';
 import '../../app/theme/theme_provider/theme_provider.dart';
-import '../../features/address/repo/address_repo.dart';
+import '../../features/add_address/repo/add_address_repo.dart';
+import '../../features/addresses/bloc/addresses_bloc.dart';
+import '../../features/add_address/bloc/area_bloc.dart';
+import '../../features/add_address/bloc/city_bloc.dart';
+import '../../features/addresses/repo/addresses_repo.dart';
 import '../../features/auth/forget_password/repo/forget_password_repo.dart';
 import '../../features/auth/login/repo/login_repo.dart';
 import '../../features/auth/reset_password/repo/reset_password_repo.dart';
@@ -128,7 +132,10 @@ Future<void> init() async {
       CartRepo(localDatabase: sl(), sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(
-      () => AddressRepo(sharedPreferences: sl(), dioClient: sl()));
+      () => AddAddressRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => AddressesRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
@@ -151,6 +158,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => ItemsBloc(repo: sl()));
   sl.registerLazySingleton(() => WishlistBloc(repo: sl()));
   sl.registerLazySingleton(() => CartBloc(repo: sl()));
+  sl.registerLazySingleton(() => AddressesBloc(repo: sl()));
+  sl.registerLazySingleton(() => AreaBloc(repo: sl()));
+  sl.registerLazySingleton(() => CityBloc(repo: sl()));
 
   // External
   final sharedPreferences = await SharedPreferences.getInstance();

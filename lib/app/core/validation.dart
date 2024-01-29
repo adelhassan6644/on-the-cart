@@ -85,6 +85,14 @@ class Validations {
     }
   }
 
+  static String? field(String? value) {
+    if (value != null || value!.isEmpty) {
+      return getTranslated("required");
+    } else {
+      return null;
+    }
+  }
+
   static String? code(String? value) {
     if (value == null || value.length < 4) {
       return getTranslated("please_enter_valid_code");
@@ -93,9 +101,17 @@ class Validations {
     }
   }
 
-  static String? city(Object? value) {
+  static String? city(String? value) {
     if (value!.toString().isEmpty) {
       return getTranslated("please_choose_city");
+    } else {
+      return null;
+    }
+  }
+
+  static String? area(String? value) {
+    if (value!.toString().isEmpty) {
+      return getTranslated("please_choose_area");
     } else {
       return null;
     }

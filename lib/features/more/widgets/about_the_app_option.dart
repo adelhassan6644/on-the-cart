@@ -39,7 +39,7 @@ class AboutTheAppOption extends StatelessWidget {
         MoreButton(
           title: getTranslated("more_about_us", context: context),
           icon: SvgImages.infoSquare,
-          onTap: () => CustomNavigator.push(Routes.ABOUT_US),
+          onTap: () => CustomNavigator.push(Routes.aboutUs),
         ),
       ],
     );

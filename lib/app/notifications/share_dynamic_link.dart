@@ -27,7 +27,7 @@ Future<void> initUniLinks() async {
 }
 
 void handleDeepLink(String path) {
-  CustomNavigator.push(Routes.ITEM_DETAILS,
+  CustomNavigator.push(Routes.itemDetails,
       arguments: int.parse(path.replaceAll('/', '')));
   // navigate to detailed product screen
 }

@@ -10,11 +10,12 @@ class TurnButton extends StatelessWidget {
     required this.title,
     this.onTap,
     super.key,
-    required this.icon,
+    this.icon,
     required this.bing,
     required this.isLoading,
   });
-  final String title, icon;
+  final String title;
+  final String? icon;
   final bool bing, isLoading;
   final void Function()? onTap;
 
@@ -33,8 +34,14 @@ class TurnButton extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          customImageIconSVG(
-              imageName: icon, height: 24, width: 24, color: Styles.TITLE),
+          Visibility(
+            visible: icon != null,
+            child: customImageIconSVG(
+                imageName: icon ?? "",
+                height: 24,
+                width: 24,
+                color: Styles.TITLE),
+          ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -53,7 +60,7 @@ class TurnButton extends StatelessWidget {
               inactiveThumbColor: Styles.WHITE_COLOR,
               inactiveTrackColor: Styles.BORDER_COLOR,
               onChanged: (v) {
-                onTap!();
+                onTap?.call();
               },
               trackOutlineColor: MaterialStateProperty.resolveWith<Color?>(
                   (Set<MaterialState> states) {

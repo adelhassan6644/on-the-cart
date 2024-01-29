@@ -132,7 +132,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
             onTap: widget.onTap,
             autofocus: widget.autoFocus ?? false,
             maxLength: widget.maxLength,
-
             onFieldSubmitted: (v) {
               widget.onSubmit?.call(v);
               FocusScope.of(context).requestFocus(widget.nextFocus);
@@ -232,7 +231,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       child: widget.suffixIcon != null
                           ? Icon(
                               widget.suffixIcon,
-                              size: 18,
+                              size: 20,
                               color: widget.iconColor ?? Colors.grey[400],
                             )
                           : widget.suffixWidget),

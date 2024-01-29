@@ -1,3 +1,6 @@
+import 'package:stepOut/features/add_address/page/add_address_page.dart';
+import 'package:stepOut/features/addresses/model/addresses_model.dart';
+import 'package:stepOut/features/addresses/page/addresses_page.dart';
 import 'package:stepOut/features/best_seller/page/best_seller_page.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
 import 'package:stepOut/features/offers/page/offers_page.dart';
@@ -62,7 +65,7 @@ abstract class CustomNavigator {
       case Routes.PROFILE:
         return _pageRoute(const Profile());
 
-      case Routes.EDIT_PROFILE:
+      case Routes.editProfile:
         return _pageRoute(const EditProfile());
 
       case Routes.DASHBOARD:
@@ -80,6 +83,16 @@ abstract class CustomNavigator {
       case Routes.notifications:
         return _pageRoute(const Notifications());
 
+      case Routes.addresses:
+        return _pageRoute(const AddressesPage());
+
+      case Routes.addAddress:
+        return _pageRoute(AddAddressPage(
+          address: settings.arguments != null
+              ? settings.arguments as AddressItem
+              : null,
+        ));
+
       case Routes.stores:
         return _pageRoute(const StoresPage());
 
@@ -94,7 +107,7 @@ abstract class CustomNavigator {
           model: settings.arguments as BaseModel,
         ));
 
-      case Routes.ABOUT_US:
+      case Routes.aboutUs:
         return _pageRoute(const AboutUs());
 
       case Routes.TERMS:
