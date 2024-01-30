@@ -6,13 +6,13 @@ import '../../../../data/error/failures.dart';
 import '../../../../main_repos/base_repo.dart';
 
 class ChangePasswordRepo extends BaseRepo {
+  ChangePasswordRepo(
+      {required super.sharedPreferences, required super.dioClient});
 
-  ChangePasswordRepo({required super.sharedPreferences, required super.dioClient});
-
-  Future<Either<ServerFailure, Response>> resetPassword(data) async {
+  Future<Either<ServerFailure, Response>> changePassword(data) async {
     try {
-      Response response =
-          await dioClient.post(uri: EndPoints.resetPassword, data: data);
+      Response response = await dioClient.post(
+          uri: EndPoints.changePassword(userId), data: data);
 
       if (response.statusCode == 200) {
         return Right(response);

@@ -33,12 +33,12 @@ class _NotificationsState extends State<Notifications> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          title: getTranslated("notifications"),
-        ),
-        body: BlocBuilder<NotificationsBloc, AppState>(
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: getTranslated("notifications"),
+      ),
+      body: SafeArea(
+        child: BlocBuilder<NotificationsBloc, AppState>(
           builder: (context, state) {
             if (state is Loading) {
               return const CustomLoading();
@@ -159,7 +159,57 @@ class _NotificationsState extends State<Notifications> {
                 ),
               );
             }
-            return const SizedBox();
+            return RefreshIndicator(
+              color: Styles.PRIMARY_COLOR,
+              onRefresh: () async {
+                NotificationsBloc.instance.add(Get());
+              },
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListAnimator(
+                        data: List.generate(
+                            5,
+                            (index) => Dismissible(
+                                  background: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      CustomButton(
+                                        width: 120.w,
+                                        height: 35.h,
+                                        text: getTranslated("delete"),
+                                        svgIcon: SvgImages.trash,
+                                        iconSize: 18,
+                                        iconColor: Styles.IN_ACTIVE,
+                                        textColor: Styles.IN_ACTIVE,
+                                        backgroundColor:
+                                            Styles.IN_ACTIVE.withOpacity(0.12),
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            Dimensions.PADDING_SIZE_DEFAULT.w,
+                                      )
+                                    ],
+                                  ),
+                                  direction: DismissDirection.endToStart,
+                                  key: ValueKey(index),
+                                  confirmDismiss:
+                                      (DismissDirection direction) async {
+                                    NotificationsBloc.instance
+                                        .add(Delete(arguments: 0));
+                                    return false;
+                                  },
+                                  child: NotificationCard(
+                                    withBorder: index != 9,
+                                    notification: NotificationItem(),
+                                  ),
+                                ))),
+                  ),
+                ],
+              ),
+            );
           },
         ),
       ),

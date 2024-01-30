@@ -46,10 +46,10 @@ class AddressesBloc extends Bloc<AppEvent, AppState> {
     } catch (e) {
       AppCore.showSnackBar(
           notification: AppNotification(
-              message: e.toString(),
-              backgroundColor: Styles.IN_ACTIVE,
-              borderColor: Styles.RED_COLOR,
-              iconName: "fill-close-circle"));
+        message: e.toString(),
+        backgroundColor: Styles.IN_ACTIVE,
+        borderColor: Styles.RED_COLOR,
+      ));
       emit(Error());
     }
   }

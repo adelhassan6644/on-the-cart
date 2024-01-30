@@ -185,6 +185,12 @@
   "address_details": "العنوان بالتفصيل",
   "enter_address_details": "ادخل العنوان بالتفصيل",
   "make_as_a_default_address": "تعيين كعنوان الافتراضي",
-  "there_is_no_addresses": "لا يوجد عناوين مسجلة"
+  "there_is_no_addresses": "لا يوجد عناوين مسجلة",
+  "description": "الوصف",
+  "colors": "الالوان",
+  "sizes": "المقاسات",
+  "add_to_cart": "إضافة اللى عربة التسوق",
+  "added_to_cart": "تم الإضافة الي عربة التسوق",
+  "related_products": "منتجات مشابهة"
 
 }

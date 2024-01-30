@@ -13,8 +13,8 @@ import '../main_models/items_model.dart';
 
 class WishlistButton extends StatelessWidget {
   final ItemModel? item;
-
-  const WishlistButton({super.key, this.item});
+  final double size;
+  const WishlistButton({super.key, this.item, this.size = 40});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,10 @@ class WishlistButton extends StatelessWidget {
                 AppCore.showToast(getTranslated("login_first"));
               }
             },
-            width: 40,
-            height: 40,
+            width: size,
+            height: size,
             radius: 100,
-            padding: 10,
+            padding: size * 0.25,
             backGround: Colors.black.withOpacity(0.1),
             imageName: isFav ? SvgImages.fillFav : SvgImages.favorite);
       },

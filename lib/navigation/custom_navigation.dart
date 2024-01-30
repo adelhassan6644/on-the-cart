@@ -14,8 +14,9 @@ import '../features/auth/register/page/register.dart';
 import '../features/auth/reset_password/page/reset_password.dart';
 import '../features/auth/verification/model/verification_model.dart';
 import '../features/auth/verification/page/verification.dart';
-import '../features/change_password/page/cgange_password.dart';
+import '../features/change_password/page/change_password_page.dart';
 import '../features/edit_profile/page/edit_profile.dart';
+import '../features/item_details/page/item_details_page.dart';
 import '../features/items/page/items_page.dart';
 import '../features/on_boarding/pages/on_boarding.dart';
 import '../features/setting/pages/about_us.dart';
@@ -55,8 +56,9 @@ abstract class CustomNavigator {
 
       case Routes.REGISTER:
         return _pageRoute(const Register());
+
       case Routes.CHANGE_PASSWORD:
-        return _pageRoute(const ChangePassword());
+        return _pageRoute(const ChangePasswordPage());
 
       case Routes.VERIFICATION:
         return _pageRoute(
@@ -105,6 +107,11 @@ abstract class CustomNavigator {
       case Routes.items:
         return _pageRoute(ItemsPage(
           model: settings.arguments as BaseModel,
+        ));
+
+      case Routes.itemDetails:
+        return _pageRoute(ItemDetailsPage(
+          id: settings.arguments as String,
         ));
 
       case Routes.aboutUs:

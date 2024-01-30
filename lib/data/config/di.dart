@@ -18,9 +18,12 @@ import '../../features/cart/bloc/cart_bloc.dart';
 import '../../features/cart/repo/cart_repo.dart';
 import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/repo/categories_repo.dart';
+import '../../features/change_password/repo/change_password_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/repo/home_repo.dart';
+import '../../features/item_details/bloc/item_details_bloc.dart';
+import '../../features/item_details/repo/item_details_repo.dart';
 import '../../features/items/bloc/items_bloc.dart';
 import '../../features/items/repo/items_repo.dart';
 import '../../features/language/bloc/language_bloc.dart';
@@ -35,6 +38,7 @@ import '../../features/offers/bloc/offers_bloc.dart';
 import '../../features/offers/repo/offers_repo.dart';
 import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/profile/repo/profile_repo.dart';
+import '../../features/related_items/repo/related_items_repo.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
 import '../../features/setting/repo/setting_repo.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
@@ -93,6 +97,9 @@ Future<void> init() async {
       () => ResetPasswordRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(
+      () => ChangePasswordRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
       () => ProfileRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(
@@ -136,6 +143,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
       () => AddressesRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => ItemDetailsRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => RelatedItemsRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));

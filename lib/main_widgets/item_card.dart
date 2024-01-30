@@ -23,7 +23,8 @@ class ItemCard extends StatelessWidget {
     return Stack(
       children: [
         InkWell(
-          // onTap: () => CustomNavigator.push(Routes.ITEM_DETAILS, arguments: item?.id),
+          onTap: () => CustomNavigator.push(Routes.itemDetails,
+              arguments: item?.id ?? "1"),
           // onTap: () => sl<CartBloc>().add(Add(
           //   arguments: ItemModel(
           //       id: "2",

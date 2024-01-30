@@ -23,6 +23,8 @@ class EndPoints {
   static const String offers = 'offers';
   static const String bestSeller = 'best_seller';
   static getItems(id) => 'categories/$id';
+  static getRelatedItems(id) => 'related-items/$id';
+  static getItemDetails(id) => 'items/$id';
 
   static const String areas = 'areas';
   static const String cities = 'cities';
@@ -34,7 +36,6 @@ class EndPoints {
   static const String stores = 'stores';
   static getStoreDetails(id) => 'stores/$id';
   static const String services = 'service';
-  static getItemDetails(id) => 'place/$id';
   static getServices(id) => 'subcategory/services/$id';
   static getCategoryDetails(id) => 'category/$id';
   static const String category = 'category';

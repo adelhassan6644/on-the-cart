@@ -31,12 +31,13 @@ class _NotificationCardState extends State<NotificationCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (widget.notification?.notificationBody?.placeId != null) {
+        if (widget.notification?.notificationBody?.itemId != null) {
           CustomNavigator.push(Routes.itemDetails,
-              arguments: widget.notification?.notificationBody?.placeId);
+              arguments: widget.notification?.notificationBody?.itemId);
         }
         if (widget.notification?.isRead != true) {
-          NotificationsBloc.instance.add(Read(arguments: widget.notification?.id ?? ""));
+          NotificationsBloc.instance
+              .add(Read(arguments: widget.notification?.id ?? ""));
 
           setState(() => widget.notification?.isRead = true);
         }
@@ -80,16 +81,17 @@ class _NotificationCardState extends State<NotificationCard> {
                 children: [
                   Text(
                     widget.notification?.notificationBody?.title ??
-                        "jkjfb3vfi3vv3 ",
+                        "Notification Title",
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyles.medium
-                        .copyWith(fontSize: 14, color: Styles.HEADER),
+                        .copyWith(fontSize: 16, color: Styles.HEADER),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4.h),
+                    padding: EdgeInsets.symmetric(vertical: 2.h),
                     child: ReadMoreText(
-                      widget.notification?.notificationBody?.message ?? " ",
+                      widget.notification?.notificationBody?.message ??
+                          "Notification Message",
                       style: AppTextStyles.medium
                           .copyWith(fontSize: 12, color: Styles.TITLE),
                       trimLines: 2,
@@ -103,17 +105,6 @@ class _NotificationCardState extends State<NotificationCard> {
                       lessStyle: AppTextStyles.semiBold
                           .copyWith(fontSize: 14, color: Styles.PRIMARY_COLOR),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      const Expanded(child: SizedBox()),
-                      Text(
-                          widget.notification?.createdAt
-                                  ?.dateFormat(format: "EEE dd/mm -hh:mm a") ??
-                              "434/ef/f",
-                          style: AppTextStyles.regular.copyWith(
-                              fontSize: 12, color: Styles.DETAILS_COLOR)),
-                    ],
                   ),
                 ],
               ),

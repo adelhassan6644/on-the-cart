@@ -5,6 +5,9 @@ import 'package:stepOut/app/core/svg_images.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_images.dart';
 import 'package:stepOut/components/custom_text_form_field.dart';
+import 'package:stepOut/navigation/custom_navigation.dart';
+
+import '../../../navigation/routes.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -26,7 +29,7 @@ class HomeAppBar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: customContainerSvgIcon(
-                onTap: () {},
+                onTap: () => CustomNavigator.push(Routes.notifications),
                 width: 60,
                 height: 60,
                 radius: 100,

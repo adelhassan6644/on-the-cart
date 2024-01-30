@@ -15,12 +15,15 @@ class FilteredBackIcon extends StatelessWidget {
       child: BackdropFilter(
         filter: ui.ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.3),
               borderRadius: BorderRadius.circular(100)),
-          child: customImageIconSVG(
-              imageName: SvgImages.arrowRightIcon, color: Styles.WHITE_COLOR),
+          child: const Icon(
+            Icons.arrow_back,
+            size: 20,
+            color: Styles.WHITE_COLOR,
+          ),
         ),
       ),
     );

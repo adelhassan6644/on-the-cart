@@ -188,5 +188,11 @@
   "address_details": "Address Details",
   "enter_address_details": "Enter Address Details",
   "make_as_a_default_address": "Make as a default address",
-  "there_is_no_addresses": "There are no registered addresses"
+  "there_is_no_addresses": "There are no registered addresses",
+  "description": "Description",
+  "sizes": "Sizes",
+  "colors": "Colors",
+  "add_to_cart": "Add to cart",
+  "added_to_cart": "Added to cart",
+  "related_products": "Related Products"
 }
