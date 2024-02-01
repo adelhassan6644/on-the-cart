@@ -194,5 +194,17 @@
   "colors": "Colors",
   "add_to_cart": "Add to cart",
   "added_to_cart": "Added to cart",
-  "related_products": "Related Products"
+  "related_products": "Related Products",
+  "order_id": "Order Id",
+  "running_orders": "Running Orders",
+  "last_orders": "Last Orders",
+  "cancel_orders": "Cancel Orders",
+  "order_details": "Order Details",
+  "order_created_at": "Order created at",
+  "order_delivered_at": "Order delivered at",
+  "order_count": "Order Count",
+  "count": "Count",
+  "total_amount": "Total amount",
+  "exceeded_return_period": "The product has exceeded the return period",
+  "shipping_address": "Shipping Address"
 }

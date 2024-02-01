@@ -31,7 +31,7 @@ class MoreOptions extends StatelessWidget {
               child: MoreButton(
                 title: getTranslated("orders_history"),
                 icon: SvgImages.orders,
-                onTap: () => CustomNavigator.push(Routes.PROFILE),
+                onTap: () => CustomNavigator.push(Routes.orders),
               ),
             ),
 

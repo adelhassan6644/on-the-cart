@@ -19,6 +19,8 @@ class Routes {
   static const offers = "OFFERS";
   static const items = "ITEMS";
   static const itemDetails = "ITEM_DETAILS";
+  static const orders = "ORDERS";
+  static const orderDetails = "ORDER_DETAILS";
   static const contactWithUs = "CONTACT_WITH_US";
   static const aboutUs = "ABOUT_US";
   static const TERMS = "TERMS";

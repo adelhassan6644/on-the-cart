@@ -200,6 +200,18 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "dotted_border",
+      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dev/dotted_border-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "dotted_line",
+      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dev/dotted_line-3.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "enum_to_string",
       "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dev/enum_to_string-2.0.1",
       "packageUri": "lib/",
@@ -908,6 +920,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "path_drawing",
+      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dev/path_drawing-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path_parsing",
       "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dev/path_parsing-1.0.1",
       "packageUri": "lib/",
@@ -1448,7 +1466,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2024-01-29T20:14:39.909188Z",
+  "generated": "2024-02-01T21:34:26.588899Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

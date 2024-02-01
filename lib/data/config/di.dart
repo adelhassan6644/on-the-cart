@@ -22,7 +22,6 @@ import '../../features/change_password/repo/change_password_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/repo/home_repo.dart';
-import '../../features/item_details/bloc/item_details_bloc.dart';
 import '../../features/item_details/repo/item_details_repo.dart';
 import '../../features/items/bloc/items_bloc.dart';
 import '../../features/items/repo/items_repo.dart';
@@ -31,6 +30,8 @@ import '../../features/language/repo/language_repo.dart';
 import '../../features/maps/bloc/map_bloc.dart';
 import '../../features/maps/repo/maps_repo.dart';
 import '../../features/more/bloc/logout_bloc.dart';
+import '../../features/order_details/repo/order_details_repo.dart';
+import '../../features/orders/repo/orders_repo.dart';
 import '../../features/notifications/bloc/notifications_bloc.dart';
 import '../../features/notifications/bloc/turn_notification_bloc.dart';
 import '../../features/notifications/repo/notifications_repo.dart';
@@ -149,6 +150,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
       () => RelatedItemsRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => OrdersRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => OrderDetailsRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));

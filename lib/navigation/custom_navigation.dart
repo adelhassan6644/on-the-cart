@@ -2,6 +2,8 @@ import 'package:stepOut/features/add_address/page/add_address_page.dart';
 import 'package:stepOut/features/addresses/model/addresses_model.dart';
 import 'package:stepOut/features/addresses/page/addresses_page.dart';
 import 'package:stepOut/features/best_seller/page/best_seller_page.dart';
+import 'package:stepOut/features/order_details/page/order_details_page.dart';
+import 'package:stepOut/features/orders/page/orders_page.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
 import 'package:stepOut/features/offers/page/offers_page.dart';
 import 'package:stepOut/features/profile/page/profile.dart';
@@ -116,6 +118,14 @@ abstract class CustomNavigator {
 
       case Routes.aboutUs:
         return _pageRoute(const AboutUs());
+
+      case Routes.orders:
+        return _pageRoute(const OrdersPage());
+
+      case Routes.orderDetails:
+        return _pageRoute(OrderDetailsPage(
+          id: settings.arguments as int,
+        ));
 
       case Routes.TERMS:
         return _pageRoute(const Terms());

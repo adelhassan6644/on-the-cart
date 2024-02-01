@@ -191,6 +191,17 @@
   "sizes": "المقاسات",
   "add_to_cart": "إضافة اللى عربة التسوق",
   "added_to_cart": "تم الإضافة الي عربة التسوق",
-  "related_products": "منتجات مشابهة"
-
+  "related_products": "منتجات مشابهة",
+  "order_id": "رقم الطلب",
+  "running_orders": "الطلبات الجارية",
+  "last_orders": "الطلبات السابقة",
+  "cancel_orders":"الطلبات الملغية",
+  "order_details": "تفاصيل الطلب",
+  "order_created_at": "تم الطلب في",
+  "order_delivered_at": "تم توصيل الطلب في",
+  "order_count": "عدد المنتجات",
+  "count": "العدد",
+  "total_amount": "المبلغ الاجمالي",
+  "exceeded_return_period": "المنتج تجاوز فترة الأسترجاع",
+  "shipping_address": "عنوان الشحن"
 }
