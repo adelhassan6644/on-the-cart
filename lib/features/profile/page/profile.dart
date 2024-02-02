@@ -30,7 +30,8 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ProfileBloc(repo: sl<ProfileRepo>())..add(Get()),
+      create: (context) => ProfileBloc(repo: sl<ProfileRepo>()),
+      // create: (context) => ProfileBloc(repo: sl<ProfileRepo>())..add(Get()),
       child: Scaffold(
         appBar: CustomAppBar(
           title: getTranslated("profile"),
@@ -48,8 +49,8 @@ class Profile extends StatelessWidget {
                     data: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                            ),
+                          horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                        ),
                         child: Center(
                           child: const ProfileImageWidget(
                             withEdit: true,
@@ -119,7 +120,27 @@ class Profile extends StatelessWidget {
                 ],
               );
             }
-            return const SizedBox();
+            return Column(
+              children: [
+                Expanded(
+                    child: ListAnimator(
+                  data: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                      ),
+                      child: const Center(
+                        child: ProfileImageWidget(
+                          withEdit: true,
+                          radius: 60,
+                        ),
+                      ),
+                    ),
+                    const ProfileBody(),
+                  ],
+                ))
+              ],
+            );
           },
         ),
       ),
