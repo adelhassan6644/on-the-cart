@@ -27,7 +27,7 @@ class LogOutButton extends StatelessWidget {
               if (LogoutBloc.instance.isLogin) {
                 LogoutBloc.instance.add(Add());
               } else {
-                CustomNavigator.push(Routes.LOGIN, arguments: true);
+                CustomNavigator.push(Routes.login, arguments: true);
               }
             },
             child: Padding(

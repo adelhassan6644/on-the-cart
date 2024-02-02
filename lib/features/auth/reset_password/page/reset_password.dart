@@ -109,7 +109,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                     text: getTranslated("submit"),
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
-                                        CustomNavigator.push(Routes.DASHBOARD,
+                                        CustomNavigator.push(Routes.dashboard,
                                             clean: true);
                                         // context
                                         //     .read<ResetPasswordBloc>()

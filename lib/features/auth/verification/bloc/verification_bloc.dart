@@ -46,7 +46,7 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
       }, (success) {
         if (data.fromRegister) {
           repo.saveUserToken(success.data['data']["token"]);
-          CustomNavigator.push(Routes.DASHBOARD, clean: true);
+          CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
               notification: AppNotification(
                   message: "You logged in successfully",
@@ -54,7 +54,7 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
                   borderColor: Styles.ACTIVE,
                   iconName: "check-circle"));
         } else {
-          CustomNavigator.push(Routes.RESET_PASSWORD, arguments: data.email);
+          CustomNavigator.push(Routes.resetPassword, arguments: data.email);
           AppCore.showSnackBar(
               notification: AppNotification(
                   message: success.data?["message"] ?? "",

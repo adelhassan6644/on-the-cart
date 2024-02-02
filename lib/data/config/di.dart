@@ -19,6 +19,7 @@ import '../../features/cart/repo/cart_repo.dart';
 import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/repo/categories_repo.dart';
 import '../../features/change_password/repo/change_password_repo.dart';
+import '../../features/check_out/repo/check_out_repo.dart';
 import '../../features/edit_profile/repo/edit_profile_repo.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/repo/home_repo.dart';
@@ -138,6 +139,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton(() =>
       CartRepo(localDatabase: sl(), sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => CheckOutRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(
       () => AddAddressRepo(sharedPreferences: sl(), dioClient: sl()));

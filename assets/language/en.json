@@ -206,5 +206,13 @@
   "count": "Count",
   "total_amount": "Total amount",
   "exceeded_return_period": "The product has exceeded the return period",
-  "shipping_address": "Shipping Address"
+  "shipping_address": "Shipping Address",
+  "check_out": "Check out",
+  "shipping": "Shipping",
+  "cash": "Cash on delivery",
+  "online": "Card Payment",
+  "payment": "Payment",
+  "delivery_address": "Delivery Address",
+  "delivery_data": "Delivery Data",
+  "confirm_order": "Confirm Order"
 }

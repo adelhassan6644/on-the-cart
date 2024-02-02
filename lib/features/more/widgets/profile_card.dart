@@ -80,7 +80,7 @@ class ProfileCard extends StatelessWidget {
                         ),
                       ),
                       CustomButton(
-                          onTap: () => CustomNavigator.push(Routes.LOGIN,
+                          onTap: () => CustomNavigator.push(Routes.login,
                               arguments: true),
                           svgIcon: SvgImages.login,
                           width: 170.w,

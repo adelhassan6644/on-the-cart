@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
               data: MediaQuery.of(context)
                   .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: UnFocus(child: child!)),
-          initialRoute: Routes.SPLASH,
+          initialRoute: Routes.splash,
           navigatorKey: CustomNavigator.navigatorState,
           onGenerateRoute: CustomNavigator.onCreateRoute,
           navigatorObservers: [CustomNavigator.routeObserver],

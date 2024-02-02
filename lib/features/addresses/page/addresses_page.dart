@@ -88,7 +88,15 @@ class AddressesPage extends StatelessWidget {
                     return ListAnimator(
                       data: List.generate(
                         5,
-                        (index) => AddressCard(),
+                        (index) => AddressCard(
+                          address: index == 2
+                              ? AddressItem(
+                                  id: 0,
+                                  address: "Address City",
+                                  addressDetails: "Address City",
+                                  isDefaultAddress: true)
+                              : null,
+                        ),
                       ),
                     );
                   },

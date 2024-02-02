@@ -43,6 +43,9 @@ class EndPoints {
   static getMyOrders(id) => 'my-orders/$id';
   static getOrderDetails(id) => 'order-details/$id';
 
+  static const String checkOut = 'checkOut';
+
+
   static const String aboutUs = 'about_us';
   static const String setting = 'setting';
 

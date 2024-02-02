@@ -43,7 +43,7 @@ class ForgetPasswordBloc extends Bloc<AppEvent, AppState> {
                 borderColor: Colors.red));
         emit(Error());
       }, (success) {
-        CustomNavigator.push(Routes.VERIFICATION,
+        CustomNavigator.push(Routes.verification,
             replace: true,
             arguments:
                 VerificationModel(mailTEC.text.trim(), fromRegister: false));

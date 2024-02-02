@@ -190,7 +190,7 @@ class _AgreeToTerms extends StatelessWidget {
           ),
           Expanded(
             child: InkWell(
-              onTap: () => CustomNavigator.push(Routes.TERMS),
+              onTap: () => CustomNavigator.push(Routes.terms),
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               hoverColor: Colors.transparent,

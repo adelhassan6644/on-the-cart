@@ -38,7 +38,7 @@ class DeleteProfileBloc extends Bloc<AppEvent, AppState> {
         emit(Error());
       }, (success) {
         UserBloc.instance.add(Delete());
-        CustomNavigator.push(Routes.SPLASH, clean: true);
+        CustomNavigator.push(Routes.splash, clean: true);
         emit(Done());
       });
     } catch (e) {

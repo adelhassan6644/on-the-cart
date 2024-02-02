@@ -47,7 +47,7 @@ class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
                 borderColor: Colors.red));
         emit(Error());
       }, (success) {
-        CustomNavigator.push(Routes.LOGIN, clean: true);
+        CustomNavigator.push(Routes.login, clean: true);
         clear();
         AppCore.showSnackBar(
             notification: AppNotification(

@@ -1,17 +1,16 @@
 class Routes {
-  static const APP = "APP";
-  static const SPLASH = "SPLASH";
-  static const ON_BOARDING = "ON_BOARDING";
-  static const LOGIN = "LOGIN";
-  static const FORGET_PASSWORD = "FORGET_PASSWORD";
-  static const VERIFICATION = "VERIFICATION";
-  static const RESET_PASSWORD = "RESET_PASSWORD";
-  static const REGISTER = "REGISTER";
-  static const DASHBOARD = "DASHBOARD";
-  static const NEWS = "NEWS";
-  static const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+  static const app = "APP";
+  static const splash = "SPLASH";
+  static const onBoarding = "ON_BOARDING";
+  static const login = "LOGIN";
+  static const forgetPassword = "FORGET_PASSWORD";
+  static const verification = "VERIFICATION";
+  static const resetPassword = "RESET_PASSWORD";
+  static const register = "REGISTER";
+  static const dashboard = "DASHBOARD";
+  static const changePassword = "CHANGE_PASSWORD";
   static const editProfile = "EDIT_PROFILE";
-  static const MAP = "PICK_LOCATION";
+  static const map = "PICK_LOCATION";
   static const addAddress = "ADD_ADDRESS";
   static const addresses = "ADDRESSES";
   static const stores = "STORES";
@@ -21,12 +20,11 @@ class Routes {
   static const itemDetails = "ITEM_DETAILS";
   static const orders = "ORDERS";
   static const orderDetails = "ORDER_DETAILS";
+  static const checkOut = "CHECK_OUT";
   static const contactWithUs = "CONTACT_WITH_US";
   static const aboutUs = "ABOUT_US";
-  static const TERMS = "TERMS";
-  static const PROFILE = "PROFILE";
+  static const terms = "TERMS";
+  static const profile = "PROFILE";
   static const notifications = "NOTIFICATIONS";
-  static const SEARCH = "SEARCH";
-  static const SUCCESS_PAGE = "SUCCESS_PAGE";
-  static const HASHTAG_PLACES = "HASHTAG_PLACES";
+  static const search = "SEARCH";
 }

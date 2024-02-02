@@ -8,6 +8,7 @@ import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/components/empty_widget.dart';
 import 'package:stepOut/features/language/bloc/language_bloc.dart';
 import 'package:stepOut/main_models/items_model.dart';
+import 'package:stepOut/navigation/custom_navigation.dart';
 
 import '../../../app/core/app_event.dart';
 import '../../../app/core/app_state.dart';
@@ -16,6 +17,7 @@ import '../../../app/core/svg_images.dart';
 import '../../../components/custom_button.dart';
 import '../../../components/shimmer/custom_shimmer.dart';
 import '../../../data/config/di.dart';
+import '../../../navigation/routes.dart';
 import '../bloc/cart_bloc.dart';
 import '../widgets/cart_item.dart';
 import '../../../main_widgets/delete_item_widget.dart';
@@ -109,6 +111,7 @@ class _CartState extends State<Cart> {
                             ? SvgImages.arrowRightCart
                             : SvgImages.arrowLeft,
                         iconSize: 18,
+                        onTap: () => CustomNavigator.push(Routes.checkOut),
                         textColor: Styles.PRIMARY_COLOR,
                         iconColor: Styles.PRIMARY_COLOR,
                         backgroundColor: Styles.WHITE_COLOR,

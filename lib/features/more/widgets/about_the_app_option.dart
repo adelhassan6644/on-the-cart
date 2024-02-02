@@ -32,7 +32,7 @@ class AboutTheAppOption extends StatelessWidget {
           title: getTranslated("terms_conditions", context: context),
           icon: SvgImages.terms,
           withTopBorder: false,
-          onTap: () => CustomNavigator.push(Routes.TERMS),
+          onTap: () => CustomNavigator.push(Routes.terms),
         ),
 
         ///About US

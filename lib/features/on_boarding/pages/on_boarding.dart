@@ -92,7 +92,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                     alignment: Alignment.topLeft,
                                     child: InkWell(
                                       onTap: () => CustomNavigator.push(
-                                          Routes.DASHBOARD,
+                                          Routes.dashboard,
                                           clean: true),
                                       child: Container(
                                           padding: EdgeInsets.symmetric(
@@ -187,7 +187,7 @@ class _OnBoardingState extends State<OnBoarding> {
                       nextPage();
                     });
                   } else {
-                    CustomNavigator.push(Routes.DASHBOARD, clean: true);
+                    CustomNavigator.push(Routes.dashboard, clean: true);
                   }
                 },
                 child: SizedBox(

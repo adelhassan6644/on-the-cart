@@ -72,7 +72,7 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
         }
 
         if (success.data['data']["is_verify"] == true) {
-          CustomNavigator.push(Routes.DASHBOARD, clean: true);
+          CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
               notification: AppNotification(
                   message: "You logged in successfully",
@@ -80,7 +80,7 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
                   borderColor: Styles.ACTIVE,
                   iconName: "check-circle"));
         } else {
-          CustomNavigator.push(Routes.VERIFICATION,
+          CustomNavigator.push(Routes.verification,
               arguments: VerificationModel(mailTEC.text.trim()));
           AppCore.showSnackBar(
               notification: AppNotification(

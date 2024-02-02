@@ -203,5 +203,13 @@
   "count": "العدد",
   "total_amount": "المبلغ الاجمالي",
   "exceeded_return_period": "المنتج تجاوز فترة الأسترجاع",
-  "shipping_address": "عنوان الشحن"
+  "shipping_address": "عنوان الشحن",
+  "check_out": "الدفع",
+  "shipping": "الشحن",
+  "cash": "كاش عند الاستلام",
+  "online": "الدفع بالبطاقة",
+  "payment": "الدفع",
+  "delivery_address": "عنوان التوصيل",
+  "delivery_data": "تاريخ الوصول",
+  "confirm_order": "تأكيد الطلب"
 }

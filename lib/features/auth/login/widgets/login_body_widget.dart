@@ -87,7 +87,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                             InkWell(
                               onTap: () {
                                 context.read<LoginBloc>().clear();
-                                CustomNavigator.push(Routes.FORGET_PASSWORD);
+                                CustomNavigator.push(Routes.forgetPassword);
                               },
                               child: Text(
                                 getTranslated("forget_password"),
@@ -110,7 +110,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                         child: CustomButton(
                             text: getTranslated("login"),
                             onTap: () {
-                              CustomNavigator.push(Routes.DASHBOARD,
+                              CustomNavigator.push(Routes.dashboard,
                                   clean: true, arguments: 0);
                               if (_formKey.currentState!.validate()) {
                                 // context.read<LoginBloc>().add(Click());
@@ -126,7 +126,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                             text: getTranslated("signup"),
                             onTap: () {
                               CustomNavigator.push(
-                                Routes.REGISTER,
+                                Routes.register,
                               );
                               // if (_formKey.currentState!.validate()) {
                               //   context.read<LoginBloc>().add(Click());

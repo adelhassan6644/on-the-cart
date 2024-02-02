@@ -48,7 +48,7 @@ class ProfileOptions extends StatelessWidget {
                 title: getTranslated("profile"),
                 icon: SvgImages.userIcon,
                 withTopBorder: false,
-                onTap: () => CustomNavigator.push(Routes.PROFILE),
+                onTap: () => CustomNavigator.push(Routes.profile),
               ),
 
               ///Address
@@ -62,7 +62,7 @@ class ProfileOptions extends StatelessWidget {
               MoreButton(
                 title: getTranslated("change_password"),
                 icon: SvgImages.lockIcon,
-                onTap: () => CustomNavigator.push(Routes.CHANGE_PASSWORD),
+                onTap: () => CustomNavigator.push(Routes.changePassword),
               ),
 
               ///Delete Account

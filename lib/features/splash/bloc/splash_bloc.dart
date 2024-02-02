@@ -23,13 +23,13 @@ class SplashBloc extends Bloc<AppEvent, AppState> {
       await PermissionHandler.checkNotificationsPermission();
 
       if (repo.isFirstTime) {
-        CustomNavigator.push(Routes.ON_BOARDING, clean: true);
+        CustomNavigator.push(Routes.onBoarding, clean: true);
       }
       // else if (!repo.isLogin) {
       //   CustomNavigator.push(Routes.LOGIN, clean: true);
       // }
       else {
-        CustomNavigator.push(Routes.DASHBOARD, clean: true, arguments: 0);
+        CustomNavigator.push(Routes.dashboard, clean: true, arguments: 0);
       }
       repo.setFirstTime();
     });

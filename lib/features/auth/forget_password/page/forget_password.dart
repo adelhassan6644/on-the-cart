@@ -84,7 +84,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
                                         CustomNavigator.push(
-                                            Routes.VERIFICATION,
+                                            Routes.verification,
                                             replace: true,
                                             arguments: VerificationModel(
                                                 context

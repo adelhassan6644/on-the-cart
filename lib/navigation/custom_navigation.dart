@@ -2,6 +2,7 @@ import 'package:stepOut/features/add_address/page/add_address_page.dart';
 import 'package:stepOut/features/addresses/model/addresses_model.dart';
 import 'package:stepOut/features/addresses/page/addresses_page.dart';
 import 'package:stepOut/features/best_seller/page/best_seller_page.dart';
+import 'package:stepOut/features/check_out/page/check_out_page.dart';
 import 'package:stepOut/features/order_details/page/order_details_page.dart';
 import 'package:stepOut/features/orders/page/orders_page.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
@@ -38,41 +39,41 @@ abstract class CustomNavigator {
 
   static Route<dynamic> onCreateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.APP:
+      case Routes.app:
         return _pageRoute(const MyApp());
-      case Routes.SPLASH:
+      case Routes.splash:
         return _pageRoute(const Splash());
-      case Routes.ON_BOARDING:
+      case Routes.onBoarding:
         return _pageRoute(const OnBoarding());
-      case Routes.LOGIN:
+      case Routes.login:
         return _pageRoute(Login(
           fromMain:
               settings.arguments != null ? settings.arguments as bool : false,
         ));
-      case Routes.FORGET_PASSWORD:
+      case Routes.forgetPassword:
         return _pageRoute(const ForgetPassword());
-      case Routes.RESET_PASSWORD:
+      case Routes.resetPassword:
         return _pageRoute(ResetPassword(
           email: settings.arguments as String,
         ));
 
-      case Routes.REGISTER:
+      case Routes.register:
         return _pageRoute(const Register());
 
-      case Routes.CHANGE_PASSWORD:
+      case Routes.changePassword:
         return _pageRoute(const ChangePasswordPage());
 
-      case Routes.VERIFICATION:
+      case Routes.verification:
         return _pageRoute(
             Verification(model: settings.arguments as VerificationModel));
 
-      case Routes.PROFILE:
+      case Routes.profile:
         return _pageRoute(const Profile());
 
       case Routes.editProfile:
         return _pageRoute(const EditProfile());
 
-      case Routes.DASHBOARD:
+      case Routes.dashboard:
         return _pageRoute(DashBoard(
           index:
               settings.arguments != null ? (settings.arguments as int) : null,
@@ -127,7 +128,10 @@ abstract class CustomNavigator {
           id: settings.arguments as int,
         ));
 
-      case Routes.TERMS:
+      case Routes.checkOut:
+        return _pageRoute(const CheckOutPage());
+
+      case Routes.terms:
         return _pageRoute(const Terms());
 
       default:

@@ -44,5 +44,5 @@ updateUserFunctions({@required notify}) async {
 
 Future<void> handlePathByRoute(Map notify) async {
   Future.delayed(Duration.zero,
-      () => CustomNavigator.push(Routes.DASHBOARD, clean: true, arguments: 1));
+      () => CustomNavigator.push(Routes.dashboard, clean: true, arguments: 1));
 }

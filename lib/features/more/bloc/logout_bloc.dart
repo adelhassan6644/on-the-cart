@@ -23,7 +23,7 @@ class LogoutBloc extends Bloc<AppEvent, AppState> {
   Future<void> onAdd(Add event, Emitter<AppState> emit) async {
     emit(Loading());
     await repo.clearCache();
-    CustomNavigator.push(Routes.SPLASH, clean: true);
+    CustomNavigator.push(Routes.splash, clean: true);
     emit(Done());
   }
 }

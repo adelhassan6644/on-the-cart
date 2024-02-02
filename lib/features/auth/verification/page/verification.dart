@@ -99,7 +99,7 @@ class _VerificationState extends State<Verification> {
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
                                         CustomNavigator.push(
-                                            Routes.RESET_PASSWORD,
+                                            Routes.resetPassword,
                                             arguments: widget.model.email);
                                         // context
                                         //     .read<VerificationBloc>()
