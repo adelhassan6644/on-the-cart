@@ -22,6 +22,8 @@ import '../features/edit_profile/page/edit_profile.dart';
 import '../features/item_details/page/item_details_page.dart';
 import '../features/items/page/items_page.dart';
 import '../features/on_boarding/pages/on_boarding.dart';
+import '../features/search/page/search_page.dart';
+import '../features/search_result/page/search_result_page.dart';
 import '../features/setting/pages/about_us.dart';
 import '../features/setting/pages/terms.dart';
 import '../features/splash/page/splash.dart';
@@ -130,6 +132,14 @@ abstract class CustomNavigator {
 
       case Routes.checkOut:
         return _pageRoute(const CheckOutPage());
+
+      case Routes.search:
+        return _pageRoute(const SearchPage());
+
+      case Routes.searchResult:
+        return _pageRoute(SearchResultPage(
+          search: settings.arguments as String,
+        ));
 
       case Routes.terms:
         return _pageRoute(const Terms());

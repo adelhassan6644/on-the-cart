@@ -214,5 +214,8 @@
   "payment": "Payment",
   "delivery_address": "Delivery Address",
   "delivery_data": "Delivery Data",
-  "confirm_order": "Confirm Order"
+  "confirm_order": "Confirm Order",
+  "search_for_what_you_want": "Search for what you want...",
+  "there_is_no_result": "There are no similar items",
+  "search_result": "Search Result"
 }

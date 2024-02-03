@@ -211,5 +211,8 @@
   "payment": "الدفع",
   "delivery_address": "عنوان التوصيل",
   "delivery_data": "تاريخ الوصول",
-  "confirm_order": "تأكيد الطلب"
+  "confirm_order": "تأكيد الطلب",
+  "search_for_what_you_want": "ابحث عن ما تريد...",
+  "there_is_no_result": "لا توجد عناصر مشابهه..",
+  "search_result": "نتائج البحث"
 }

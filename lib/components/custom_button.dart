@@ -42,7 +42,7 @@ class CustomButton extends StatelessWidget {
       this.withBorderColor = false,
       this.withShadow = false,
       required this.text,
-      this.backgroundColor=Styles.PRIMARY_COLOR,
+      this.backgroundColor = Styles.PRIMARY_COLOR,
       this.isError = false})
       : super(key: key);
 
@@ -58,7 +58,9 @@ class CustomButton extends StatelessWidget {
         child: Container(
           width: width ?? context.width,
           height: height ?? 55.h,
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+          ),
           decoration: BoxDecoration(
             color: backgroundColor,
             boxShadow: withShadow

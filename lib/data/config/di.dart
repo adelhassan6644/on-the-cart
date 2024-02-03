@@ -41,6 +41,8 @@ import '../../features/offers/repo/offers_repo.dart';
 import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/profile/repo/profile_repo.dart';
 import '../../features/related_items/repo/related_items_repo.dart';
+import '../../features/search/repo/search_repo.dart';
+import '../../features/search_result/repo/search_result_repo.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
 import '../../features/setting/repo/setting_repo.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
@@ -160,6 +162,12 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
       () => OrderDetailsRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => SearchRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => SearchResultRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));

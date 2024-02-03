@@ -27,4 +27,5 @@ class Routes {
   static const profile = "PROFILE";
   static const notifications = "NOTIFICATIONS";
   static const search = "SEARCH";
+  static const searchResult = "SEARCH_RESULT";
 }
