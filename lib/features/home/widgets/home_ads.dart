@@ -43,7 +43,7 @@ class HomeAds extends StatelessWidget {
             itemBuilder: (context, index, _) {
               return InkWell(
                 onTap: () {
-                  CustomNavigator.push(Routes.itemDetails, arguments: 0);
+                  CustomNavigator.push(Routes.itemDetails, arguments: "0");
                 },
                 child: CustomNetworkImage.containerNewWorkImage(
                   image: "",
