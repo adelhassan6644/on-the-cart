@@ -56,4 +56,8 @@ class LocaleDatabase {
         .toList();
     return models;
   }
+
+  Future<void> deleteTable({required String tableName}) async {
+    await database.delete(tableName);
+  }
 }

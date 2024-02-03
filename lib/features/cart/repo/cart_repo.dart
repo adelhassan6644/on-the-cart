@@ -30,4 +30,8 @@ class CartRepo extends BaseRepo {
             objectModel: ItemModel(), tableName: tableName))
         .cast<ItemModel>();
   }
+
+  Future<void> deleteTable() async {
+    await localDatabase.deleteTable(tableName: tableName);
+  }
 }

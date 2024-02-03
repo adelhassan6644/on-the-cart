@@ -47,16 +47,16 @@ class Delete extends AppEvent {
   Delete({super.arguments});
 }
 
+class Clear extends AppEvent {
+  Clear({super.arguments});
+}
+
 class Update extends AppEvent {
   Update({super.arguments});
 }
 
 class Turn extends AppEvent {
   Turn({super.arguments});
-}
-
-class Clear extends AppEvent {
-  Clear({super.arguments});
 }
 
 class Search extends AppEvent {

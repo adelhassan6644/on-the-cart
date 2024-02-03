@@ -16,6 +16,7 @@ class CartBloc extends Bloc<AppEvent, AppState> {
     on<Add>(onAdd);
     on<Update>(onUpdate);
     on<Delete>(onDelete);
+    on<Clear>(onClear);
   }
   CartModel? cartModel;
 
@@ -76,6 +77,21 @@ class CartBloc extends Bloc<AppEvent, AppState> {
   Future<void> onDelete(Delete event, Emitter<AppState> emit) async {
     try {
       await repo.removeItem(id: "${(event.arguments as ItemModel).id}");
+      add(Get());
+    } catch (e) {
+      AppCore.showSnackBar(
+          notification: AppNotification(
+        message: e.toString(),
+        backgroundColor: Styles.IN_ACTIVE,
+        borderColor: Styles.RED_COLOR,
+      ));
+      emit(Error());
+    }
+  }
+
+  Future<void> onClear(Clear event, Emitter<AppState> emit) async {
+    try {
+      await repo.deleteTable();
       add(Get());
     } catch (e) {
       AppCore.showSnackBar(
