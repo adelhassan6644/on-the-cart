@@ -35,7 +35,7 @@ class ItemsModel extends SingleMapper {
 }
 
 class ItemModel extends LocaleSingleMapper {
-  String? id;
+  int? id;
   int count = 1;
   String? image;
   String? title;
@@ -57,7 +57,7 @@ class ItemModel extends LocaleSingleMapper {
       this.discount});
 
   ItemModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'].toString();
+    id = json["id"] is String ? int.parse(json['id']) : json['id'];
     count = json['count'] ?? 1;
     image = json['image'];
     title = json['title'];

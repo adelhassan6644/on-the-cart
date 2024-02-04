@@ -24,15 +24,15 @@ class ItemCard extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => CustomNavigator.push(Routes.itemDetails,
-              arguments: item?.id ?? "1"),
+              arguments: item?.id ?? 1),
           // onTap: () => sl<CartBloc>().add(Add(
           //   arguments: ItemModel(
-          //       id: "2",
+          //       id: 3,
           //       image:
           //           "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          //       title: "Test Add To Cart 2",
-          //       price: 200,
-          //       size: "L",
+          //       title: "Test Add To Cart 1",
+          //       price: 100,
+          //       size: "XL",
           //       color: "#151416",
           //       count: 1),
           // )),

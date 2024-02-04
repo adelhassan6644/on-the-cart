@@ -18,7 +18,6 @@ import 'package:stepOut/navigation/custom_navigation.dart';
 
 import '../../../app/core/app_event.dart';
 import '../../../app/core/styles.dart';
-import '../../../components/back_icon.dart';
 import '../../../data/config/di.dart';
 import '../../../main_models/items_model.dart';
 import '../../cart/bloc/cart_bloc.dart';
@@ -29,7 +28,7 @@ import '../widget/item_sizes_widget.dart';
 class ItemDetailsPage extends StatelessWidget {
   const ItemDetailsPage({super.key, required this.id});
 
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -190,17 +189,7 @@ class ItemDetailsPage extends StatelessWidget {
                                 text: getTranslated("add_to_cart"),
                                 onTap: () {
                                   if (!isAdded) {
-                                    sl<CartBloc>().add(Add(
-                                      arguments: ItemModel(
-                                          id: "1",
-                                          image:
-                                              "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                          title: "Test Add To Cart 1",
-                                          price: 100,
-                                          size: "M",
-                                          color: "#151416",
-                                          count: 1),
-                                    ));
+                                    sl<CartBloc>().add(Add());
                                   }
                                 },
                                 backgroundColor: isAdded

@@ -15,7 +15,7 @@ import '../bloc/related_items_bloc.dart';
 
 class RelatedItemsView extends StatelessWidget {
   const RelatedItemsView({required this.id, super.key});
-  final String id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {

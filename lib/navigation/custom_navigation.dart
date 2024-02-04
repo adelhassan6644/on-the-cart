@@ -116,7 +116,7 @@ abstract class CustomNavigator {
 
       case Routes.itemDetails:
         return _pageRoute(ItemDetailsPage(
-          id: settings.arguments as String,
+          id: settings.arguments as int,
         ));
 
       case Routes.aboutUs:
