@@ -60,7 +60,7 @@ class _ItemsPageState extends State<ItemsPage> {
                           items.length,
                           (i) => ItemCard(
                                 item: items[i],
-                              )));
+                              ),),);
                 }
                 if (state is Loading) {
                   return GridListAnimatorWidget(
