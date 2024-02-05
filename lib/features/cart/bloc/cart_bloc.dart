@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stepOut/app/localization/language_constant.dart';
 
 import '../../../app/core/app_core.dart';
 import '../../../app/core/app_event.dart';
@@ -45,6 +46,12 @@ class CartBloc extends Bloc<AppEvent, AppState> {
   Future<void> onAdd(Add event, Emitter<AppState> emit) async {
     try {
       await repo.addItem(model: (event.arguments as ItemModel));
+      AppCore.showSnackBar(
+          notification: AppNotification(
+            message:getTranslated("added_to_cart"),
+            backgroundColor: Styles.ACTIVE,
+            borderColor: Styles.ACTIVE,
+          ));
       add(Get());
     } catch (e) {
       AppCore.showSnackBar(
