@@ -7,7 +7,10 @@ import '../../../../app/core/app_core.dart';
 import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_notification.dart';
 import '../../../../app/core/app_state.dart';
+import '../../../../app/core/images.dart';
 import '../../../../app/core/styles.dart';
+import '../../../../components/confirmation_dialog.dart';
+import '../../../../components/custom_simple_dialog.dart';
 import '../../../../data/error/failures.dart';
 import '../../../../navigation/custom_navigation.dart';
 import '../../../../navigation/routes.dart';
@@ -47,14 +50,30 @@ class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
                 borderColor: Colors.red));
         emit(Error());
       }, (success) {
-        CustomNavigator.push(Routes.login, clean: true);
+        Future.delayed(
+            Duration.zero,
+            () => CustomSimpleDialog.parentSimpleDialog(
+                canDismiss: false,
+                icon: Images.success,
+                customListWidget: ConfirmationDialog(
+                  title: getTranslated(
+                    "your_password_reset_successfully",
+                  ),
+                  description: getTranslated("your_password_reset_description"),
+                  withOneButton: true,
+                  txtBtn: getTranslated("login"),
+                  onContinue: () =>
+                      CustomNavigator.push(Routes.login, clean: true),
+                )));
+        // CustomNavigator.push(Routes.login, clean: true);
         clear();
-        AppCore.showSnackBar(
-            notification: AppNotification(
-                message: getTranslated("your_password_reset_successfully"),
-                backgroundColor: Styles.ACTIVE,
-                borderColor: Styles.ACTIVE,
-                isFloating: true));
+
+        // AppCore.showSnackBar(
+        //     notification: AppNotification(
+        //         message: getTranslated("your_password_reset_successfully"),
+        //         backgroundColor: Styles.ACTIVE,
+        //         borderColor: Styles.ACTIVE,
+        //         isFloating: true));
         emit(Done());
       });
     } catch (e) {

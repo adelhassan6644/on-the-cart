@@ -9,8 +9,13 @@ import 'package:stepOut/components/custom_button.dart';
 import 'package:stepOut/features/check_out/bloc/check_out_bloc.dart';
 import 'package:stepOut/features/check_out/repo/check_out_repo.dart';
 
+import '../../../app/core/images.dart';
 import '../../../app/core/styles.dart';
+import '../../../components/confirmation_dialog.dart';
+import '../../../components/custom_simple_dialog.dart';
 import '../../../data/config/di.dart';
+import '../../../navigation/custom_navigation.dart';
+import '../../../navigation/routes.dart';
 import '../model/payment_model.dart';
 import '../widgets/check_out_details.dart';
 import '../widgets/delivery_address.dart';
@@ -57,6 +62,25 @@ class CheckOutPage extends StatelessWidget {
                         return CustomButton(
                           text: getTranslated("confirm_order"),
                           isLoading: state is Loading,
+                          onTap: () {
+                            Future.delayed(
+                              Duration.zero,
+                              () => CustomSimpleDialog.parentSimpleDialog(
+                                  canDismiss: false,
+                                  icon: Images.success,
+                                  customListWidget: ConfirmationDialog(
+                                    title: getTranslated(
+                                        "order_has_been_confirmed"),
+                                    description: getTranslated(
+                                        "you_can_track_your_order_from_the_order_history"),
+                                    withOneButton: true,
+                                    txtBtn: getTranslated("continue_shopping"),
+                                    onContinue: () => CustomNavigator.push(
+                                        Routes.dashboard,
+                                        clean: true),
+                                  )),
+                            );
+                          },
                           backgroundColor: snapshot.hasData
                               ? Styles.PRIMARY_COLOR
                               : Styles.DISABLED,

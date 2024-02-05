@@ -214,5 +214,8 @@
   "confirm_order": "تأكيد الطلب",
   "search_for_what_you_want": "ابحث عن ما تريد...",
   "there_is_no_result": "لا توجد عناصر مشابهه..",
-  "search_result": "نتائج البحث"
+  "search_result": "نتائج البحث",
+  "continue_shopping": "متابعة التسوق",
+  "order_has_been_confirmed": "لقد تم تأكيد طلبك بنجاح",
+  "you_can_track_your_order_from_the_order_history": "يمكنك تتبع طلبك من قائمة الطلبات"
 }

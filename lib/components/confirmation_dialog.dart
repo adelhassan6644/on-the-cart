@@ -1,17 +1,14 @@
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:flutter/material.dart';
 import '../../navigation/custom_navigation.dart';
-import '../app/core/images.dart';
 import '../app/core/styles.dart';
 import '../app/core/text_styles.dart';
 import 'custom_button.dart';
-import 'custom_images.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   const ConfirmationDialog(
       {required this.txtBtn,
       this.txtBtn2,
-      this.icon,
       this.title,
       this.description,
       this.withOneButton = false,
@@ -22,7 +19,6 @@ class ConfirmationDialog extends StatelessWidget {
   final String txtBtn;
   final bool withOneButton;
   final String? title, description, txtBtn2;
-  final String? icon;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,12 +27,9 @@ class ConfirmationDialog extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Visibility(
-            visible: icon != null,
-            child: customImageIcon(imageName: (icon ?? Images.success))),
-        Visibility(
           visible: title != null,
           child: Padding(
-            padding: EdgeInsets.only(bottom: 16.0, top: icon != null ? 16 : 0),
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Text(
               title ?? "",
               textAlign: TextAlign.center,

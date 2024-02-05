@@ -10,6 +10,11 @@ import '../../../../app/core/app_notification.dart';
 import '../../../../app/core/app_state.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../data/error/failures.dart';
+import '../../../app/core/images.dart';
+import '../../../components/confirmation_dialog.dart';
+import '../../../components/custom_simple_dialog.dart';
+import '../../../navigation/custom_navigation.dart';
+import '../../../navigation/routes.dart';
 import '../model/payment_model.dart';
 import '../repo/check_out_repo.dart';
 
@@ -24,7 +29,6 @@ class CheckOutBloc extends Bloc<AppEvent, AppState> {
     PaymentModel(id: 0, title: getTranslated("cash")),
     PaymentModel(id: 1, title: getTranslated("online")),
   ];
-
 
   final selectedPaymentType = BehaviorSubject<PaymentModel?>();
   Function(PaymentModel?) get updateSelectedPaymentType =>
@@ -46,7 +50,24 @@ class CheckOutBloc extends Bloc<AppEvent, AppState> {
                 backgroundColor: Styles.IN_ACTIVE,
                 borderColor: Colors.red));
         emit(Error());
-      }, (success) {});
+      }, (success) {
+        Future.delayed(
+          Duration.zero,
+          () => CustomSimpleDialog.parentSimpleDialog(
+            canDismiss: false,
+            icon: Images.success,
+            customListWidget: ConfirmationDialog(
+              title: getTranslated("order_has_been_confirmed"),
+              description: getTranslated(
+                  "you_can_track_your_order_from_the_order_history"),
+              withOneButton: true,
+              txtBtn: getTranslated("continue_shopping"),
+              onContinue: () =>
+                  CustomNavigator.push(Routes.dashboard, clean: true),
+            ),
+          ),
+        );
+      });
     } catch (e) {
       AppCore.showSnackBar(
           notification: AppNotification(

@@ -217,5 +217,8 @@
   "confirm_order": "Confirm Order",
   "search_for_what_you_want": "Search for what you want...",
   "there_is_no_result": "There are no similar items",
-  "search_result": "Search Result"
+  "search_result": "Search Result",
+  "continue_shopping": "Continue Shopping",
+  "order_has_been_confirmed": "Your order has been confirmed successfully",
+  "you_can_track_your_order_from_the_order_history": "You can track your order from the order history"
 }
