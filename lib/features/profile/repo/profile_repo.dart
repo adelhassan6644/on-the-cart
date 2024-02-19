@@ -15,12 +15,10 @@ class ProfileRepo extends BaseRepo {
 
   String? get userName => sharedPreferences.getString(AppStorageKey.userName);
 
-  bool get isLogin => sharedPreferences.containsKey(AppStorageKey.isLogin);
-
   Future<Either<ServerFailure, Response>> getProfile() async {
     try {
       Response response = await dioClient.get(
-        uri: EndPoints.getProfile,
+        uri: EndPoints.getProfile(userId),
       );
       if (response.statusCode == 200) {
         setUserData(response.data["data"]);
@@ -40,7 +38,7 @@ class ProfileRepo extends BaseRepo {
   Future<Either<ServerFailure, Response>> deleteAcc() async {
     try {
       Response response = await dioClient.post(
-        uri: EndPoints.deleteProfile,
+        uri: EndPoints.deleteProfile(userId),
       );
       if (response.statusCode == 200) {
         await clearCache();

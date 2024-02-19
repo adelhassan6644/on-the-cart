@@ -19,7 +19,7 @@ class EditProfileRepo extends BaseRepo {
   Future<Either<ServerFailure, Response>> updateProfile(body) async {
     try {
       Response response = await dioClient.post(
-          uri: EndPoints.updateProfile, data: FormData.fromMap(body));
+          uri: EndPoints.updateProfile(userId), data: FormData.fromMap(body));
 
       if (response.statusCode == 200) {
         setUserData(response.data["data"]);
@@ -34,20 +34,5 @@ class EditProfileRepo extends BaseRepo {
 
   setUserData(json) {
     sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
-  }
-
-  Future<Either<ServerFailure, Response>> deleteAcc() async {
-    try {
-      Response response = await dioClient.post(
-        uri: EndPoints.deleteProfile,
-      );
-      if (response.statusCode == 200) {
-        return Right(response);
-      } else {
-        return left(ServerFailure(response.data['message']));
-      }
-    } catch (error) {
-      return left(ServerFailure(ApiErrorHandler.getMessage(error)));
-    }
   }
 }

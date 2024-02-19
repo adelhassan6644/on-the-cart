@@ -51,6 +51,7 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
     try {
       emit(Loading());
       Map<String, dynamic> data = {
+        "customer_id": repo.userId,
         "name": nameTEC.text.trim(),
         "phone": phoneTEC.text.trim(),
         "address": addressTEC.text.trim(),
@@ -99,8 +100,7 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
     nameTEC.text = (event.arguments as AddressItem).name ?? "";
     phoneTEC.text = (event.arguments as AddressItem).phone ?? "";
     addressTEC.text = (event.arguments as AddressItem).address ?? "";
-    addressDetailsTEC.text =
-        (event.arguments as AddressItem).addressDetails ?? "";
+    addressDetailsTEC.text = (event.arguments as AddressItem).addressDetails ?? "";
     upIsDefault((event.arguments as AddressItem).isDefaultAddress);
     updateCity((event.arguments as AddressItem).city);
     updateArea((event.arguments as AddressItem).area);

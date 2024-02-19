@@ -55,11 +55,13 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
     try {
       emit(Loading());
       Map<String, dynamic> data = {
+        "name": nameTEC.text.trim(),
+        "phone": phoneTEC.text.trim(),
         "email": mailTEC.text.trim(),
         "password": passwordTEC.text.trim(),
       };
 
-      Either<ServerFailure, Response> response = await repo.logIn(data);
+      Either<ServerFailure, Response> response = await repo.register(data);
 
       response.fold((fail) {
         AppCore.showSnackBar(
@@ -81,7 +83,7 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
           CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
               notification: AppNotification(
-                  message: "You logged in successfully",
+                  message: getTranslated("logged_in_successfully"),
                   backgroundColor: Styles.ACTIVE,
                   borderColor: Styles.ACTIVE,
                   iconName: "check-circle"));

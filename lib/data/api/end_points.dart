@@ -1,24 +1,24 @@
 class EndPoints {
-  static const String baseUrl = 'https://dashboard.stepoutnet.com/api/';
+  static const String baseUrl = 'https://ecommerce.softwarecloud2.com/api/';
   static const String googleMapsBaseUrl = 'https://maps.googleapis.com';
-  static const String imageUrl = 'https://dashboard.stepoutnet.com/';
+  static const String imageUrl = 'https://ecommerce.softwarecloud2.com/';
   static const String apiKey =
       's7xrprFdw4G0F21rfLyD4TaBkjVJYgwGfI3y355yRnjw9zOggruX30eToVWvsASerert';
   static const String topic = 'stepOut';
+  static const String forgetPassword = 'reset-password-email';
+  static const String checkMailForResetPassword = 'reset-password-check-code';
+  static const String resetPassword = 'new-password';
+  static changePassword(id) => 'change-password/$id';
   static const String logIn = 'login';
-  static const String forgetPassword = 'resetPassword/email';
-  static const String checkMailForResetPassword = 'resetPassword/checkCode';
-  static const String resetPassword = 'resetPassword/newPassword';
-  static changePassword(id) => 'client/changePassword/$id';
-  static const String register = 'client';
-  static const String resend = 'email/verification';
-  static const String verifyEmail = 'check/verificationCode';
-  static const String getProfile = 'client';
-  static const String updateProfile = 'client';
-  static const String deleteProfile = 'client/destroy';
+  static const String register = 'register';
+  static const String resend = 'send-verification-email';
+  static const String verifyEmail = 'check-verification-code';
+  static getProfile(id) => 'customer/$id';
+  static updateProfile(id) => 'customer/$id';
+  static deleteProfile(id) => 'customer/destroy/$id';
   static getFavourites(id) => 'favorites/$id';
   static const String postFavourite = 'favorite';
-  static const String ads = 'ads';
+  static const String ads = 'slider';
   static const String categories = 'categories';
   static const String offers = 'offers';
   static const String bestSeller = 'best_seller';
@@ -28,10 +28,10 @@ class EndPoints {
 
   static const String areas = 'areas';
   static const String cities = 'cities';
-  static getAddresses(id) => 'address/$id';
-  static editAddresses(id) => 'address/$id';
-  static deleteAddresses(id) => 'address/$id';
-  static const String addAddress = 'add_address';
+  static getAddresses(id) => 'customer/address/$id';
+  static editAddresses(id) => 'address/update/$id';
+  static deleteAddresses(id) => 'address/destroy/$id';
+  static const String addAddress = 'address';
 
   static const String stores = 'stores';
   static getStoreDetails(id) => 'stores/$id';
@@ -45,7 +45,6 @@ class EndPoints {
 
   static const String search = 'search';
   static const String checkOut = 'checkOut';
-
 
   static const String aboutUs = 'about_us';
   static const String setting = 'setting';

@@ -32,8 +32,8 @@ class ChangePasswordBloc extends Bloc<AppEvent, AppState> {
     try {
       emit(Loading());
       Map<String, dynamic> data = {
-        "password": currentPasswordTEC.text.trim(),
-        "new_password": newPasswordTEC.text.trim(),
+        "oldPassword": currentPasswordTEC.text.trim(),
+        "newPassword": newPasswordTEC.text.trim(),
       };
 
       Either<ServerFailure, Response> response =

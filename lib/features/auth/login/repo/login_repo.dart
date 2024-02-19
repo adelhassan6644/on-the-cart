@@ -58,9 +58,7 @@ class LoginRepo extends BaseRepo {
   }
 
   Future subscribeToTopic() async {
-    await FirebaseMessaging.instance
-        .subscribeToTopic(userId)
-        .then((v) async {
+    await FirebaseMessaging.instance.subscribeToTopic(userId).then((v) async {
       await sharedPreferences.setBool(AppStorageKey.isSubscribe, true);
     });
   }

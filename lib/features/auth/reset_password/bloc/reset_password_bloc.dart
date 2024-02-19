@@ -51,20 +51,21 @@ class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
         emit(Error());
       }, (success) {
         Future.delayed(
-            Duration.zero,
-            () => CustomSimpleDialog.parentSimpleDialog(
-                canDismiss: false,
-                icon: Images.success,
-                customListWidget: ConfirmationDialog(
-                  title: getTranslated(
-                    "your_password_reset_successfully",
-                  ),
-                  description: getTranslated("your_password_reset_description"),
-                  withOneButton: true,
-                  txtBtn: getTranslated("login"),
-                  onContinue: () =>
-                      CustomNavigator.push(Routes.login, clean: true),
-                )));
+          Duration.zero,
+          () => CustomSimpleDialog.parentSimpleDialog(
+            canDismiss: false,
+            icon: Images.success,
+            customListWidget: ConfirmationDialog(
+              title: getTranslated(
+                "your_password_reset_successfully",
+              ),
+              description: getTranslated("your_password_reset_description"),
+              withOneButton: true,
+              txtBtn: getTranslated("login"),
+              onContinue: () => CustomNavigator.push(Routes.login, clean: true),
+            ),
+          ),
+        );
         // CustomNavigator.push(Routes.login, clean: true);
         clear();
 
