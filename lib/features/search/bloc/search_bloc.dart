@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/features/search/model/suggestion_model.dart';
 import '../../../../app/core/app_core.dart';
 import '../../../../app/core/app_event.dart';
@@ -26,7 +25,7 @@ class SearchBloc extends Bloc<AppEvent, AppState> {
       try {
         emit(Loading());
 
-        Map data = {"search": searchTEC.text.trim()};
+        Map data = {"name": searchTEC.text.trim()};
 
         Either<ServerFailure, Response> response =
             await repo.getSearchSuggestion(data);

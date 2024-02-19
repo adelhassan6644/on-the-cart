@@ -12,7 +12,7 @@ class WishlistRepo extends BaseRepo {
     try {
       Response response = await dioClient.post(
           uri: EndPoints.postFavourite,
-          data: {"client_id": userId, "item_id": id});
+          data: {"customer_id": userId, "product_id": id});
 
       if (response.statusCode == 200) {
         return Right(response);
