@@ -31,7 +31,6 @@ class AboutUs extends StatelessWidget {
                 if (state is Loading) {
                   return const CustomLoading();
                 }
-
                 if (state is Done) {
                   return ListAnimator(
                     customPadding: EdgeInsets.symmetric(
@@ -54,8 +53,21 @@ class AboutUs extends StatelessWidget {
                     ],
                   );
                 }
-
                 if (state is Empty) {
+                  return ListAnimator(
+                    customPadding: EdgeInsets.symmetric(
+                      horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                    ),
+                    data: [
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      const EmptyState(),
+                      SizedBox(height: 24.h),
+                    ],
+                  );
+                }
+                if (state is Error) {
                   return ListAnimator(
                     customPadding: EdgeInsets.symmetric(
                       horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
@@ -71,6 +83,7 @@ class AboutUs extends StatelessWidget {
                     ],
                   );
                 }
+
                 return const SizedBox();
               },
             ),

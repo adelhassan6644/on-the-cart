@@ -58,6 +58,7 @@ class ProfileRepo extends BaseRepo {
       await unSubscribeToTopic();
     } else {
       await sharedPreferences.remove(AppStorageKey.userName);
+      await sharedPreferences.remove(AppStorageKey.userId);
       await sharedPreferences.remove(AppStorageKey.userData);
       await sharedPreferences.remove(AppStorageKey.token);
       await sharedPreferences.remove(AppStorageKey.isLogin);

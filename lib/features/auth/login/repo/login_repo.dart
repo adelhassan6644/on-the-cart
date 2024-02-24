@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:stepOut/app/core/app_strings.dart';
 import '../../../../app/core/app_storage_keys.dart';
 import '../../../../data/api/end_points.dart';
 import '../../../../data/error/api_error_handler.dart';
@@ -13,17 +12,6 @@ import '../../../../main_repos/base_repo.dart';
 
 class LoginRepo extends BaseRepo {
   LoginRepo({required super.sharedPreferences, required super.dioClient});
-
-  setLoggedIn() {
-    removeGuestMode();
-    subscribeToTopic();
-    sharedPreferences.setBool(AppStorageKey.isLogin, true);
-  }
-
-  saveToken(token) {
-    sharedPreferences.setString(AppStorageKey.token, token);
-    dioClient.updateHeader(token);
-  }
 
   getCredentials() {
     if (sharedPreferences.containsKey(AppStorageKey.credentials)) {
@@ -57,22 +45,12 @@ class LoginRepo extends BaseRepo {
     return deviceToken;
   }
 
-  Future subscribeToTopic() async {
-    await FirebaseMessaging.instance.subscribeToTopic(userId).then((v) async {
-      await sharedPreferences.setBool(AppStorageKey.isSubscribe, true);
-    });
-  }
-
-  Future unSubscribeToTopic() async {
-    await FirebaseMessaging.instance
-        .unsubscribeFromTopic(userId)
-        .then((v) async {
-      await sharedPreferences.remove(AppStorageKey.isSubscribe);
-    });
-  }
-
-  setUserData(json) {
+  saveUserData(json) {
+    sharedPreferences.setBool(AppStorageKey.isLogin, true);
+    sharedPreferences.setString(AppStorageKey.userId, json["id"]);
+    sharedPreferences.setString(AppStorageKey.token, json["access_token"]);
     sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
+    dioClient.updateHeader(token);
   }
 
   Future<Either<ServerFailure, Response>> logIn(
@@ -84,9 +62,8 @@ class LoginRepo extends BaseRepo {
           await dioClient.post(uri: EndPoints.logIn, data: data);
 
       if (response.statusCode == 200) {
-        if (response.data['data']["is_verify"] == true) {
-          setUserData(response.data["data"]);
-          saveToken(response.data['data']["token"]);
+        if (response.data['data']["email_verified_at"] == true) {
+          saveUserData(response.data["data"]);
         }
         return Right(response);
       } else {
@@ -95,37 +72,5 @@ class LoginRepo extends BaseRepo {
     } catch (error) {
       return left(ServerFailure(ApiErrorHandler.getMessage(error)));
     }
-  }
-
-  Future<Either<ServerFailure, Response>> register(data) async {
-    try {
-      Response response =
-          await dioClient.post(uri: EndPoints.register, data: data);
-
-      if (response.statusCode == 200) {
-        return Right(response);
-      } else {
-        return left(ServerFailure(response.data['message']));
-      }
-    } catch (error) {
-      return left(ServerFailure(ApiErrorHandler.getMessage(error)));
-    }
-  }
-
-  Future<bool> logOut() async {
-    await unSubscribeToTopic();
-
-    if (sharedPreferences.containsKey(AppStorageKey.isSubscribe)) {
-      return false;
-    } else {
-      await sharedPreferences.remove(AppStorageKey.token);
-      await sharedPreferences.remove(AppStorageKey.isLogin);
-      return true;
-    }
-  }
-
-  removeGuestMode() async {
-    await FirebaseMessaging.instance
-        .unsubscribeFromTopic(AppStrings.guestTopic);
   }
 }

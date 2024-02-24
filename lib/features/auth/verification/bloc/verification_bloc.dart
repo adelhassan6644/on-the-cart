@@ -45,7 +45,6 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
         emit(Error());
       }, (success) {
         if (data.fromRegister) {
-          repo.saveUserToken(success.data['data']["token"]);
           CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
               notification: AppNotification(

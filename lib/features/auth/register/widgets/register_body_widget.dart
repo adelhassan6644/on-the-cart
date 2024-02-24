@@ -108,13 +108,13 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
 
                       ///Agree to terms and conditions
                       StreamBuilder<bool?>(
-                        stream: context.read<RegisterBloc>().rememberMeStream,
+                        stream: context.read<RegisterBloc>().agreeToTermsStream,
                         builder: (_, snapshot) {
                           return _AgreeToTerms(
                             check: snapshot.data ?? false,
                             onChange: (v) => context
                                 .read<RegisterBloc>()
-                                .updateRememberMe(v),
+                                .updateAgreeToTerms(v),
                           );
                         },
                       ),

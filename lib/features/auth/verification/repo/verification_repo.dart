@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:stepOut/app/core/app_strings.dart';
 import 'package:stepOut/features/auth/verification/model/verification_model.dart';
 import '../../../../app/core/app_storage_keys.dart';
 import '../../../../data/api/end_points.dart';
@@ -15,34 +14,12 @@ class VerificationRepo extends BaseRepo {
   VerificationRepo(
       {required super.sharedPreferences, required super.dioClient});
 
-  setLoggedIn() {
-    removeGuestMode();
-    subscribeToTopic();
+  saveUserData(json) {
     sharedPreferences.setBool(AppStorageKey.isLogin, true);
-  }
-
-  saveUserToken(token) {
-    sharedPreferences.setString(AppStorageKey.token, token.toString());
+    sharedPreferences.setString(AppStorageKey.userId, json["id"]);
+    sharedPreferences.setString(AppStorageKey.token, json["access_token"]);
+    sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
     dioClient.updateHeader(token);
-    setLoggedIn();
-  }
-
-  getCredentials() {
-    if (sharedPreferences.containsKey(AppStorageKey.credentials)) {
-      return jsonDecode(sharedPreferences.getString(
-            AppStorageKey.credentials,
-          ) ??
-          "{}");
-    }
-  }
-
-  saveCredentials(credentials) {
-    sharedPreferences.setString(
-        AppStorageKey.credentials, jsonEncode(credentials));
-  }
-
-  forget() {
-    sharedPreferences.remove(AppStorageKey.credentials);
   }
 
   Future<String?> saveDeviceToken() async {
@@ -57,22 +34,6 @@ class VerificationRepo extends BaseRepo {
       log('--------Device Token---------- $deviceToken');
     }
     return deviceToken;
-  }
-
-  Future subscribeToTopic() async {
-    await FirebaseMessaging.instance
-        .subscribeToTopic(userId)
-        .then((v) async {
-      await sharedPreferences.setBool(AppStorageKey.isSubscribe, true);
-    });
-  }
-
-  Future unSubscribeToTopic() async {
-    await FirebaseMessaging.instance
-        .unsubscribeFromTopic(userId)
-        .then((v) async {
-      await sharedPreferences.remove(AppStorageKey.isSubscribe);
-    });
   }
 
   Future<Either<ServerFailure, Response>> resendCode(
@@ -104,6 +65,9 @@ class VerificationRepo extends BaseRepo {
               : EndPoints.checkMailForResetPassword,
           data: model.toJson());
       if (response.statusCode == 200) {
+        if (model.fromRegister) {
+          saveUserData(response.data["data"]);
+        }
         return Right(response);
       } else {
         return left(ServerFailure(response.data['message']));
@@ -111,10 +75,5 @@ class VerificationRepo extends BaseRepo {
     } catch (error) {
       return left(ServerFailure(ApiErrorHandler.getMessage(error)));
     }
-  }
-
-  removeGuestMode() async {
-    await FirebaseMessaging.instance
-        .unsubscribeFromTopic(AppStrings.guestTopic);
   }
 }

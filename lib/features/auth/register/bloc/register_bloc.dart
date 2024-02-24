@@ -17,13 +17,12 @@ import '../../../../navigation/routes.dart';
 import '../repo/register_repo.dart';
 
 class RegisterBloc extends Bloc<AppEvent, AppState> {
-  final rememberMe = BehaviorSubject<bool?>();
+  final agreeToTerms = BehaviorSubject<bool?>();
 
   final RegisterRepo repo;
   RegisterBloc({required this.repo}) : super(Start()) {
-    updateRememberMe(false);
+    updateAgreeToTerms(false);
     on<Click>(onClick);
-    on<Remember>(onRemember);
   }
 
   TextEditingController nameTEC = TextEditingController();
@@ -32,9 +31,10 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
   TextEditingController passwordTEC = TextEditingController();
   TextEditingController confirmPasswordTEC = TextEditingController();
 
-  Function(bool?) get updateRememberMe => rememberMe.sink.add;
+  Function(bool?) get updateAgreeToTerms => agreeToTerms.sink.add;
 
-  Stream<bool?> get rememberMeStream => rememberMe.stream.asBroadcastStream();
+  Stream<bool?> get agreeToTermsStream =>
+      agreeToTerms.stream.asBroadcastStream();
 
   clear() {
     nameTEC.clear();
@@ -42,84 +42,67 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
     mailTEC.clear();
     passwordTEC.clear();
     confirmPasswordTEC.clear();
-    updateRememberMe(null);
+    updateAgreeToTerms(false);
   }
 
   @override
   Future<void> close() {
-    updateRememberMe(false);
+    updateAgreeToTerms(false);
     return super.close();
   }
 
   Future<void> onClick(Click event, Emitter<AppState> emit) async {
-    try {
-      emit(Loading());
-      Map<String, dynamic> data = {
-        "name": nameTEC.text.trim(),
-        "phone": phoneTEC.text.trim(),
-        "email": mailTEC.text.trim(),
-        "password": passwordTEC.text.trim(),
-      };
+    if (agreeToTerms.value!) {
+      try {
+        emit(Loading());
+        Map<String, dynamic> data = {
+          "name": nameTEC.text.trim(),
+          "phone": phoneTEC.text.trim(),
+          "email": mailTEC.text.trim(),
+          "password": passwordTEC.text.trim(),
+        };
 
-      Either<ServerFailure, Response> response = await repo.register(data);
+        Either<ServerFailure, Response> response = await repo.register(data);
 
-      response.fold((fail) {
-        AppCore.showSnackBar(
-            notification: AppNotification(
-                message: getTranslated("invalid_credentials"),
-                isFloating: true,
-                backgroundColor: Styles.IN_ACTIVE,
-                borderColor: Colors.transparent));
-        emit(Error());
-      }, (success) {
-        ///To Remember
-        if (rememberMe.value == true) {
-          repo.saveCredentials(data);
-        } else {
-          repo.forgetCredentials();
-        }
-
-        if (success.data['data']["is_verify"] == true) {
-          CustomNavigator.push(Routes.dashboard, clean: true);
+        response.fold((fail) {
           AppCore.showSnackBar(
               notification: AppNotification(
-                  message: getTranslated("logged_in_successfully"),
-                  backgroundColor: Styles.ACTIVE,
-                  borderColor: Styles.ACTIVE,
-                  iconName: "check-circle"));
-        } else {
+                  message: getTranslated("invalid_credentials"),
+                  isFloating: true,
+                  backgroundColor: Styles.IN_ACTIVE,
+                  borderColor: Colors.transparent));
+          emit(Error());
+        }, (success) {
           CustomNavigator.push(Routes.verification,
               arguments: VerificationModel(mailTEC.text.trim()));
           AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: success.data?["message"] ?? "",
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Styles.RED_COLOR,
-                  iconName: "fill-close-circle"));
-        }
-        clear();
-        emit(Done());
-      });
-    } catch (e) {
+            notification: AppNotification(
+              message: success.data?["message"] ?? "",
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Styles.RED_COLOR,
+            ),
+          );
+          clear();
+          emit(Done());
+        });
+      } catch (e) {
+        AppCore.showSnackBar(
+          notification: AppNotification(
+            message: e.toString(),
+            backgroundColor: Styles.IN_ACTIVE,
+            borderColor: Styles.RED_COLOR,
+          ),
+        );
+        emit(Error());
+      }
+    } else {
       AppCore.showSnackBar(
-        notification: AppNotification(
-          message: e.toString(),
-          backgroundColor: Styles.IN_ACTIVE,
-          borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
-        ),
-      );
-      emit(Error());
-    }
-  }
-
-  Future<void> onRemember(Remember event, Emitter<AppState> emit) async {
-    Map<String, dynamic>? data = repo.getCredentials();
-    if (data != null) {
-      passwordTEC.text = data["password"];
-      mailTEC.text = data["email"];
-      updateRememberMe(data["email"] != "" && data["email"] != null);
-      emit(Done());
+          notification: AppNotification(
+              message:
+                  getTranslated("oops_you_must_agree_to_terms_and_conditions"),
+              isFloating: true,
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Colors.transparent));
     }
   }
 }
