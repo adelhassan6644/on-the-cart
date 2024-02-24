@@ -59,8 +59,8 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
           AppCore.showSnackBar(
             notification: AppNotification(
               message: success.data?["message"] ?? "",
-              backgroundColor: Styles.IN_ACTIVE,
-              borderColor: Styles.RED_COLOR,
+              backgroundColor: Styles.ACTIVE,
+              borderColor: Styles.ACTIVE,
             ),
           );
         }
@@ -80,39 +80,6 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> onResend(Resend event, Emitter<AppState> emit) async {
-    try {
-      emit(Loading());
-      VerificationModel data = event.arguments as VerificationModel;
-
-      Either<ServerFailure, Response> response = await repo.resendCode(data);
-
-      response.fold((fail) {
-        AppCore.showSnackBar(
-            notification: AppNotification(
-                message: fail.error,
-                isFloating: true,
-                backgroundColor: Styles.IN_ACTIVE,
-                borderColor: Colors.red));
-        emit(Error());
-      }, (success) {
-        AppCore.showSnackBar(
-            notification: AppNotification(
-                message: success.data?["message"] ?? "",
-                backgroundColor: Styles.ACTIVE,
-                borderColor: Styles.ACTIVE,
-                iconName: "fill-close-circle"));
-        emit(Done());
-      });
-    } catch (e) {
-      AppCore.showSnackBar(
-        notification: AppNotification(
-          message: e.toString(),
-          backgroundColor: Styles.IN_ACTIVE,
-          borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
-        ),
-      );
-      emit(Error());
-    }
+    await repo.resendCode(event.arguments as VerificationModel);
   }
 }

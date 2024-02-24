@@ -48,21 +48,22 @@ class ForgetPasswordBloc extends Bloc<AppEvent, AppState> {
             arguments:
                 VerificationModel(mailTEC.text.trim(), fromRegister: false));
         AppCore.showSnackBar(
-            notification: AppNotification(
-                message: success.data?["message"] ?? "",
-                backgroundColor: Styles.IN_ACTIVE,
-                borderColor: Styles.RED_COLOR,
-                iconName: "fill-close-circle"));
+          notification: AppNotification(
+            message: success.data?["message"] ?? "",
+            backgroundColor: Styles.ACTIVE,
+            borderColor: Styles.ACTIVE,
+          ),
+        );
         clear();
         emit(Done());
       });
     } catch (e) {
       AppCore.showSnackBar(
           notification: AppNotification(
-              message: e.toString(),
-              backgroundColor: Styles.IN_ACTIVE,
-              borderColor: Styles.RED_COLOR,
-              iconName: "fill-close-circle"));
+        message: e.toString(),
+        backgroundColor: Styles.IN_ACTIVE,
+        borderColor: Styles.RED_COLOR,
+      ));
       emit(Error());
     }
   }

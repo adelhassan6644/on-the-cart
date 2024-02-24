@@ -16,8 +16,6 @@ import '../../../../components/custom_app_bar.dart';
 import '../../../../components/custom_button.dart';
 import '../../../../components/custom_pin_code_field.dart';
 import '../../../../data/config/di.dart';
-import '../../../../navigation/custom_navigation.dart';
-import '../../../../navigation/routes.dart';
 import '../repo/verification_repo.dart';
 
 class Verification extends StatefulWidget {
@@ -98,14 +96,8 @@ class _VerificationState extends State<Verification> {
                                     text: getTranslated("submit"),
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
-                                        CustomNavigator.push(
-                                            Routes.resetPassword,
-                                            arguments: widget.model.email);
-                                        // context
-                                        //     .read<VerificationBloc>()
-                                        //     .add(Click(
-                                        //         arguments:
-                                        //             widget.model));
+                                        context.read<VerificationBloc>().add(
+                                            Click(arguments: widget.model));
                                       }
                                     },
                                     isLoading: state is Loading),

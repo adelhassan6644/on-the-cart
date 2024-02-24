@@ -34,97 +34,108 @@ class _EditProfileState extends State<EditProfile> {
     return BlocProvider(
       create: (context) =>
           EditProfileBloc(repo: sl<EditProfileRepo>())..add(Init()),
-      child: Scaffold(
-        appBar: CustomAppBar(
-          title: getTranslated("edit_profile"),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              StreamBuilder<File?>(
-                  stream: context.read<EditProfileBloc>().profileImageStream,
-                  builder: (context, snapshot) {
-                    return ProfileImageWidget(
-                      onGet: context.read<EditProfileBloc>().updateProfileImage,
-                      imageFile:snapshot.hasData?snapshot.data!:null ,
-                      withEdit: true,
-                    );
-                  }),
-              BlocBuilder<EditProfileBloc, AppState>(
-                builder: (context, state) {
-                  return Expanded(
-                    child: ListAnimator(
-                      customPadding: EdgeInsets.symmetric(
-                        horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
-                        vertical: Dimensions.PADDING_SIZE_DEFAULT.h,
-                      ),
-                      data: [
-                        Form(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                ///Name
-                                CustomTextField(
-                                  controller:
-                                      context.read<EditProfileBloc>().nameTEC,
-                                  keyboardAction: TextInputAction.next,
-                                  label: getTranslated("name"),
-                                  hint: getTranslated("enter_your_name"),
-                                  withLabel: true,
-                                  focusNode: nameNode,
-                                  inputType: TextInputType.name,
-                                  validate: Validations.name,
-                                ),
+      child: BlocBuilder<EditProfileBloc, AppState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: CustomAppBar(
+              title: getTranslated("edit_profile"),
+            ),
+            body: SafeArea(
+              child: Column(
+                children: [
+                  StreamBuilder<File?>(
+                      stream:
+                          context.read<EditProfileBloc>().profileImageStream,
+                      builder: (context, snapshot) {
+                        return ProfileImageWidget(
+                          onGet: context
+                              .read<EditProfileBloc>()
+                              .updateProfileImage,
+                          imageFile: snapshot.hasData ? snapshot.data! : null,
+                          withEdit: true,
+                        );
+                      }),
+                  BlocBuilder<EditProfileBloc, AppState>(
+                    builder: (context, state) {
+                      return Expanded(
+                        child: ListAnimator(
+                          customPadding: EdgeInsets.symmetric(
+                            horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
+                            vertical: Dimensions.PADDING_SIZE_DEFAULT.h,
+                          ),
+                          data: [
+                            Form(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    ///Name
+                                    CustomTextField(
+                                      controller: context
+                                          .read<EditProfileBloc>()
+                                          .nameTEC,
+                                      keyboardAction: TextInputAction.next,
+                                      label: getTranslated("name"),
+                                      hint: getTranslated("enter_your_name"),
+                                      withLabel: true,
+                                      focusNode: nameNode,
+                                      inputType: TextInputType.name,
+                                      validate: Validations.name,
+                                    ),
 
-                                ///Phone
-                                CustomTextField(
-                                  controller:
-                                      context.read<EditProfileBloc>().phoneTEC,
-                                  keyboardAction: TextInputAction.next,
-                                  label: getTranslated("phone"),
-                                  hint: getTranslated("enter_your_phone"),
-                                  withLabel: true,
-                                  focusNode: phoneNode,
-                                  inputType: TextInputType.phone,
-                                  validate: Validations.phone,
-                                ),
+                                    ///Phone
+                                    CustomTextField(
+                                      controller: context
+                                          .read<EditProfileBloc>()
+                                          .phoneTEC,
+                                      keyboardAction: TextInputAction.next,
+                                      label: getTranslated("phone"),
+                                      hint: getTranslated("enter_your_phone"),
+                                      withLabel: true,
+                                      focusNode: phoneNode,
+                                      inputType: TextInputType.phone,
+                                      validate: Validations.phone,
+                                    ),
 
-                                ///Mail
-                                CustomTextField(
-                                  controller:
-                                      context.read<EditProfileBloc>().mailTEC,
-                                  keyboardAction: TextInputAction.done,
-                                  label: getTranslated("mail"),
-                                  hint: getTranslated("enter_your_mail"),
-                                  withLabel: true,
-                                  focusNode: mailNode,
-                                  inputType: TextInputType.emailAddress,
-                                  validate: Validations.mail,
-                                ),
+                                    ///Mail
+                                    CustomTextField(
+                                      controller: context
+                                          .read<EditProfileBloc>()
+                                          .mailTEC,
+                                      keyboardAction: TextInputAction.done,
+                                      label: getTranslated("mail"),
+                                      hint: getTranslated("enter_your_mail"),
+                                      withLabel: true,
+                                      isEnabled: false,
+                                      focusNode: mailNode,
+                                      inputType: TextInputType.emailAddress,
+                                      validate: Validations.mail,
+                                    ),
 
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 24.h,
-                                  ),
-                                  child: CustomButton(
-                                      text: getTranslated("save"),
-                                      onTap: () {
-                                        context
-                                            .read<EditProfileBloc>()
-                                            .add(Click());
-                                      },
-                                      isLoading: state is Loading),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
-                  );
-                },
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 24.h,
+                                      ),
+                                      child: CustomButton(
+                                          text: getTranslated("save"),
+                                          onTap: () {
+                                            context
+                                                .read<EditProfileBloc>()
+                                                .add(Click());
+                                          },
+                                          isLoading: state is Loading),
+                                    ),
+                                  ],
+                                )),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

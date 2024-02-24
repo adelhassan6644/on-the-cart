@@ -36,7 +36,7 @@ class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
       emit(Loading());
       Map<String, dynamic> data = {
         "email": event.arguments as String,
-        "password": passwordTEC.text.trim(),
+        "newPassword": passwordTEC.text.trim(),
       };
 
       Either<ServerFailure, Response> response = await repo.resetPassword(data);

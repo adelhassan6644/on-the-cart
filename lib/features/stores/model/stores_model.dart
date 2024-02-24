@@ -42,12 +42,12 @@ class StoreItem extends BaseModel {
       super.isStore = true,
       super.image,
       super.description,
-      super.title = "Store Title"});
+      super.name = "Store Title"});
 
   StoreItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
-    title = json['name'];
+    name = json['name'];
     description = json['description'];
     isStore = true;
   }
@@ -56,7 +56,7 @@ class StoreItem extends BaseModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['image'] = image;
-    data['title'] = title;
+    data['name'] = name;
     data['description'] = description;
     data['is_store'] = isStore;
 

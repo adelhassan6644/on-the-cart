@@ -24,6 +24,7 @@
   "welcome_description": "اكمل بياناتك حتى تكون نسب توافق مشوارك\nاليومي مع الكباتن دقيقة!",
   "mail": "البريد الإلكتروني",
   "change_password": "تغير كلمة المرور",
+  "oops_you_have_to_verify_your_account": "عفوًا! يجب عليك تأكيد حسابك",
   "you_must_change_something": "عفوًا! يجب عليك تغيير شيء",
   "your_profile_successfully_updated": "تم تحديث الملف الشخصي بنجاح",
   "please_select_profile_image": "عفوًا! الرجاء إختيار صورة ملف شخصية",

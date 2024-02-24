@@ -3,7 +3,7 @@ class EndPoints {
   static const String googleMapsBaseUrl = 'https://maps.googleapis.com';
   static const String imageUrl = 'https://ecommerce.softwarecloud2.com/';
   static const String apiKey =
-      's7xrprFdw4G0F21rfLyD4Tasdwe123JYgwGfI3y355yRnjw9zOggruX30eToVWvsASerert';
+      's7xrprFdw4G0F21rfLyD4Tassdaddwe123JYgwGfI3y355yRnjw9zOggruX30eToVWvsASerert';
   static const String topic = 'on-the-cart';
 
   ///Auth

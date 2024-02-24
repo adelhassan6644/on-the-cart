@@ -15,8 +15,6 @@ import '../../../../components/custom_app_bar.dart';
 import '../../../../components/custom_button.dart';
 import '../../../../components/custom_text_form_field.dart';
 import '../../../../data/config/di.dart';
-import '../../../../navigation/custom_navigation.dart';
-import '../../../../navigation/routes.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key, required this.email});
@@ -64,64 +62,59 @@ class _ResetPasswordState extends State<ResetPassword> {
                         height: Dimensions.PADDING_SIZE_DEFAULT.h,
                       ),
                       Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              ///New Password
-                              CustomTextField(
-                                controller: context
-                                    .read<ResetPasswordBloc>()
-                                    .passwordTEC,
-                                label: getTranslated("new_password"),
-                                hint: getTranslated("enter_new_password"),
-                                focusNode: passwordNode,
-                                inputType: TextInputType.visiblePassword,
-                                validate: Validations.firstPassword,
-                                isPassword: true,
-                              ),
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            ///New Password
+                            CustomTextField(
+                              controller:
+                                  context.read<ResetPasswordBloc>().passwordTEC,
+                              label: getTranslated("new_password"),
+                              hint: getTranslated("enter_new_password"),
+                              focusNode: passwordNode,
+                              inputType: TextInputType.visiblePassword,
+                              validate: Validations.firstPassword,
+                              isPassword: true,
+                            ),
 
-                              ///Confirm New Password
-                              CustomTextField(
-                                controller: context
-                                    .read<ResetPasswordBloc>()
-                                    .confirmPasswordTEC,
-                                label: getTranslated("confirm_new_password"),
-                                hint:
-                                    getTranslated("enter_confirm_new_password"),
-                                focusNode: confirmPasswordNode,
-                                inputType: TextInputType.visiblePassword,
-                                validate: (v) => Validations.confirmNewPassword(
-                                    context
-                                        .read<ResetPasswordBloc>()
-                                        .passwordTEC
-                                        .text
-                                        .trim(),
-                                    v),
-                                isPassword: true,
-                              ),
+                            ///Confirm New Password
+                            CustomTextField(
+                              controller: context
+                                  .read<ResetPasswordBloc>()
+                                  .confirmPasswordTEC,
+                              label: getTranslated("confirm_new_password"),
+                              hint: getTranslated("enter_confirm_new_password"),
+                              focusNode: confirmPasswordNode,
+                              inputType: TextInputType.visiblePassword,
+                              validate: (v) => Validations.confirmNewPassword(
+                                  context
+                                      .read<ResetPasswordBloc>()
+                                      .passwordTEC
+                                      .text
+                                      .trim(),
+                                  v),
+                              isPassword: true,
+                            ),
 
-                              ///Confirm
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 16.h,
-                                ),
-                                child: CustomButton(
-                                    text: getTranslated("submit"),
-                                    onTap: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        CustomNavigator.push(Routes.dashboard,
-                                            clean: true);
-                                        // context
-                                        //     .read<ResetPasswordBloc>()
-                                        //     .add(Click(
-                                        //         arguments:
-                                        //             widget.email));
-                                      }
-                                    },
-                                    isLoading: state is Loading),
+                            ///Confirm
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16.h,
                               ),
-                            ],
-                          )),
+                              child: CustomButton(
+                                  text: getTranslated("submit"),
+                                  onTap: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      context
+                                          .read<ResetPasswordBloc>()
+                                          .add(Click(arguments: widget.email));
+                                    }
+                                  },
+                                  isLoading: state is Loading),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

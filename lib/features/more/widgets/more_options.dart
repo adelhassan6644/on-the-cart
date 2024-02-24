@@ -27,7 +27,7 @@ class MoreOptions extends StatelessWidget {
           children: [
             ///Orders
             Visibility(
-              visible: !UserBloc.instance.isLogin,
+              visible: UserBloc.instance.isLogin,
               child: MoreButton(
                 title: getTranslated("orders_history"),
                 icon: SvgImages.orders,
@@ -37,7 +37,7 @@ class MoreOptions extends StatelessWidget {
 
             ///Favourites
             Visibility(
-              visible: !UserBloc.instance.isLogin,
+              visible: UserBloc.instance.isLogin,
               child: MoreButton(
                 title: getTranslated("wishlist"),
                 icon: SvgImages.favorite,
@@ -47,7 +47,7 @@ class MoreOptions extends StatelessWidget {
 
             ///Notifications
             Visibility(
-              visible: !UserBloc.instance.isLogin,
+              visible: UserBloc.instance.isLogin,
               child: MoreButton(
                 title: getTranslated("notifications"),
                 icon: SvgImages.notification,

@@ -28,15 +28,11 @@ class ProfileBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: Dimensions.PADDING_SIZE_DEFAULT.w,
               vertical: Dimensions.PADDING_SIZE_DEFAULT.h),
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-
               CustomTextField(
                 controller: context.read<UserBloc>().nameTEC,
-
                 label: getTranslated("name"),
                 hint: getTranslated("enter_your_name"),
                 inputType: TextInputType.name,
@@ -46,7 +42,6 @@ class ProfileBody extends StatelessWidget {
               ///phone
               CustomTextField(
                 controller: context.read<UserBloc>().phoneTEC,
-
                 label: getTranslated("phone"),
                 hint: getTranslated("enter_your_phone"),
                 inputType: TextInputType.phone,
@@ -56,17 +51,16 @@ class ProfileBody extends StatelessWidget {
               ///Mail
               CustomTextField(
                 controller: context.read<UserBloc>().mailTEC,
-
+                isEnabled: false,
                 label: getTranslated("mail"),
                 hint: getTranslated("enter_your_mail"),
                 inputType: TextInputType.emailAddress,
                 validate: Validations.mail,
               ),
 
-              CustomButton(text:getTranslated("save"), )
-
-
-
+              CustomButton(
+                text: getTranslated("save"),
+              )
             ],
           ),
         );

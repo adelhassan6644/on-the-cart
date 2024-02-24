@@ -39,7 +39,7 @@ class _ItemsPageState extends State<ItemsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: widget.model.title ?? "Model Title",
+        title: widget.model.name ?? "Model Title",
       ),
       body: SafeArea(
           child: Padding(

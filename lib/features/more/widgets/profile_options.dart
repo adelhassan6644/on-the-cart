@@ -28,7 +28,7 @@ class ProfileOptions extends StatelessWidget {
     return BlocBuilder<UserBloc, AppState>(
       builder: (context, state) {
         return Visibility(
-          visible: !UserBloc.instance.isLogin,
+          visible: UserBloc.instance.isLogin,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,7 +48,7 @@ class ProfileOptions extends StatelessWidget {
                 title: getTranslated("profile"),
                 icon: SvgImages.userIcon,
                 withTopBorder: false,
-                onTap: () => CustomNavigator.push(Routes.profile),
+                onTap: () => CustomNavigator.push(Routes.editProfile),
               ),
 
               ///Address

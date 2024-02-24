@@ -41,7 +41,7 @@ class CategoryCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: 6.h, bottom: 12.h),
               child: Text(
-                category?.title ?? "title",
+                category?.name ?? "title",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,

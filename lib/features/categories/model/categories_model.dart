@@ -40,14 +40,14 @@ class CategoryItem extends BaseModel {
     super.id,
     super.isStore = false,
     super.image,
-    super.title = "Category Title",
+    super.name = "Category Name",
     super.description,
   });
 
   CategoryItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
-    title = json['title'];
+    name = json['name'];
     description = json['description'];
     isStore = false;
   }
@@ -56,7 +56,7 @@ class CategoryItem extends BaseModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['image'] = image;
-    data['title'] = title;
+    data['name'] = name;
     data['description'] = description;
     data['is_store'] = false;
 

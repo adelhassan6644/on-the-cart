@@ -85,8 +85,8 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
               arguments: VerificationModel(mailTEC.text.trim()));
           AppCore.showSnackBar(
             notification: AppNotification(
-              message: success.data?["message"] ?? "",
-              backgroundColor: Styles.IN_ACTIVE,
+              message: getTranslated("oops_you_have_to_verify_your_account"),
+              backgroundColor: Styles.ACTIVE,
               borderColor: Styles.RED_COLOR,
             ),
           );

@@ -152,15 +152,15 @@ class _RememberMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        children: [
-          InkWell(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            onTap: () => onChange(!check),
-            child: Container(
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        onTap: () => onChange(!check),
+        child: Row(
+          children: [
+            Container(
               width: 18.w,
               height: 18.h,
               decoration: BoxDecoration(
@@ -178,19 +178,19 @@ class _RememberMe extends StatelessWidget {
                     )
                   : null,
             ),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: Text(
-              getTranslated("remember_me"),
-              maxLines: 1,
-              style: AppTextStyles.medium.copyWith(
-                  fontSize: 13,
-                  overflow: TextOverflow.ellipsis,
-                  color: check ? Styles.PRIMARY_COLOR : Styles.DETAILS_COLOR),
+            SizedBox(width: 8.w),
+            Expanded(
+              child: Text(
+                getTranslated("remember_me"),
+                maxLines: 1,
+                style: AppTextStyles.medium.copyWith(
+                    fontSize: 13,
+                    overflow: TextOverflow.ellipsis,
+                    color: check ? Styles.PRIMARY_COLOR : Styles.DETAILS_COLOR),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

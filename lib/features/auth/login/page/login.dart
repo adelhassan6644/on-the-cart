@@ -19,18 +19,21 @@ class Login extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginBloc(repo: sl<LoginRepo>())..add(Remember()),
       child: Scaffold(
-        appBar: const CustomAppBar(),
+        appBar: CustomAppBar(
+          withBack: fromMain,
+        ),
         body: Column(
-         children: [
-           Text(
-             getTranslated("login_header"),
-             textAlign: TextAlign.start,
-             style: AppTextStyles.semiBold
-                 .copyWith(fontSize: 24, ),
-           ),
-           const LoginBodyWidget(),
-         ],
-                    ),
+          children: [
+            Text(
+              getTranslated("login_header"),
+              textAlign: TextAlign.start,
+              style: AppTextStyles.semiBold.copyWith(
+                fontSize: 24,
+              ),
+            ),
+            const LoginBodyWidget(),
+          ],
+        ),
       ),
     );
   }

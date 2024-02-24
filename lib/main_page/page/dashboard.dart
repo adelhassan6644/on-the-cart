@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/features/more/page/more.dart';
 import 'package:stepOut/features/offers/bloc/offers_bloc.dart';
 import 'package:stepOut/main_blocs/user_bloc.dart';
 import '../../app/core/app_event.dart';
 import '../../app/core/styles.dart';
+import '../../data/config/di.dart';
 import '../../data/network/network_info.dart';
 import '../../features/best_seller/bloc/best_seller_bloc.dart';
 import '../../features/cart/page/cart.dart';
@@ -12,6 +12,7 @@ import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/page/categories.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/page/home.dart';
+import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
 import '../../features/wishlist/bloc/wishlist_bloc.dart';
 import '../../features/wishlist/page/wishlist.dart';
@@ -31,16 +32,16 @@ class _DashBoardState extends State<DashBoard> {
     if (widget.index != null) {
       DashboardBloc.instance.updateSelectIndex(widget.index!);
     }
-    UserBloc.instance.add(Click());
-    context.read<WishlistBloc>().add(Click());
-    context.read<HomeAdsBloc>().add(Click());
-    context.read<CategoriesBloc>().add(Click());
-    context.read<StoresBloc>().add(Click());
-    context.read<BestSellerBloc>().add(Click());
-    context.read<OffersBloc>().add(Click());
+    sl<HomeAdsBloc>().add(Click());
+    sl<CategoriesBloc>().add(Click());
+    sl<StoresBloc>().add(Click());
+    sl<BestSellerBloc>().add(Click());
+    sl<OffersBloc>().add(Click());
 
     if (UserBloc.instance.isLogin) {
-      // sl<ProfileBloc>().add(Get());
+      UserBloc.instance.add(Click());
+      sl<ProfileBloc>().add(Get());
+      sl<WishlistBloc>().add(Click());
     }
     NetworkInfo.checkConnectivity(onVisible: initData);
     super.initState();

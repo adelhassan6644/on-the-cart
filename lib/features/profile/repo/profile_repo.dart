@@ -13,8 +13,6 @@ import '../../../data/error/failures.dart';
 class ProfileRepo extends BaseRepo {
   ProfileRepo({required super.dioClient, required super.sharedPreferences});
 
-  String? get userName => sharedPreferences.getString(AppStorageKey.userName);
-
   Future<Either<ServerFailure, Response>> getProfile() async {
     try {
       Response response = await dioClient.get(
@@ -52,23 +50,25 @@ class ProfileRepo extends BaseRepo {
   }
 
   clearCache() async {
-    await unSubscribeToTopic();
+    // await unSubscribeToTopic();
+    //
+    // if (sharedPreferences.containsKey(AppStorageKey.isSubscribe)) {
+    //   await unSubscribeToTopic();
+    // } else {
+    //
+    // }
 
-    if (sharedPreferences.containsKey(AppStorageKey.isSubscribe)) {
-      await unSubscribeToTopic();
-    } else {
-      await sharedPreferences.remove(AppStorageKey.userName);
-      await sharedPreferences.remove(AppStorageKey.userId);
-      await sharedPreferences.remove(AppStorageKey.userData);
-      await sharedPreferences.remove(AppStorageKey.token);
-      await sharedPreferences.remove(AppStorageKey.isLogin);
-      return;
-    }
+    await sharedPreferences.remove(AppStorageKey.userName);
+    await sharedPreferences.remove(AppStorageKey.userId);
+    await sharedPreferences.remove(AppStorageKey.userData);
+    await sharedPreferences.remove(AppStorageKey.token);
+    await sharedPreferences.remove(AppStorageKey.isLogin);
+    return;
   }
 
   Future unSubscribeToTopic() async {
     await FirebaseMessaging.instance
-        .unsubscribeFromTopic("$userName")
+        .unsubscribeFromTopic(userId)
         .then((v) async {
       await sharedPreferences.remove(AppStorageKey.isSubscribe);
     });

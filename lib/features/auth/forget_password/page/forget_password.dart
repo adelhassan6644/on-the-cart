@@ -4,6 +4,7 @@ import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/features/auth/forget_password/bloc/forget_password_bloc.dart';
 import 'package:stepOut/features/auth/forget_password/repo/forget_password_repo.dart';
+import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_state.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../app/core/text_styles.dart';
@@ -13,9 +14,7 @@ import '../../../../components/animated_widget.dart';
 import '../../../../components/custom_button.dart';
 import '../../../../components/custom_text_form_field.dart';
 import '../../../../data/config/di.dart';
-import '../../../../navigation/custom_navigation.dart';
-import '../../../../navigation/routes.dart';
-import '../../verification/model/verification_model.dart';
+
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -83,19 +82,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     text: getTranslated("submit"),
                                     onTap: () {
                                       if (_formKey.currentState!.validate()) {
-                                        CustomNavigator.push(
-                                            Routes.verification,
-                                            replace: true,
-                                            arguments: VerificationModel(
-                                                context
-                                                    .read<ForgetPasswordBloc>()
-                                                    .mailTEC
-                                                    .text,
-                                                fromRegister: false));
-
-                                        // context
-                                        //     .read<ForgetPasswordBloc>()
-                                        //     .add(Click());
+                                        context
+                                            .read<ForgetPasswordBloc>()
+                                            .add(Click());
                                       }
                                     },
                                     isLoading: state is Loading),
