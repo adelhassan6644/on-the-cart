@@ -71,23 +71,25 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
           repo.forgetCredentials();
         }
 
-        if (success.data['data']["is_verify"] == true) {
+        if (success.data['data']["email_verified_at"] != null) {
           CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: "You logged in successfully",
-                  backgroundColor: Styles.ACTIVE,
-                  borderColor: Styles.ACTIVE,
-                  iconName: "check-circle"));
+            notification: AppNotification(
+              message: getTranslated("logged_in_successfully"),
+              backgroundColor: Styles.ACTIVE,
+              borderColor: Styles.ACTIVE,
+            ),
+          );
         } else {
           CustomNavigator.push(Routes.verification,
               arguments: VerificationModel(mailTEC.text.trim()));
           AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: success.data?["message"] ?? "",
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Styles.RED_COLOR,
-                  iconName: "fill-close-circle"));
+            notification: AppNotification(
+              message: success.data?["message"] ?? "",
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Styles.RED_COLOR,
+            ),
+          );
         }
         clear();
         emit(Done());
@@ -98,7 +100,6 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
           message: e.toString(),
           backgroundColor: Styles.IN_ACTIVE,
           borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
         ),
       );
       emit(Error());

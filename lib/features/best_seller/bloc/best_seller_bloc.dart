@@ -19,7 +19,7 @@ class BestSellerBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> onClick(Click event, Emitter<AppState> emit) async {
-    try {
+    // try {
       emit(Loading());
 
       Either<ServerFailure, Response> response = await repo.getItems();
@@ -40,14 +40,14 @@ class BestSellerBloc extends Bloc<AppEvent, AppState> {
           emit(Empty());
         }
       });
-    } catch (e) {
-      AppCore.showSnackBar(
-          notification: AppNotification(
-              message: e.toString(),
-              backgroundColor: Styles.IN_ACTIVE,
-              borderColor: Styles.RED_COLOR,
-              iconName: "fill-close-circle"));
-      emit(Error());
-    }
+    // } catch (e) {
+    //   AppCore.showSnackBar(
+    //       notification: AppNotification(
+    //           message: e.toString(),
+    //           backgroundColor: Styles.IN_ACTIVE,
+    //           borderColor: Styles.RED_COLOR,
+    //           iconName: "fill-close-circle"));
+    //   emit(Error());
+    // }
   }
 }

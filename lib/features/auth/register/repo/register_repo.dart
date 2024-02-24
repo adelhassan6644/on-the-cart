@@ -27,8 +27,8 @@ class RegisterRepo extends BaseRepo {
 
   Future<Either<ServerFailure, Response>> register(data) async {
     try {
-      data.addAll({if (!kDebugMode) "fcm_token": await saveDeviceToken()});
-
+      data.addAll(
+          {"fcm_token": (!kDebugMode) ? await saveDeviceToken() : "ffd"});
       Response response =
           await dioClient.post(uri: EndPoints.register, data: data);
 

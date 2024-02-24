@@ -33,13 +33,15 @@ class StoresPage extends StatelessWidget {
                   List<StoreItem> stores =
                       (state.model as StoresModel).data ?? [];
                   return GridListAnimatorWidget(
-                      columnCount: 3,
-                      aspectRatio: 100.w / 75.h,
-                      items: List.generate(
-                          stores.length,
-                          (i) => StoreCard(
-                                store: stores[i],
-                              )));
+                    columnCount: 3,
+                    aspectRatio: 100.w / 75.h,
+                    items: List.generate(
+                      stores.length,
+                      (i) => StoreCard(
+                        store: stores[i],
+                      ),
+                    ),
+                  );
                 }
                 if (state is Loading) {
                   return GridListAnimatorWidget(
@@ -66,10 +68,7 @@ class StoresPage extends StatelessWidget {
                     txt: getTranslated("something_went_wrong"),
                   );
                 } else {
-                  return GridListAnimatorWidget(
-                      columnCount: 3,
-                      aspectRatio: 100.w / 75.h,
-                      items: List.generate(20, (i) => const StoreCard()));
+                  return const SizedBox();
                 }
               }),
             )

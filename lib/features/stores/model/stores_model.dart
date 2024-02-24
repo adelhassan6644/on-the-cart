@@ -37,12 +37,18 @@ class StoresModel extends SingleMapper {
 }
 
 class StoreItem extends BaseModel {
-  StoreItem({super.id, super.isStore = true, super.image, super.title = "Store Title"});
+  StoreItem(
+      {super.id,
+      super.isStore = true,
+      super.image,
+      super.description,
+      super.title = "Store Title"});
 
   StoreItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
-    title = json['title'];
+    title = json['name'];
+    description = json['description'];
     isStore = true;
   }
 
@@ -51,6 +57,7 @@ class StoreItem extends BaseModel {
     data['id'] = id;
     data['image'] = image;
     data['title'] = title;
+    data['description'] = description;
     data['is_store'] = isStore;
 
     return data;

@@ -68,7 +68,7 @@ class ItemCard extends StatelessWidget {
                     children: [
                       ///Name
                       Text(
-                        item?.title ?? "Item Tile",
+                        item?.name ?? "Item Tile",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.semiBold
                             .copyWith(fontSize: 14, color: Styles.HEADER),

@@ -26,7 +26,8 @@ class WishlistRepo extends BaseRepo {
 
   Future<Either<ServerFailure, Response>> getWishlist() async {
     try {
-      Response response = await dioClient.get(uri: EndPoints.bestSeller);
+      Response response =
+          await dioClient.get(uri: EndPoints.getFavourites(userId));
       if (response.statusCode == 200) {
         return Right(response);
       } else {

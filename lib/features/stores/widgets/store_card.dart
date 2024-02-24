@@ -14,8 +14,7 @@ class StoreCard extends StatelessWidget {
     return SizedBox(
       width: 100.w,
       child: InkWell(
-        onTap: () =>
-            CustomNavigator.push(Routes.items, arguments: store ?? StoreItem()),
+        onTap: () => CustomNavigator.push(Routes.items, arguments: store),
         child: CustomNetworkImage.containerNewWorkImage(
             image: store?.image ?? "", height: 75.h, radius: 12),
       ),

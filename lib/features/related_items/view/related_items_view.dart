@@ -20,8 +20,8 @@ class RelatedItemsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      // create: (context) => RelatedItemsBloc(repo: sl<RelatedItemsRepo>())..add(Click(arguments: id)),
-      create: (context) => RelatedItemsBloc(repo: sl<RelatedItemsRepo>()),
+      create: (context) => RelatedItemsBloc(repo: sl<RelatedItemsRepo>())
+        ..add(Click(arguments: id)),
       child: BlocBuilder<RelatedItemsBloc, AppState>(builder: (context, state) {
         if (state is Done) {
           List<ItemModel> items = (state.model as ItemsModel).data ?? [];

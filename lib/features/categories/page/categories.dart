@@ -35,13 +35,15 @@ class Categories extends StatelessWidget {
                   List<CategoryItem> categories =
                       (state.model as CategoriesModel).data ?? [];
                   return GridListAnimatorWidget(
-                      columnCount: 3,
-                      aspectRatio: 100.w / 105.h,
-                      items: List.generate(
-                          categories.length,
-                          (i) => CategoryCard(
-                                category: categories[i],
-                              )));
+                    columnCount: 3,
+                    aspectRatio: 100.w / 105.h,
+                    items: List.generate(
+                      categories.length,
+                      (i) => CategoryCard(
+                        category: categories[i],
+                      ),
+                    ),
+                  );
                 }
                 if (state is Loading) {
                   return GridListAnimatorWidget(

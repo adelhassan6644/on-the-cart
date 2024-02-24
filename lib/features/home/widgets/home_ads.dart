@@ -19,8 +19,8 @@ class HomeAds extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeAdsBloc, AppState>(
       builder: (context, state) {
-        if (state is Start) {
-          // AdsModel model = state.model as AdsModel;
+        if (state is Done) {
+          AdsModel model = state.model as AdsModel;
           return CarouselSlider.builder(
             options: CarouselOptions(
               height: context.height * 0.20,
@@ -38,16 +38,15 @@ class HomeAds extends StatelessWidget {
               },
             ),
             disableGesture: true,
-            itemCount: 4,
-            // itemCount: model.data?.length ?? 0,
+            itemCount: model.data?.length ?? 0,
             itemBuilder: (context, index, _) {
               return InkWell(
                 onTap: () {
-                  CustomNavigator.push(Routes.itemDetails, arguments: 0);
+                  CustomNavigator.push(Routes.itemDetails,
+                      arguments: model.data?[index].id);
                 },
                 child: CustomNetworkImage.containerNewWorkImage(
-                  image: "",
-                  // image: model.data?[index].image ?? "",
+                  image: model.data?[index].image ?? "",
                   height: context.height * 0.275,
                   width: context.width,
                   radius: 20,

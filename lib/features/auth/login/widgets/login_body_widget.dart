@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/app_state.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/components/animated_widget.dart';
+import '../../../../app/core/app_event.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../app/core/text_styles.dart';
 import '../../../../app/core/validation.dart';
@@ -110,10 +111,8 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                         child: CustomButton(
                             text: getTranslated("login"),
                             onTap: () {
-                              CustomNavigator.push(Routes.dashboard,
-                                  clean: true, arguments: 0);
                               if (_formKey.currentState!.validate()) {
-                                // context.read<LoginBloc>().add(Click());
+                                context.read<LoginBloc>().add(Click());
                               }
                             },
                             isLoading: state is Loading),
@@ -123,16 +122,13 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                           vertical: 0.h,
                         ),
                         child: CustomButton(
-                            text: getTranslated("signup"),
-                            onTap: () {
-                              CustomNavigator.push(
-                                Routes.register,
-                              );
-                              // if (_formKey.currentState!.validate()) {
-                              //   context.read<LoginBloc>().add(Click());
-                              // }
-                            },
-                            isLoading: state is Loading),
+                          text: getTranslated("signup"),
+                          onTap: () {
+                            CustomNavigator.push(
+                              Routes.register,
+                            );
+                          },
+                        ),
                       ),
                     ],
                   )),

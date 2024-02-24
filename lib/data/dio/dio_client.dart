@@ -29,11 +29,17 @@ class DioClient extends ApiClient {
         'Content-Type': 'application/json; charset=UTF-8',
         "Accept": " application/json",
         'x-api-key': EndPoints.apiKey,
-        "Accept-Language": sharedPreferences.getString(AppStorageKey.languageCode) ?? "en",
+        "Accept-Language":
+            sharedPreferences.getString(AppStorageKey.languageCode) ?? "en",
         if (sharedPreferences.getString(AppStorageKey.token) != null)
-          'token': sharedPreferences.getString(AppStorageKey.token)
+          'Authorization':
+              "Bearer ${sharedPreferences.getString(AppStorageKey.token)}"
       };
-    dio.interceptors.add(PrettyDioLogger(request: true, responseBody: true, requestBody: true, requestHeader: true));
+    dio.interceptors.add(PrettyDioLogger(
+        request: true,
+        responseBody: true,
+        requestBody: true,
+        requestHeader: true));
   }
 
   Future<void> updateHeader(token) async {
@@ -41,14 +47,18 @@ class DioClient extends ApiClient {
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": " application/json",
       'x-api-key': EndPoints.apiKey,
-      "Accept-Language": sharedPreferences.getString(AppStorageKey.languageCode) ?? "en",
-      'token': token
+      "Accept-Language":
+          sharedPreferences.getString(AppStorageKey.languageCode) ?? "en",
+      'Authorization': "Bearer $token"
     };
   }
 
   ///Update Language in header
   updateLang(lang) {
     dio.options.headers = {
+      if (sharedPreferences.getString(AppStorageKey.token) != null)
+        'Authorization':
+            "Bearer ${sharedPreferences.getString(AppStorageKey.token)}",
       'Content-Type': 'application/json; charset=UTF-8',
       "Accept": " application/json",
       'x-api-key': EndPoints.apiKey,
@@ -81,7 +91,10 @@ class DioClient extends ApiClient {
   }
 
   @override
-  Future post({required String uri, Map<String, dynamic>? queryParameters, data}) async {
+  Future post(
+      {required String uri,
+      Map<String, dynamic>? queryParameters,
+      data}) async {
     try {
       dio.options.baseUrl = baseUrl;
       var response = await dio.post(
@@ -98,7 +111,10 @@ class DioClient extends ApiClient {
   }
 
   @override
-  Future put({required String uri, Map<String, dynamic>? queryParameters, data}) async {
+  Future put(
+      {required String uri,
+      Map<String, dynamic>? queryParameters,
+      data}) async {
     try {
       dio.options.baseUrl = baseUrl;
       var response = await dio.put(
@@ -115,7 +131,10 @@ class DioClient extends ApiClient {
   }
 
   @override
-  Future patch({required String uri, Map<String, dynamic>? queryParameters, data}) async {
+  Future patch(
+      {required String uri,
+      Map<String, dynamic>? queryParameters,
+      data}) async {
     try {
       dio.options.baseUrl = baseUrl;
       var response = await dio.patch(
@@ -132,7 +151,10 @@ class DioClient extends ApiClient {
   }
 
   @override
-  Future delete({required String uri, Map<String, dynamic>? queryParameters, data}) async {
+  Future delete(
+      {required String uri,
+      Map<String, dynamic>? queryParameters,
+      data}) async {
     try {
       dio.options.baseUrl = baseUrl;
       var response = await dio.delete(

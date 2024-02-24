@@ -17,16 +17,16 @@ class HomeOffersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 12.h),
-      padding: EdgeInsets.only(bottom: 16.h),
-      decoration: BoxDecoration(
-          color: const Color(0xFFffeaeb),
-          borderRadius: BorderRadius.circular(20)),
-      child: BlocBuilder<OffersBloc, AppState>(builder: (context, state) {
-        if (state is Done) {
-          List<ItemModel> items = (state.model as ItemsModel).data ?? [];
-          return Column(
+    return BlocBuilder<OffersBloc, AppState>(builder: (context, state) {
+      if (state is Done) {
+        List<ItemModel> items = (state.model as ItemsModel).data ?? [];
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 12.h),
+          padding: EdgeInsets.only(bottom: 16.h),
+          decoration: BoxDecoration(
+              color: const Color(0xFFffeaeb),
+              borderRadius: BorderRadius.circular(20)),
+          child: Column(
             children: [
               SectionTitle(
                 title: getTranslated("offers_this_week"),
@@ -53,11 +53,18 @@ class HomeOffersView extends StatelessWidget {
                 ),
               )
             ],
-          );
-        }
+          ),
+        );
+      }
 
-        if (state is Loading) {
-          return Column(
+      if (state is Loading) {
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 12.h),
+          padding: EdgeInsets.only(bottom: 16.h),
+          decoration: BoxDecoration(
+              color: const Color(0xFFffeaeb),
+              borderRadius: BorderRadius.circular(20)),
+          child: Column(
             children: [
               const SectionTitleShimmer(),
               SingleChildScrollView(
@@ -82,36 +89,11 @@ class HomeOffersView extends StatelessWidget {
                 ),
               )
             ],
-          );
-        } else {
-          return Column(
-            children: [
-              SectionTitle(
-                title: getTranslated("offers_this_week"),
-                onViewTap: () => CustomNavigator.push(Routes.offers),
-                withView: true,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                child: Row(
-                  children: [
-                    SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL.w),
-                    ...List.generate(
-                      4,
-                      (i) => Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 8.w, vertical: 8.h),
-                        child: const ItemCard(),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          );
-        }
-      }),
-    );
+          ),
+        );
+      } else {
+        return const SizedBox();
+      }
+    });
   }
 }

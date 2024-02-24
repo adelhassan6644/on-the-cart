@@ -39,7 +39,7 @@ class CartItem extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      item.title ?? "Item Tile",
+                      item.name ?? "Item Tile",
                       style: AppTextStyles.semiBold
                           .copyWith(fontSize: 14, color: Styles.HEADER),
                     ),

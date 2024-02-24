@@ -36,12 +36,19 @@ class CategoriesModel extends SingleMapper {
 }
 
 class CategoryItem extends BaseModel {
-  CategoryItem({super.id, super.isStore = false, super.image, super.title = "Category Title"});
+  CategoryItem({
+    super.id,
+    super.isStore = false,
+    super.image,
+    super.title = "Category Title",
+    super.description,
+  });
 
   CategoryItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
     title = json['title'];
+    description = json['description'];
     isStore = false;
   }
 
@@ -50,6 +57,7 @@ class CategoryItem extends BaseModel {
     data['id'] = id;
     data['image'] = image;
     data['title'] = title;
+    data['description'] = description;
     data['is_store'] = false;
 
     return data;

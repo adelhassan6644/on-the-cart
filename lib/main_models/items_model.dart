@@ -38,7 +38,7 @@ class ItemModel extends LocaleSingleMapper {
   int? id;
   int count = 1;
   String? image;
-  String? title;
+  String? name;
   String? size;
   double? price;
   String? discountPrice;
@@ -49,7 +49,7 @@ class ItemModel extends LocaleSingleMapper {
       {this.id,
       this.count = 1,
       this.image,
-      this.title,
+      this.name,
       this.discountPrice,
       this.price,
       this.size,
@@ -60,9 +60,9 @@ class ItemModel extends LocaleSingleMapper {
     id = json["id"] is String ? int.parse(json['id']) : json['id'];
     count = json['count'] ?? 1;
     image = json['image'];
-    title = json['title'];
+    name = json['name'];
     discountPrice = json['discount_price'];
-    price = json['price'];
+    price = double.parse(json['price'].toString());
     discount = json['discount'];
     size = json['size'];
     color = json['color'];
@@ -73,7 +73,7 @@ class ItemModel extends LocaleSingleMapper {
     data['id'] = id;
     data['count'] = count;
     data['image'] = image;
-    data['title'] = title;
+    data['name'] = name;
     data['price'] = price;
     // data['discount_price'] = discountPrice;
     data['color'] = color;

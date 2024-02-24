@@ -45,10 +45,11 @@ class LoginRepo extends BaseRepo {
     return deviceToken;
   }
 
-  saveUserData(json) {
+  saveUserData(Map<String, dynamic> json) {
     sharedPreferences.setBool(AppStorageKey.isLogin, true);
-    sharedPreferences.setString(AppStorageKey.userId, json["id"]);
-    sharedPreferences.setString(AppStorageKey.token, json["access_token"]);
+    sharedPreferences.setString(AppStorageKey.userId, json["id"].toString());
+    sharedPreferences.setString(
+        AppStorageKey.token, json["accessToken"].toString());
     sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
     dioClient.updateHeader(token);
   }
@@ -56,14 +57,15 @@ class LoginRepo extends BaseRepo {
   Future<Either<ServerFailure, Response>> logIn(
       Map<String, dynamic> data) async {
     try {
-      data.addAll({if (!kDebugMode) "fcm_token": await saveDeviceToken()});
+      data.addAll(
+          {"fcm_token": (!kDebugMode) ? await saveDeviceToken() : "ffd"});
 
       Response response =
           await dioClient.post(uri: EndPoints.logIn, data: data);
 
       if (response.statusCode == 200) {
-        if (response.data['data']["email_verified_at"] == true) {
-          saveUserData(response.data["data"]);
+        if (response.data["data"]["email_verified_at"] != null) {
+          saveUserData(response.data["data"] as Map<String, dynamic>);
         }
         return Right(response);
       } else {

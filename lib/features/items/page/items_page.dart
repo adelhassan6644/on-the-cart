@@ -26,12 +26,12 @@ class ItemsPage extends StatefulWidget {
 class _ItemsPageState extends State<ItemsPage> {
   @override
   void initState() {
-    // Future.delayed(
-    //     Duration.zero,
-    //     () => sl<ItemsBloc>().add(Click(arguments: {
-    //           "isStore": widget.model.isStore,
-    //           "id": widget.model.id,
-    //         })));
+    Future.delayed(
+        Duration.zero,
+        () => sl<ItemsBloc>().add(Click(arguments: {
+              "isStore": widget.model.isStore,
+              "id": widget.model.id,
+            })));
     super.initState();
   }
 
@@ -54,13 +54,15 @@ class _ItemsPageState extends State<ItemsPage> {
                   List<ItemModel> items =
                       (state.model as ItemsModel).data ?? [];
                   return GridListAnimatorWidget(
-                      columnCount: 2,
-                      aspectRatio: 100.w / 120.h,
-                      items: List.generate(
-                          items.length,
-                          (i) => ItemCard(
-                                item: items[i],
-                              ),),);
+                    columnCount: 2,
+                    aspectRatio: 100.w / 120.h,
+                    items: List.generate(
+                      items.length,
+                      (i) => ItemCard(
+                        item: items[i],
+                      ),
+                    ),
+                  );
                 }
                 if (state is Loading) {
                   return GridListAnimatorWidget(

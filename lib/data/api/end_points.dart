@@ -27,18 +27,17 @@ class EndPoints {
 
   ///Home data
   static const String ads = 'slider';
-  static const String categories = 'categories';
+  static const String categories = 'category';
   static const String offers = 'product/Week/offers';
   static const String bestSeller = 'product/best/selling';
 
   static const String stores = 'brand';
   static getStoreDetails(id) => 'brand/$id';
 
-  static getCategoryDetails(id) => 'category/$id';
   static const String category = 'category';
+  static getCategoryDetails(id) => 'category/$id';
 
   ///Items
-  static getItems(id) => 'categories/$id';
   static getRelatedItems(id) => 'product/related/$id';
   static getItemDetails(id) => 'product/$id';
   static const String sendRate = 'feedback';

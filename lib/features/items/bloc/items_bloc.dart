@@ -19,36 +19,36 @@ class ItemsBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> onClick(Click event, Emitter<AppState> emit) async {
-    try {
-      emit(Loading());
+    // try {
+    emit(Loading());
 
-      Either<ServerFailure, Response> response =
-          await repo.getItems(event.arguments as Map);
+    Either<ServerFailure, Response> response =
+        await repo.getItems(event.arguments as Map);
 
-      response.fold((fail) {
-        AppCore.showSnackBar(
-            notification: AppNotification(
-                message: fail.error,
-                isFloating: true,
-                backgroundColor: Styles.IN_ACTIVE,
-                borderColor: Colors.red));
-        emit(Error());
-      }, (success) {
-        ItemsModel model = ItemsModel.fromJson(success.data);
-        if (model.data != null && model.data!.isNotEmpty) {
-          emit(Done(model: model));
-        } else {
-          emit(Empty());
-        }
-      });
-    } catch (e) {
+    response.fold((fail) {
       AppCore.showSnackBar(
           notification: AppNotification(
-        message: e.toString(),
-        backgroundColor: Styles.IN_ACTIVE,
-        borderColor: Styles.RED_COLOR,
-      ));
+              message: fail.error,
+              isFloating: true,
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Colors.red));
       emit(Error());
-    }
+    }, (success) {
+      ItemsModel model = ItemsModel.fromJson(success.data);
+      if (model.data != null && model.data!.isNotEmpty) {
+        emit(Done(model: model));
+      } else {
+        emit(Empty());
+      }
+    });
+    // } catch (e) {
+    //   AppCore.showSnackBar(
+    //       notification: AppNotification(
+    //     message: e.toString(),
+    //     backgroundColor: Styles.IN_ACTIVE,
+    //     borderColor: Styles.RED_COLOR,
+    //   ));
+    //   emit(Error());
+    // }
   }
 }

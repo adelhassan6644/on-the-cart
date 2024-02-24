@@ -13,7 +13,7 @@ class ItemsRepo extends BaseRepo {
       Response response = await dioClient.get(
           uri: data["isStore"]
               ? EndPoints.getStoreDetails(data["id"])
-              : EndPoints.getItems(data["id"]));
+              : EndPoints.getCategoryDetails(data["id"]));
       if (response.statusCode == 200) {
         return Right(response);
       } else {

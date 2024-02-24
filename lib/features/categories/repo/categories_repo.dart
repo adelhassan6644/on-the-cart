@@ -8,7 +8,6 @@ import '../../../data/error/failures.dart';
 class CategoriesRepo extends BaseRepo {
   CategoriesRepo({required super.dioClient, required super.sharedPreferences});
 
-
   Future<Either<ServerFailure, Response>> getCategories() async {
     try {
       Response response = await dioClient.get(uri: EndPoints.categories);

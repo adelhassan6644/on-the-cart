@@ -8,6 +8,7 @@ import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_notification.dart';
 import '../../../../app/core/app_state.dart';
 import '../../../../app/core/styles.dart';
+import '../../../../app/localization/language_constant.dart';
 import '../../../../data/error/failures.dart';
 import '../../../../navigation/custom_navigation.dart';
 import '../../../../navigation/routes.dart';
@@ -47,19 +48,21 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
         if (data.fromRegister) {
           CustomNavigator.push(Routes.dashboard, clean: true);
           AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: "You logged in successfully",
-                  backgroundColor: Styles.ACTIVE,
-                  borderColor: Styles.ACTIVE,
-                  iconName: "check-circle"));
+            notification: AppNotification(
+              message: getTranslated("logged_in_successfully"),
+              backgroundColor: Styles.ACTIVE,
+              borderColor: Styles.ACTIVE,
+            ),
+          );
         } else {
           CustomNavigator.push(Routes.resetPassword, arguments: data.email);
           AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: success.data?["message"] ?? "",
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Styles.RED_COLOR,
-                  iconName: "fill-close-circle"));
+            notification: AppNotification(
+              message: success.data?["message"] ?? "",
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Styles.RED_COLOR,
+            ),
+          );
         }
         clear();
         emit(Done());
@@ -70,7 +73,6 @@ class VerificationBloc extends Bloc<AppEvent, AppState> {
           message: e.toString(),
           backgroundColor: Styles.IN_ACTIVE,
           borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
         ),
       );
       emit(Error());

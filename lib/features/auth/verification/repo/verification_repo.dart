@@ -14,10 +14,11 @@ class VerificationRepo extends BaseRepo {
   VerificationRepo(
       {required super.sharedPreferences, required super.dioClient});
 
-  saveUserData(json) {
+  saveUserData(Map<String, dynamic> json) {
     sharedPreferences.setBool(AppStorageKey.isLogin, true);
-    sharedPreferences.setString(AppStorageKey.userId, json["id"]);
-    sharedPreferences.setString(AppStorageKey.token, json["access_token"]);
+    sharedPreferences.setString(AppStorageKey.userId, json["id"].toString());
+    sharedPreferences.setString(
+        AppStorageKey.token, json["accessToken"].toString());
     sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
     dioClient.updateHeader(token);
   }
