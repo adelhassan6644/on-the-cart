@@ -75,13 +75,6 @@ class RegisterBloc extends Bloc<AppEvent, AppState> {
         }, (success) {
           CustomNavigator.push(Routes.verification,
               arguments: VerificationModel(mailTEC.text.trim()));
-          AppCore.showSnackBar(
-            notification: AppNotification(
-              message: success.data?["message"] ?? "",
-              backgroundColor: Styles.IN_ACTIVE,
-              borderColor: Styles.RED_COLOR,
-            ),
-          );
           clear();
           emit(Done());
         });

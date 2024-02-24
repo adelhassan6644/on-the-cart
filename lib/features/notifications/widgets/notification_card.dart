@@ -9,6 +9,7 @@ import '../../../app/core/images.dart';
 import '../../../app/core/styles.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../app/localization/language_constant.dart';
+import '../../../data/config/di.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../../../navigation/routes.dart';
 import '../model/notifications_model.dart';
@@ -36,7 +37,7 @@ class _NotificationCardState extends State<NotificationCard> {
               arguments: widget.notification?.notificationBody?.itemId);
         }
         if (widget.notification?.isRead != true) {
-          NotificationsBloc.instance
+          sl<NotificationsBloc>()
               .add(Read(arguments: widget.notification?.id ?? ""));
 
           setState(() => widget.notification?.isRead = true);

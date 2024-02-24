@@ -3,7 +3,9 @@ import 'package:stepOut/navigation/custom_navigation.dart';
 import 'package:stepOut/navigation/routes.dart';
 import '../../../app/core/app_event.dart';
 import '../../../app/core/app_state.dart';
+import '../../../data/config/di.dart';
 import '../../../helpers/permissions.dart';
+import '../../setting/bloc/setting_bloc.dart';
 import '../repo/splash_repo.dart';
 
 class SplashBloc extends Bloc<AppEvent, AppState> {
@@ -14,7 +16,7 @@ class SplashBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> onClick(AppEvent event, Emitter<AppState> emit) async {
     Future.delayed(const Duration(milliseconds: 1800), () async {
-      // SettingBloc.instance.add(Get());
+      sl<SettingBloc>().add(Get());
       if (!repo.isLogin) {
         await repo.guestMode();
       }

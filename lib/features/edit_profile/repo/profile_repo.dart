@@ -12,6 +12,25 @@ import '../../../data/error/failures.dart';
 
 class ProfileRepo extends BaseRepo {
   ProfileRepo({required super.dioClient, required super.sharedPreferences});
+  setUserData(json) {
+    sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
+  }
+
+  Future<Either<ServerFailure, Response>> updateProfile(body) async {
+    try {
+      Response response = await dioClient.post(
+          uri: EndPoints.updateProfile(userId), data: FormData.fromMap(body));
+
+      if (response.statusCode == 200) {
+        setUserData(response.data["data"]);
+        return Right(response);
+      } else {
+        return left(ServerFailure(response.data['message']));
+      }
+    } catch (error) {
+      return left(ServerFailure(ApiErrorHandler.getMessage(error)));
+    }
+  }
 
   Future<Either<ServerFailure, Response>> getProfile() async {
     try {
@@ -27,10 +46,6 @@ class ProfileRepo extends BaseRepo {
     } catch (error) {
       return left(ServerFailure(ApiErrorHandler.getMessage(error)));
     }
-  }
-
-  setUserData(json) {
-    sharedPreferences.setString(AppStorageKey.userData, jsonEncode(json));
   }
 
   Future<Either<ServerFailure, Response>> deleteAcc() async {

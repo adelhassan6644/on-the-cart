@@ -17,7 +17,6 @@ import '../repo/setting_repo.dart';
 class SettingBloc extends Bloc<AppEvent, AppState> {
   final SettingRepo repo;
 
-  static SettingBloc get instance => sl<SettingBloc>();
 
   SettingBloc({required this.repo}) : super(Start()) {
     on<Get>(onGet);

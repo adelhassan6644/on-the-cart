@@ -62,7 +62,7 @@ class HomeAppBar extends StatelessWidget {
                 imageName: SvgImages.notification),
           ),
           customContainerSvgIcon(
-              onTap: () => CustomNavigator.push(Routes.profile),
+              onTap: () => CustomNavigator.push(Routes.editProfile),
               backGround: Styles.WHITE_COLOR,
               withShadow: true,
               width: 60,

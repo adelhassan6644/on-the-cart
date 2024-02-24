@@ -19,7 +19,7 @@ import '../../features/more/bloc/logout_bloc.dart';
 import '../../features/notifications/bloc/notifications_bloc.dart';
 import '../../features/notifications/bloc/turn_notification_bloc.dart';
 import '../../features/offers/bloc/offers_bloc.dart';
-import '../../features/profile/bloc/profile_bloc.dart';
+import '../../features/edit_profile/bloc/profile_bloc.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
 import '../../features/wishlist/bloc/wishlist_bloc.dart';

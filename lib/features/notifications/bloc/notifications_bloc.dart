@@ -20,8 +20,6 @@ import '../repo/notifications_repo.dart';
 class NotificationsBloc extends Bloc<AppEvent, AppState> {
   final NotificationsRepo repo;
 
-  static NotificationsBloc get instance => sl<NotificationsBloc>();
-
   // bool goingDown = false;
   // scroll(controller) {
   //   controller.addListener(() {
@@ -58,7 +56,7 @@ class NotificationsBloc extends Bloc<AppEvent, AppState> {
                 borderColor: Colors.transparent));
         emit(Error());
       }, (success) {
-        model = NotificationsModel.fromJson(success.data["data"]);
+        model = NotificationsModel.fromJson(success.data);
         if (model?.data != null && model!.data!.isNotEmpty) {
           emit(Done(model: model));
         } else {
@@ -71,7 +69,6 @@ class NotificationsBloc extends Bloc<AppEvent, AppState> {
           message: e.toString(),
           backgroundColor: Styles.IN_ACTIVE,
           borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
         ),
       );
       emit(Error());

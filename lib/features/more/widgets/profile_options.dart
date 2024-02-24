@@ -16,8 +16,8 @@ import '../../../data/config/di.dart';
 import '../../../main_blocs/user_bloc.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../../../navigation/routes.dart';
-import '../../profile/bloc/delete_profile_bloc.dart';
-import '../../profile/repo/profile_repo.dart';
+import '../../edit_profile/bloc/delete_profile_bloc.dart';
+import '../../edit_profile/repo/profile_repo.dart';
 import 'more_button.dart';
 
 class ProfileOptions extends StatelessWidget {
@@ -96,11 +96,15 @@ class ProfileOptions extends StatelessWidget {
                         create: (context) =>
                             DeleteProfileBloc(repo: sl<ProfileRepo>()),
                         child: Expanded(
-                            child: CustomButton(
+                            child: BlocBuilder<DeleteProfileBloc, AppState>(
+                          builder: (context, state) {
+                            return CustomButton(
                                 onTap: () => context
                                     .read<DeleteProfileBloc>()
                                     .add(Delete()),
-                                text: getTranslated("remove"))),
+                                text: getTranslated("remove"));
+                          },
+                        )),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(

@@ -7,7 +7,6 @@ import 'package:stepOut/features/order_details/page/order_details_page.dart';
 import 'package:stepOut/features/orders/page/orders_page.dart';
 import 'package:stepOut/features/notifications/page/notifications.dart';
 import 'package:stepOut/features/offers/page/offers_page.dart';
-import 'package:stepOut/features/profile/page/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:stepOut/features/stores/page/stores_page.dart';
 import 'package:stepOut/main_models/base_model.dart';
@@ -69,8 +68,6 @@ abstract class CustomNavigator {
         return _pageRoute(
             Verification(model: settings.arguments as VerificationModel));
 
-      case Routes.profile:
-        return _pageRoute(const Profile());
 
       case Routes.editProfile:
         return _pageRoute(const EditProfile());

@@ -6,7 +6,7 @@ import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
-import 'package:stepOut/features/edit_profile/repo/edit_profile_repo.dart';
+import 'package:stepOut/features/edit_profile/repo/profile_repo.dart';
 import '../../../app/core/app_event.dart';
 import '../../../app/localization/language_constant.dart';
 import '../../../components/animated_widget.dart';
@@ -33,7 +33,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          EditProfileBloc(repo: sl<EditProfileRepo>())..add(Init()),
+          EditProfileBloc(repo: sl<ProfileRepo>())..add(Init()),
       child: BlocBuilder<EditProfileBloc, AppState>(
         builder: (context, state) {
           return Scaffold(

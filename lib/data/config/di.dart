@@ -20,7 +20,7 @@ import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/repo/categories_repo.dart';
 import '../../features/change_password/repo/change_password_repo.dart';
 import '../../features/check_out/repo/check_out_repo.dart';
-import '../../features/edit_profile/repo/edit_profile_repo.dart';
+import '../../features/edit_profile/repo/profile_repo.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/repo/home_repo.dart';
 import '../../features/item_details/repo/item_details_repo.dart';
@@ -38,8 +38,7 @@ import '../../features/notifications/bloc/turn_notification_bloc.dart';
 import '../../features/notifications/repo/notifications_repo.dart';
 import '../../features/offers/bloc/offers_bloc.dart';
 import '../../features/offers/repo/offers_repo.dart';
-import '../../features/profile/bloc/profile_bloc.dart';
-import '../../features/profile/repo/profile_repo.dart';
+import '../../features/edit_profile/bloc/profile_bloc.dart';
 import '../../features/related_items/repo/related_items_repo.dart';
 import '../../features/search/repo/search_repo.dart';
 import '../../features/search_result/repo/search_result_repo.dart';
@@ -105,9 +104,6 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
       () => ProfileRepo(sharedPreferences: sl(), dioClient: sl()));
-
-  sl.registerLazySingleton(
-      () => EditProfileRepo(sharedPreferences: sl(), dioClient: sl()));
 
   sl.registerLazySingleton(
       () => MapRepo(sharedPreferences: sl(), dioClient: sl()));

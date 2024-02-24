@@ -14,10 +14,10 @@ import '../../../../app/localization/language_constant.dart';
 import '../../../../data/error/failures.dart';
 import '../../../data/error/api_error_handler.dart';
 import '../../../main_blocs/user_bloc.dart';
-import '../repo/edit_profile_repo.dart';
+import '../repo/profile_repo.dart';
 
 class EditProfileBloc extends Bloc<AppEvent, AppState> {
-  final EditProfileRepo repo;
+  final ProfileRepo repo;
 
   EditProfileBloc({required this.repo}) : super(Start()) {
     on<Click>(onClick);
@@ -25,11 +25,11 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
   }
 
   Map<String, dynamic> body = {
-    "name": "${UserBloc.instance.user?.name}",
-    "email": "${UserBloc.instance.user?.email}",
-    "phone": "${UserBloc.instance.user?.phone}",
-    "country_code": "${UserBloc.instance.user?.countryCode}",
-    "country_flag": "${UserBloc.instance.user?.countryFlag}",
+    "name": "${UserBloc.instance.user?.name?.trim()}",
+    "email": "${UserBloc.instance.user?.email?.trim()}",
+    "phone": "${UserBloc.instance.user?.phone?.trim()}",
+    // "country_code": "${UserBloc.instance.user?.countryCode}",
+    // "country_flag": "${UserBloc.instance.user?.countryFlag}",
   };
 
   TextEditingController nameTEC = TextEditingController();
@@ -79,8 +79,8 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
 
   bool checkData() {
     return _boolCheckString(nameTEC.text.trim(), "name") ||
-        _boolCheckString(mailTEC.text.trim(), "mail") ||
-        _boolCheckString(mailTEC.text.trim(), "mail");
+        _boolCheckString(mailTEC.text.trim(), "email") ||
+        _boolCheckString(phoneTEC.text.trim(), "phone");
     // _boolCheckString(mailTEC.text.trim(), "country_code") ||
     // _boolCheckString(phoneTEC.text.trim(), "country_flag");
   }
@@ -110,10 +110,10 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
         }, (success) {
           AppCore.showSnackBar(
               notification: AppNotification(
-                  message: getTranslated("your_profile_successfully_updated"),
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Styles.RED_COLOR,
-                  iconName: "fill-close-circle"));
+            message: getTranslated("your_profile_successfully_updated"),
+            backgroundColor: Styles.ACTIVE,
+            borderColor: Styles.ACTIVE,
+          ));
 
           ///To init Profile Data
           UserBloc.instance.add(Click());
@@ -125,7 +125,6 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
             message: getTranslated("you_must_change_something"),
             backgroundColor: Styles.IN_ACTIVE,
             borderColor: Styles.RED_COLOR,
-            iconName: "fill-close-circle",
           ),
         );
         emit(Start());
@@ -136,7 +135,6 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
           message: e.toString(),
           backgroundColor: Styles.IN_ACTIVE,
           borderColor: Styles.RED_COLOR,
-          iconName: "fill-close-circle",
         ),
       );
       emit(Error());
@@ -145,9 +143,9 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
 
   ///To init Profile Data
   Future<void> onInit(Init event, Emitter<AppState> emit) async {
-    nameTEC.text = UserBloc.instance.user?.name ?? "";
-    phoneTEC.text = UserBloc.instance.user?.phone ?? "";
-    mailTEC.text = UserBloc.instance.user?.email ?? "";
+    nameTEC.text = UserBloc.instance.user?.name?.trim() ?? "";
+    phoneTEC.text = UserBloc.instance.user?.phone?.trim() ?? "";
+    mailTEC.text = UserBloc.instance.user?.email?.trim() ?? "";
     emit(Start());
   }
 }

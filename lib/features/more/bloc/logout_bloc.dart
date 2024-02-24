@@ -5,7 +5,7 @@ import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_state.dart';
 import '../../../data/config/di.dart';
 import '../../../navigation/routes.dart';
-import '../../profile/repo/profile_repo.dart';
+import '../../edit_profile/repo/profile_repo.dart';
 
 class LogoutBloc extends Bloc<AppEvent, AppState> {
   final ProfileRepo repo;

@@ -12,7 +12,7 @@ import '../../features/categories/bloc/categories_bloc.dart';
 import '../../features/categories/page/categories.dart';
 import '../../features/home/bloc/home_ads_bloc.dart';
 import '../../features/home/page/home.dart';
-import '../../features/profile/bloc/profile_bloc.dart';
+import '../../features/edit_profile/bloc/profile_bloc.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
 import '../../features/wishlist/bloc/wishlist_bloc.dart';
 import '../../features/wishlist/page/wishlist.dart';

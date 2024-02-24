@@ -7,6 +7,7 @@ import '../../../app/core/app_event.dart';
 import '../../../app/core/svg_images.dart';
 import '../../../app/localization/language_constant.dart';
 import '../../../components/custom_bottom_sheet.dart';
+import '../../../data/config/di.dart';
 import '../../../main_blocs/user_bloc.dart';
 import '../../../main_page/bloc/dashboard_bloc.dart';
 import '../../../navigation/custom_navigation.dart';
@@ -59,7 +60,7 @@ class MoreOptions extends StatelessWidget {
             BlocBuilder<TurnNotificationsBloc, AppState>(
               builder: (context, state) {
                 return Visibility(
-                  visible: NotificationsBloc.instance.isLogin,
+                  visible: sl<NotificationsBloc>().isLogin,
                   child: TurnButton(
                     title: getTranslated("notifications", context: context),
                     icon: SvgImages.notification,

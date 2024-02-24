@@ -72,7 +72,7 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
         }
 
         if (success.data['data']["email_verified_at"] != null) {
-          CustomNavigator.push(Routes.dashboard, clean: true);
+          CustomNavigator.push(Routes.dashboard, clean: true,arguments: 0);
           AppCore.showSnackBar(
             notification: AppNotification(
               message: getTranslated("logged_in_successfully"),
