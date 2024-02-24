@@ -6,6 +6,7 @@ import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/animated_widget.dart';
 import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/components/custom_button.dart';
+import 'package:stepOut/features/add_address/bloc/city_bloc.dart';
 import 'package:stepOut/features/addresses/model/addresses_model.dart';
 import '../../../app/core/app_event.dart';
 import '../../../app/core/styles.dart';
@@ -13,7 +14,6 @@ import '../../../app/core/text_styles.dart';
 import '../../../app/core/validation.dart';
 import '../../../components/custom_text_form_field.dart';
 import '../../../data/config/di.dart';
-import '../../more/widgets/turn_button.dart';
 import '../bloc/add_address_bloc.dart';
 import '../widgets/area_field.dart';
 import '../widgets/city_field.dart';
@@ -32,6 +32,12 @@ class _AddAddressPageState extends State<AddAddressPage> {
   final FocusNode phoneNode = FocusNode();
   final FocusNode addressNode = FocusNode();
   final FocusNode addressDetailsNode = FocusNode();
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () => sl<CityBloc>().add(Click()));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +101,39 @@ class _AddAddressPageState extends State<AddAddressPage> {
                         hint: getTranslated("enter_address"),
                         inputType: TextInputType.streetAddress,
                         validate: Validations.field,
+                        // onTap: () async {
+                        //   if (await LocationHelper.checkLocation()) {
+                        //     Navigator.push(
+                        //       CustomNavigator.navigatorState.currentContext!,
+                        //       MaterialPageRoute(
+                        //         builder: (_) => PlacePicker(
+                        //           apiKey: AppStrings.googleApiKey,
+                        //           enableMyLocationButton: true,
+                        //           selectInitialPosition: true,
+                        //           onPlacePicked: (result) async {
+                        //             context
+                        //                 .read<AddAddressBloc>()
+                        //                 .pickedLocation = result;
+                        //             context
+                        //                     .read<AddAddressBloc>()
+                        //                     .addressTEC
+                        //                     .text =
+                        //                 await LocationHelper.formatLatLng(
+                        //                     latLng: LatLng(
+                        //                         result.geometry!.location.lat,
+                        //                         result.geometry!.location.lng));
+                        //
+                        //             CustomNavigator.pop();
+                        //           },
+                        //           initialPosition: const LatLng(30.1, 30.12),
+                        //           useCurrentLocation: true,
+                        //         ),
+                        //       ),
+                        //     );
+                        //   }
+                        // },
+                        // isEnabled: false,
+                        // readOnly: true,
                       ),
 
                       ///Address Details

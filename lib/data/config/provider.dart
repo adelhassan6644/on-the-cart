@@ -34,7 +34,8 @@ abstract class ProviderList {
     BlocProvider<UserBloc>(create: (_) => di.sl<UserBloc>()),
     BlocProvider<MapBloc>(create: (_) => di.sl<MapBloc>()),
     BlocProvider<NotificationsBloc>(create: (_) => di.sl<NotificationsBloc>()),
-    BlocProvider<TurnNotificationsBloc>(create: (_) => di.sl<TurnNotificationsBloc>()),
+    BlocProvider<TurnNotificationsBloc>(
+        create: (_) => di.sl<TurnNotificationsBloc>()),
     BlocProvider<HomeAdsBloc>(create: (_) => di.sl<HomeAdsBloc>()),
     BlocProvider<CategoriesBloc>(create: (_) => di.sl<CategoriesBloc>()),
     BlocProvider<StoresBloc>(create: (_) => di.sl<StoresBloc>()),

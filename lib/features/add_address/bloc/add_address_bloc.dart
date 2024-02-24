@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:stepOut/features/addresses/bloc/addresses_bloc.dart';
 import 'package:stepOut/features/addresses/model/addresses_model.dart';
 import '../../../../app/core/app_core.dart';
 import '../../../../app/core/app_event.dart';
@@ -11,6 +13,7 @@ import '../../../../app/core/app_state.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../data/error/failures.dart';
 import '../../../../navigation/custom_navigation.dart';
+import '../../../data/config/di.dart';
 import '../model/custom_field_model.dart';
 import '../repo/add_address_repo.dart';
 
@@ -20,6 +23,8 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
     on<Click>(onClick);
     on<Init>(onInit);
   }
+
+  PickResult? pickedLocation;
 
   TextEditingController nameTEC = TextEditingController();
   TextEditingController phoneTEC = TextEditingController();
@@ -52,13 +57,15 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
       emit(Loading());
       Map<String, dynamic> data = {
         "customer_id": repo.userId,
-        "name": nameTEC.text.trim(),
+        "title": nameTEC.text.trim(),
         "phone": phoneTEC.text.trim(),
         "address": addressTEC.text.trim(),
         "city_id": city.value?.id,
         "area_id": area.value?.id,
-        "address_details": addressDetailsTEC.text.trim(),
-        "is_default": addressDetailsTEC.text.trim(),
+        // "lat": pickedLocation?.geometry?.location.lat.toString(),
+        // "long": pickedLocation?.geometry?.location.lng.toString(),
+        "details": addressDetailsTEC.text.trim(),
+        "default": (isDefault.value == true) ? 1 : 0,
       };
 
       Either<ServerFailure, Response> response = await repo.addAddress(
@@ -78,8 +85,9 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
             notification: AppNotification(
                 message: success.data["message"],
                 isFloating: true,
-                backgroundColor: Styles.IN_ACTIVE,
+                backgroundColor: Styles.ACTIVE,
                 borderColor: Colors.transparent));
+        sl<AddressesBloc>().add(Click());
         CustomNavigator.pop();
         emit(Done());
       });
@@ -100,7 +108,8 @@ class AddAddressBloc extends Bloc<AppEvent, AppState> {
     nameTEC.text = (event.arguments as AddressItem).name ?? "";
     phoneTEC.text = (event.arguments as AddressItem).phone ?? "";
     addressTEC.text = (event.arguments as AddressItem).address ?? "";
-    addressDetailsTEC.text = (event.arguments as AddressItem).addressDetails ?? "";
+    addressDetailsTEC.text =
+        (event.arguments as AddressItem).addressDetails ?? "";
     upIsDefault((event.arguments as AddressItem).isDefaultAddress);
     updateCity((event.arguments as AddressItem).city);
     updateArea((event.arguments as AddressItem).area);

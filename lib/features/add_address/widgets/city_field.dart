@@ -3,15 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/components/custom_bottom_sheet.dart';
 import 'package:stepOut/components/custom_text_form_field.dart';
 import 'package:stepOut/features/add_address/bloc/add_address_bloc.dart';
+import 'package:stepOut/features/add_address/bloc/area_bloc.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
 
 import '../../../app/core/app_core.dart';
+import '../../../app/core/app_event.dart';
 import '../../../app/core/app_notification.dart';
 import '../../../app/core/app_state.dart';
 import '../../../app/core/styles.dart';
 import '../../../app/core/validation.dart';
 import '../../../app/localization/language_constant.dart';
 import '../../../components/custom_single_selector.dart';
+import '../../../data/config/di.dart';
 import '../bloc/city_bloc.dart';
 import '../model/custom_field_model.dart';
 
@@ -32,25 +35,20 @@ class CityField extends StatelessWidget {
                 hint: getTranslated("choose_your_city"),
                 validate: (v) => Validations.city(snapshot.data?.name ?? ""),
                 onTap: () {
-                  if (state is Start) {
-                    // List<CustomFieldItem> list = (state.model
-                    //     as CustomFieldModel) as List<CustomFieldItem>;
-                    List<CustomFieldItem> list = [
-                      CustomFieldItem(id: 1, name: "City 1"),
-                      CustomFieldItem(id: 2, name: "City 2"),
-                      CustomFieldItem(id: 3, name: "City 3"),
-                      CustomFieldItem(id: 4, name: "City 4"),
-                      CustomFieldItem(id: 5, name: "City 5"),
-                      CustomFieldItem(id: 6, name: "City 6"),
-                    ];
-
+                  if (state is Done) {
+                    List<CustomFieldItem> list =
+                        (state.model as CustomFieldModel).data
+                            as List<CustomFieldItem>;
                     CustomBottomSheet.show(
                         widget: CustomSingleSelector(
                           list: list,
                           initialValue: snapshot.data?.id,
-                          onConfirm: (v) => context
-                              .read<AddAddressBloc>()
-                              .updateCity(v as CustomFieldItem),
+                          onConfirm: (v) {
+                            context
+                                .read<AddAddressBloc>()
+                                .updateCity(v as CustomFieldItem);
+                            sl<AreaBloc>().add(Click(arguments: v.id));
+                          },
                         ),
                         onConfirm: () => CustomNavigator.pop(),
                         label: getTranslated("choose_your_city"));

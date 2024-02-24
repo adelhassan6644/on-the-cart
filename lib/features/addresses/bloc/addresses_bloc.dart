@@ -18,6 +18,7 @@ class AddressesBloc extends Bloc<AppEvent, AppState> {
 
   AddressesBloc({required this.repo}) : super(Start()) {
     on<Click>(onClick);
+    on<Delete>(onDelete);
   }
 
   AddressesModel? model;
@@ -60,7 +61,6 @@ class AddressesBloc extends Bloc<AppEvent, AppState> {
       Either<ServerFailure, Response> response =
           await repo.deleteAddress(event.arguments);
       CustomNavigator.pop();
-
       response.fold((fail) {
         AppCore.showSnackBar(
             notification: AppNotification(

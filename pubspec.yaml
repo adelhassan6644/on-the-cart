@@ -49,7 +49,7 @@ dependencies:
   syncfusion_flutter_charts: ^21.1.41
   flutter_typeahead:
   geolocator_platform_interface:
-  geolocator: ^9.0.2
+  geolocator: ^10.1.1
   google_maps_flutter: ^2.2.8
   map_launcher: ^2.5.0+1
   flutter_polyline_points:
@@ -87,6 +87,8 @@ dependencies:
   path: ^1.8.3
   dotted_border: ^2.1.0
   dotted_line: ^3.2.2
+  google_maps_place_picker_mb: ^3.0.2
+  geocoding: ^2.2.0
 
 
 

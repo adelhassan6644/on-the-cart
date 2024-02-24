@@ -39,20 +39,24 @@ class CustomFieldModel extends SingleMapper {
 class CustomFieldItem {
   int? id;
   String? name;
+  String? deliveryFees;
 
   CustomFieldItem({
     this.id,
     this.name,
+    this.deliveryFees,
   });
 
   factory CustomFieldItem.fromJson(Map<String, dynamic> json) =>
       CustomFieldItem(
         id: json["id"],
         name: json["name"] ?? "",
+        deliveryFees: json["delivery_fees"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "delivery_fees": deliveryFees,
       };
 }

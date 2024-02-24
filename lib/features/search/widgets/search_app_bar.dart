@@ -67,7 +67,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                   ),
                 ),
                 CustomButton(
-                  height: 55,
+                  height: 50,
                   width: 100,
                   text: getTranslated("search"),
                   onTap: () {

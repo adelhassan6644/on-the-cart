@@ -1,8 +1,9 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../navigation/custom_navigation.dart';
 
 abstract class LocationHelper {
@@ -58,7 +59,8 @@ abstract class LocationHelper {
                     child: const Text("OK"),
                     onPressed: () async {
                       CustomNavigator.pop();
-                      AppSettings.openAppSettings(type: AppSettingsType.location );
+                      AppSettings.openAppSettings(
+                          type: AppSettingsType.location);
                     }),
                 CupertinoDialogAction(
                     child: const Text("Cancel"),
@@ -67,5 +69,31 @@ abstract class LocationHelper {
                     }),
               ],
             ));
+  }
+
+  static Future<String> formatLatLng({
+    required LatLng latLng,
+  }) async {
+    List<Placemark> placeMarks =
+        await placemarkFromCoordinates(latLng.latitude, latLng.longitude);
+    Placemark place = placeMarks[0];
+    List<String> address = [];
+    try {
+      if (place.locality != "") {
+        address.add(place.locality!);
+      }
+      address.add(place.subAdministrativeArea!);
+      address.add(place.administrativeArea!);
+      return "${place.name} ${address.toSet().join(",")}";
+    } on FormatException {
+      address.add(place.name ?? "");
+      if (place.locality != "") {
+        address.add(place.locality!);
+      }
+
+      address.add(place.subAdministrativeArea!);
+      address.add(place.administrativeArea!);
+      return address.toSet().join(",");
+    }
   }
 }

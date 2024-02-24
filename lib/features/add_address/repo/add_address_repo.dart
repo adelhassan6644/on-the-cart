@@ -12,7 +12,7 @@ class AddAddressRepo extends BaseRepo {
       {int? id, required Map data}) async {
     try {
       Response response = await dioClient.post(
-          uri: id == null ? EndPoints.addAddress : EndPoints.addAddress,
+          uri: id == null ? EndPoints.addAddress : EndPoints.editAddresses(id),
           data: data);
       if (response.statusCode == 200) {
         return Right(response);
@@ -37,9 +37,9 @@ class AddAddressRepo extends BaseRepo {
     }
   }
 
-  Future<Either<ServerFailure, Response>> getAreas() async {
+  Future<Either<ServerFailure, Response>> getAreas(id) async {
     try {
-      Response response = await dioClient.get(uri: EndPoints.areas);
+      Response response = await dioClient.get(uri: EndPoints.getAreas(id));
       if (response.statusCode == 200) {
         return Right(response);
       } else {

@@ -103,7 +103,8 @@ class MapBloc extends Bloc<AppEvent, AppState> {
         desiredAccuracy: LocationAccuracy.high,
       );
 
-      (event.arguments as GoogleMapController).animateCamera(CameraUpdate.newCameraPosition(
+      (event.arguments as GoogleMapController)
+          .animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
             target: LatLng(pickPosition!.latitude, pickPosition!.longitude),
             zoom: 14),

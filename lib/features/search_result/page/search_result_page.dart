@@ -5,6 +5,7 @@ import 'package:stepOut/components/custom_app_bar.dart';
 import 'package:stepOut/features/search_result/bloc/search_result_bloc.dart';
 import 'package:stepOut/features/search_result/repo/search_result_repo.dart';
 
+import '../../../app/core/app_event.dart';
 import '../../../app/core/app_state.dart';
 import '../../../app/core/dimensions.dart';
 import '../../../components/empty_widget.dart';
@@ -25,7 +26,8 @@ class SearchResultPage extends StatelessWidget {
         title: getTranslated("search_result"),
       ),
       body: BlocProvider(
-        create: (context) => SearchResultBloc(repo: sl<SearchResultRepo>()),
+        create: (context) => SearchResultBloc(repo: sl<SearchResultRepo>())
+          ..add(Click(arguments: search.trim())),
         child: SafeArea(
             child: Padding(
           padding: EdgeInsets.symmetric(
@@ -71,10 +73,7 @@ class SearchResultPage extends StatelessWidget {
                       txt: getTranslated("something_went_wrong"),
                     );
                   } else {
-                    return GridListAnimatorWidget(
-                        columnCount: 2,
-                        aspectRatio: 100.w / 120.h,
-                        items: List.generate(20, (i) => const ItemCard()));
+                    return const SizedBox();
                   }
                 }),
               )

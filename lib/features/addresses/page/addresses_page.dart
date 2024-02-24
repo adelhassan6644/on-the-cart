@@ -20,8 +20,19 @@ import '../../../components/custom_button.dart';
 import '../../../data/config/di.dart';
 import '../../../main_widgets/delete_item_widget.dart';
 
-class AddressesPage extends StatelessWidget {
+class AddressesPage extends StatefulWidget {
   const AddressesPage({super.key});
+
+  @override
+  State<AddressesPage> createState() => _AddressesPageState();
+}
+
+class _AddressesPageState extends State<AddressesPage> {
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () => sl<AddressesBloc>().add(Click()));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +52,7 @@ class AddressesPage extends StatelessWidget {
                   builder: (context, state) {
                     if (state is Done) {
                       List<AddressItem> address =
-                          (state.data as AddressesModel).data!;
+                          (state.model as AddressesModel).data!;
                       return ListAnimator(
                         data: List.generate(
                           address.length,
@@ -85,20 +96,7 @@ class AddressesPage extends StatelessWidget {
                         ],
                       );
                     }
-                    return ListAnimator(
-                      data: List.generate(
-                        5,
-                        (index) => AddressCard(
-                          address: index == 2
-                              ? AddressItem(
-                                  id: 0,
-                                  address: "Address City",
-                                  addressDetails: "Address City",
-                                  isDefaultAddress: true)
-                              : null,
-                        ),
-                      ),
-                    );
+                    return const SizedBox();
                   },
                 ))
               ],

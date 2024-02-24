@@ -27,6 +27,7 @@
 
   "phone": "Phone",
   "your_profile_successfully_updated": "Your profile successfully updated",
+  "you_must_select_city_first": "Oops! you must select city first",
   "oops_you_have_to_verify_your_account": "Oops! you must verify your account",
   "you_must_change_something": "Oops! you must change something",
   "please_select_profile_image":"Oops! please select profile image",

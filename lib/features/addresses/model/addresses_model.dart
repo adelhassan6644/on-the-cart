@@ -59,13 +59,13 @@ class AddressItem {
 
   AddressItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    name = json['title'];
     phone = json['phone'];
     address = json['address'];
-    addressDetails = json['address_details'];
+    addressDetails = json['details'];
     city = json['city'] != null ? CustomFieldItem.fromJson(json['city']) : null;
     area = json['area'] != null ? CustomFieldItem.fromJson(json['area']) : null;
-    isDefaultAddress = json['is_default'] == 1;
+    isDefaultAddress = json['default'] == 1;
   }
 
   Map<String, dynamic> toJson() {
@@ -79,7 +79,7 @@ class AddressItem {
     data['address_details'] = addressDetails;
     data['city'] = city?.toJson();
     data['area'] = area?.toJson();
-    data['is_default'] = isDefaultAddress == true ? 1 : 0;
+    data['default'] = isDefaultAddress == true ? 1 : 0;
 
     return data;
   }

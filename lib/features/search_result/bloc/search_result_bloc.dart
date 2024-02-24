@@ -2,14 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stepOut/app/localization/language_constant.dart';
-import 'package:stepOut/features/search/model/suggestion_model.dart';
 import '../../../../app/core/app_core.dart';
 import '../../../../app/core/app_event.dart';
 import '../../../../app/core/app_notification.dart';
 import '../../../../app/core/app_state.dart';
 import '../../../../app/core/styles.dart';
 import '../../../../data/error/failures.dart';
+import '../../../main_models/items_model.dart';
 import '../repo/search_result_repo.dart';
 
 class SearchResultBloc extends Bloc<AppEvent, AppState> {
@@ -39,7 +38,7 @@ class SearchResultBloc extends Bloc<AppEvent, AppState> {
                 borderColor: Colors.red));
         emit(Error());
       }, (success) {
-        SuggestionModel model = SuggestionModel.fromJson(success.data);
+        ItemsModel model = ItemsModel.fromJson(success.data);
         if (model.data != null && model.data!.isNotEmpty) {
           emit(Done(model: model));
         } else {

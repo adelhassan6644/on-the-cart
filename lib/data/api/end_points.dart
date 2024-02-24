@@ -43,8 +43,8 @@ class EndPoints {
   static const String sendRate = 'feedback';
 
   ///Addresses
-  static const String areas = 'areas';
-  static const String cities = 'cities';
+  static const String cities = 'city';
+  static getAreas(id) => 'city/$id';
   static getAddresses(id) => 'customer/address/$id';
   static editAddresses(id) => 'address/update/$id';
   static deleteAddresses(id) => 'address/destroy/$id';
