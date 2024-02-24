@@ -2,7 +2,7 @@ import '../../../features/language/model/language_model.dart';
 import 'images.dart';
 
 abstract class AppStorageKey {
-  static const String token = "user_id";
+  static const String token = "token";
   static const String feedbacks = "feedbacks";
   static const String notFirstTime = "not_first_time";
   static const String userName = "user_name";
