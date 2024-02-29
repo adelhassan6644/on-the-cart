@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:stepOut/app/core/app_core.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/styles.dart';
 import 'package:stepOut/app/core/svg_images.dart';
 import 'package:stepOut/app/core/text_styles.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_images.dart';
+import 'package:stepOut/features/edit_profile/bloc/profile_bloc.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
 
+import '../../../data/config/di.dart';
 import '../../../navigation/routes.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -54,7 +57,13 @@ class HomeAppBar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: customContainerSvgIcon(
-                onTap: () => CustomNavigator.push(Routes.notifications),
+                onTap: () {
+                  if (sl<ProfileBloc>().isLogin) {
+                    CustomNavigator.push(Routes.notifications);
+                  } else {
+                    AppCore.showToast(getTranslated("you_have_to_login_first"));
+                  }
+                },
                 width: 60,
                 height: 60,
                 radius: 100,
@@ -62,7 +71,13 @@ class HomeAppBar extends StatelessWidget {
                 imageName: SvgImages.notification),
           ),
           customContainerSvgIcon(
-              onTap: () => CustomNavigator.push(Routes.editProfile),
+              onTap: () {
+                if (sl<ProfileBloc>().isLogin) {
+                  CustomNavigator.push(Routes.editProfile);
+                } else {
+                  AppCore.showToast(getTranslated("you_have_to_login_first"));
+                }
+              },
               backGround: Styles.WHITE_COLOR,
               withShadow: true,
               width: 60,

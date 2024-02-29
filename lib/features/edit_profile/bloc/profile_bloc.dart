@@ -19,6 +19,9 @@ class ProfileBloc extends Bloc<AppEvent, AppState> {
     on<Get>(onGetData);
   }
 
+  bool get isLogin => repo.isLogin;
+
+
   Future<void> onGetData(Get event, Emitter<AppState> emit) async {
     try {
       emit(Loading());
