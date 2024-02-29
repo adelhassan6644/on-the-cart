@@ -10,6 +10,8 @@ import 'package:stepOut/main_widgets/item_card.dart';
 
 import '../../../app/core/app_state.dart';
 import '../../../components/shimmer/custom_shimmer.dart';
+import '../../../data/config/di.dart';
+import '../../guest/guest_mode.dart';
 import '../bloc/wishlist_bloc.dart';
 
 class Wishlist extends StatelessWidget {
@@ -31,6 +33,9 @@ class Wishlist extends StatelessWidget {
             Expanded(
               child: BlocBuilder<WishlistBloc, AppState>(
                   builder: (context, state) {
+                if (!sl<WishlistBloc>().isLogin) {
+                  return const GuestMode();
+                }
                 if (state is Done) {
                   List<ItemModel> items =
                       (state.model as ItemsModel).data ?? [];
@@ -67,10 +72,7 @@ class Wishlist extends StatelessWidget {
                     txt: getTranslated("something_went_wrong"),
                   );
                 } else {
-                  return GridListAnimatorWidget(
-                      columnCount: 2,
-                      aspectRatio: 100.w / 123.h,
-                      items: List.generate(20, (i) => const ItemCard()));
+                  return const SizedBox();
                 }
               }),
             )

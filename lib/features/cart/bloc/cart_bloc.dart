@@ -19,6 +19,10 @@ class CartBloc extends Bloc<AppEvent, AppState> {
     on<Delete>(onDelete);
     on<Clear>(onClear);
   }
+
+  bool get isLogin => repo.isLogin;
+
+
   CartModel? cartModel;
 
   Future<void> onGet(Get event, Emitter<AppState> emit) async {

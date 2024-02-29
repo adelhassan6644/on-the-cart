@@ -18,6 +18,7 @@ import '../../../components/custom_button.dart';
 import '../../../components/shimmer/custom_shimmer.dart';
 import '../../../data/config/di.dart';
 import '../../../navigation/routes.dart';
+import '../../guest/guest_mode.dart';
 import '../bloc/cart_bloc.dart';
 import '../widgets/cart_item.dart';
 import '../../../main_widgets/delete_item_widget.dart';
@@ -55,6 +56,9 @@ class _CartState extends State<Cart> {
                 Expanded(
                   child: BlocBuilder<CartBloc, AppState>(
                       builder: (context, state) {
+                    if (!sl<CartBloc>().isLogin) {
+                      return const GuestMode();
+                    }
                     if (state is Done) {
                       List<ItemModel> items = state.list as List<ItemModel>;
                       return ListAnimator(

@@ -1,0 +1,66 @@
+import 'package:stepOut/app/core/extensions.dart';
+import 'package:flutter/material.dart';
+import 'package:stepOut/components/animated_widget.dart';
+import 'package:stepOut/navigation/custom_navigation.dart';
+import 'package:stepOut/navigation/routes.dart';
+
+import '../../app/core/dimensions.dart';
+import '../../app/core/images.dart';
+import '../../app/core/styles.dart';
+import '../../app/core/text_styles.dart';
+import '../../app/localization/language_constant.dart';
+import '../../components/custom_button.dart';
+import '../../components/custom_images.dart';
+
+class GuestMode extends StatelessWidget {
+  const GuestMode({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListAnimator(
+        customPadding:
+            EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
+        data: [
+          SizedBox(
+            height: context.height * 0.1,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.width * 0.25),
+            child: customImageIcon(
+                imageName: Images.logo,
+                fit: BoxFit.cover,
+                height: context.height * 0.18,
+                width: context.width,
+                color: Styles.PRIMARY_COLOR),
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
+          Text(
+            getTranslated("register_with_us"),
+            style: AppTextStyles.bold.copyWith(
+              fontSize: 32,
+              color: Styles.PRIMARY_COLOR,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            getTranslated(
+                "and_enjoy_all_the_features_available_in_the_application"),
+            style: AppTextStyles.medium
+                .copyWith(fontSize: 18, color: Styles.DETAILS_COLOR),
+            textAlign: TextAlign.center,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            child: CustomButton(
+              text: getTranslated("login"),
+              onTap: () => CustomNavigator.push(Routes.login, arguments: true),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

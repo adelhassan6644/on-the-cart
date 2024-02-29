@@ -19,6 +19,9 @@ class WishlistBloc extends Bloc<AppEvent, AppState> {
     on<Update>(onUpdate);
   }
 
+  bool get isLogin => repo.isLogin;
+
+
   ItemsModel? model;
   Future<void> onClick(Click event, Emitter<AppState> emit) async {
     try {
