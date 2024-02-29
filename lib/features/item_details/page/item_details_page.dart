@@ -27,14 +27,14 @@ import '../widget/item_sizes_widget.dart';
 
 class ItemDetailsPage extends StatelessWidget {
   const ItemDetailsPage({super.key, required this.id});
-
   final int id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => ItemDetailsBloc(repo: sl<ItemDetailsRepo>()),
+        create: (context) => ItemDetailsBloc(repo: sl<ItemDetailsRepo>())
+          ..add(Click(arguments: id)),
         child: BlocBuilder<ItemDetailsBloc, AppState>(
           builder: (context, state) {
             return SafeArea(
