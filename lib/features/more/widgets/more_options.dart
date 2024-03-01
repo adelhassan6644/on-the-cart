@@ -56,21 +56,21 @@ class MoreOptions extends StatelessWidget {
               ),
             ),
 
-            ///Turn Notification
-            BlocBuilder<TurnNotificationsBloc, AppState>(
-              builder: (context, state) {
-                return Visibility(
-                  visible: sl<NotificationsBloc>().isLogin,
-                  child: TurnButton(
-                    title: getTranslated("notifications", context: context),
-                    icon: SvgImages.notification,
-                    onTap: () => TurnNotificationsBloc.instance.add(Turn()),
-                    bing: TurnNotificationsBloc.instance.isTurnOn,
-                    isLoading: state is Loading,
-                  ),
-                );
-              },
-            ),
+            // ///Turn Notification
+            // BlocBuilder<TurnNotificationsBloc, AppState>(
+            //   builder: (context, state) {
+            //     return Visibility(
+            //       visible: sl<NotificationsBloc>().isLogin,
+            //       child: TurnButton(
+            //         title: getTranslated("notifications", context: context),
+            //         icon: SvgImages.notification,
+            //         onTap: () => TurnNotificationsBloc.instance.add(Turn()),
+            //         bing: TurnNotificationsBloc.instance.isTurnOn,
+            //         isLoading: state is Loading,
+            //       ),
+            //     );
+            //   },
+            // ),
 
             ///Language
             MoreButton(
