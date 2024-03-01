@@ -9,6 +9,9 @@ import '../../../app/core/app_state.dart';
 import '../../../app/core/styles.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../app/localization/language_constant.dart';
+import '../../../components/custom_button.dart';
+import '../../../navigation/custom_navigation.dart';
+import '../../../navigation/routes.dart';
 
 class DeliveryAddress extends StatelessWidget {
   const DeliveryAddress({super.key});
@@ -28,11 +31,27 @@ class DeliveryAddress extends StatelessWidget {
         ),
         BlocBuilder<AddressesBloc, AppState>(
           builder: (context, state) {
-            return Padding(
-                padding: EdgeInsets.symmetric(vertical: 6.h),
-                child: SelectedAddressCard(
-                  address: AddressItem(isDefaultAddress: true),
-                ));
+            if (state is Done) {
+              List<AddressItem> address = (state.model as AddressesModel).data!;
+              return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
+                  child: SelectedAddressCard(
+                    address:
+                        address.firstWhere((e) => e.isDefaultAddress == true),
+                  ));
+            }
+            if (state is Empty) {
+              return Center(
+                child: CustomButton(
+                    textColor: Styles.PRIMARY_COLOR,
+                    backgroundColor: Styles.WHITE_COLOR,
+                    withBorderColor: true,
+                    width: 200.w,
+                    onTap: () => CustomNavigator.push(Routes.addAddress),
+                    text: getTranslated("add_address")),
+              );
+            }
+            return const SizedBox();
           },
         ),
       ],
