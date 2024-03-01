@@ -4,10 +4,10 @@ import 'package:stepOut/app/core/styles.dart';
 import 'package:stepOut/components/custom_network_image.dart';
 import 'package:stepOut/features/cart/bloc/cart_bloc.dart';
 import 'package:stepOut/main_models/items_model.dart';
+import 'package:stepOut/main_widgets/final_price.dart';
 import '../../../app/core/app_event.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../app/core/extensions.dart';
-import '../../../app/localization/language_constant.dart';
 import '../../../data/config/di.dart';
 import '../../../main_widgets/wishlist_button.dart';
 
@@ -49,39 +49,39 @@ class CartItem extends StatelessWidget {
                 ],
               ),
 
-              ///Size & Color
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.h),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 30,
-                      height: 30,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: Styles.BORDER_COLOR)),
-                      child: Text(
-                        item.size ?? "M",
-                        textAlign: TextAlign.start,
-                        style: AppTextStyles.medium.copyWith(
-                            fontSize: 14, color: Styles.DETAILS_COLOR),
-                      ),
-                    ),
-                    SizedBox(width: 8.w),
-                    Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: item.color?.toColor,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(color: Styles.BORDER_COLOR)),
-                      child: const SizedBox(),
-                    )
-                  ],
-                ),
-              ),
+              // ///Size & Color
+              // Padding(
+              //   padding: EdgeInsets.symmetric(vertical: 8.h),
+              //   child: Row(
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: [
+              //       Container(
+              //         width: 30,
+              //         height: 30,
+              //         alignment: Alignment.center,
+              //         decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(4),
+              //             border: Border.all(color: Styles.BORDER_COLOR)),
+              //         child: Text(
+              //           item.size ?? "M",
+              //           textAlign: TextAlign.start,
+              //           style: AppTextStyles.medium.copyWith(
+              //               fontSize: 14, color: Styles.DETAILS_COLOR),
+              //         ),
+              //       ),
+              //       SizedBox(width: 8.w),
+              //       Container(
+              //         width: 30,
+              //         height: 30,
+              //         decoration: BoxDecoration(
+              //             color: item.color?.toColor,
+              //             borderRadius: BorderRadius.circular(4),
+              //             border: Border.all(color: Styles.BORDER_COLOR)),
+              //         child: const SizedBox(),
+              //       )
+              //     ],
+              //   ),
+              // ),
 
               ///Count & Price
               Row(
@@ -135,12 +135,10 @@ class CartItem extends StatelessWidget {
                     ),
                   ),
                   Expanded(child: SizedBox(width: 6.w)),
-                  Text(
-                    "${item.price ?? 100} ${getTranslated("sar")}",
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.medium
-                        .copyWith(fontSize: 14, color: Styles.DETAILS_COLOR),
-                  ),
+                  FinalPriceWidget(
+                      price: item.price ?? 0,
+                      finalPrice: item.finalPrice,
+                      isExistDiscount: item.discount != null)
                 ],
               )
             ],

@@ -37,7 +37,7 @@ class WishlistButton extends StatelessWidget {
                   "item": item,
                 }));
               } else {
-                AppCore.showToast(getTranslated("login_first"));
+                AppCore.showToast(getTranslated("you_have_to_login_first"));
               }
             },
             width: size,

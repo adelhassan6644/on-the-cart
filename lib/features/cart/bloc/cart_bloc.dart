@@ -22,7 +22,6 @@ class CartBloc extends Bloc<AppEvent, AppState> {
 
   bool get isLogin => repo.isLogin;
 
-
   CartModel? cartModel;
 
   Future<void> onGet(Get event, Emitter<AppState> emit) async {
@@ -52,10 +51,10 @@ class CartBloc extends Bloc<AppEvent, AppState> {
       await repo.addItem(model: (event.arguments as ItemModel));
       AppCore.showSnackBar(
           notification: AppNotification(
-            message:getTranslated("added_to_cart"),
-            backgroundColor: Styles.ACTIVE,
-            borderColor: Styles.ACTIVE,
-          ));
+        message: getTranslated("added_to_cart"),
+        backgroundColor: Styles.ACTIVE,
+        borderColor: Styles.ACTIVE,
+      ));
       add(Get());
     } catch (e) {
       AppCore.showSnackBar(

@@ -18,7 +18,6 @@ class ItemDetailsBloc extends Bloc<AppEvent, AppState> {
     on<Click>(onClick);
   }
 
-
   Future<void> onClick(Click event, Emitter<AppState> emit) async {
     try {
       emit(Loading());

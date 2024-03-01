@@ -11,7 +11,7 @@ class LocaleDatabase {
       join(await getDatabasesPath(), 'doggie_database.db'),
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE ${initialTableName ?? "Items"}(id TEXT PRIMARY KEY, title TEXT, image TEXT, price DOUBLE, count INTEGER, size TEXT, color TEXT)',
+          'CREATE TABLE ${initialTableName ?? "Items"}(id TEXT PRIMARY KEY, title TEXT, image TEXT, price DOUBLE, discount DOUBLE, discount_price INTEGER, count INTEGER, size TEXT, color TEXT)',
         );
       },
       version: 1,
