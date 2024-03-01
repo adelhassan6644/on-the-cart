@@ -86,7 +86,7 @@ class Validations {
   }
 
   static String? field(String? value) {
-    if (value == null || value!.isEmpty) {
+    if (value == null || value.isEmpty) {
       return getTranslated("required");
     } else {
       return null;

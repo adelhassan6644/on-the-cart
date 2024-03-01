@@ -40,7 +40,7 @@ class EndPoints {
   ///Items
   static getRelatedItems(id) => 'product/related/$id';
   static getItemDetails(id) => 'product/$id';
-  static const String sendRate = 'feedback';
+  static const String sendFeedback = 'feedback';
 
   ///Addresses
   static const String cities = 'city';

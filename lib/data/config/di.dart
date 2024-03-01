@@ -42,6 +42,7 @@ import '../../features/edit_profile/bloc/profile_bloc.dart';
 import '../../features/related_items/repo/related_items_repo.dart';
 import '../../features/search/repo/search_repo.dart';
 import '../../features/search_result/repo/search_result_repo.dart';
+import '../../features/send_feedback/repo/send_feedback_repo.dart';
 import '../../features/setting/bloc/setting_bloc.dart';
 import '../../features/setting/repo/setting_repo.dart';
 import '../../features/stores/bloc/stores_bloc.dart';
@@ -164,6 +165,9 @@ Future<void> init() async {
 
   sl.registerLazySingleton(
       () => SearchResultRepo(sharedPreferences: sl(), dioClient: sl()));
+
+  sl.registerLazySingleton(
+      () => SendFeedbackRepo(sharedPreferences: sl(), dioClient: sl()));
 
   //provider
   // sl.registerLazySingleton(() => SplashBloc(repo: sl()));
