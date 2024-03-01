@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/dimensions.dart';
+import 'package:stepOut/app/core/svg_images.dart';
 import 'package:stepOut/app/core/validation.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_button.dart';
@@ -13,8 +14,8 @@ import '../../../data/config/di.dart';
 import '../bloc/send_feedback_bloc.dart';
 
 class SendFeedbackView extends StatelessWidget {
-  const SendFeedbackView({this.id, Key? key}) : super(key: key);
-  final int? id;
+  const SendFeedbackView({Key? key, required this.id}) : super(key: key);
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,6 @@ class SendFeedbackView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 16.h),
               StreamBuilder<int>(
                   stream: context.read<SendFeedbackBloc>().rattingStream,
                   builder: (context, snapShot) {
@@ -40,11 +40,13 @@ class SendFeedbackView extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () => context
                                 .read<SendFeedbackBloc>()
-                                .updateRatting((index + 1)),
+                                .updateRatting((index)),
                             child: customImageIconSVG(
+                                width: 30,
+                                height: 30,
                                 imageName: (snapShot.data ?? -1) < index
-                                    ? "rate_empty_star"
-                                    : "rate_star"),
+                                    ? SvgImages.emptyStar
+                                    : SvgImages.fillStar),
                           ),
                         ),
                       ),
@@ -54,8 +56,8 @@ class SendFeedbackView extends StatelessWidget {
               Form(
                 key: context.read<SendFeedbackBloc>().globalKey,
                 child: CustomTextField(
-                  hint: getTranslated("write_your_opinion"),
-                  label: getTranslated("your_opinion"),
+                  hint: getTranslated("enter_your_feedback"),
+                  label: getTranslated("your_feedback"),
                   minLines: 5,
                   maxLines: 5,
                   controller: context.read<SendFeedbackBloc>().commentTEC,
@@ -63,20 +65,11 @@ class SendFeedbackView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              BlocBuilder<SendFeedbackBloc, AppState>(
-                builder: (context, state) {
-                  return CustomButton(
-                    isLoading: state is Loading,
-                    text: getTranslated("send"),
-                    onTap: () {
-                      context
-                          .read<SendFeedbackBloc>()
-                          .add(Click(arguments: "$id"));
-                    },
-                  );
-                },
-              ),
-              SizedBox(height: 24.h),
+              CustomButton(
+                text: getTranslated("submit"),
+                onTap: () =>
+                    context.read<SendFeedbackBloc>().add(Click(arguments: id)),
+              )
             ],
           );
         },

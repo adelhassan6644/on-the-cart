@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
+import 'package:stepOut/navigation/custom_navigation.dart';
 
 import '../../../app/core/app_core.dart';
 import '../../../app/core/app_event.dart';
@@ -29,44 +30,53 @@ class SendFeedbackBloc extends Bloc<AppEvent, AppState> {
   TextEditingController commentTEC = TextEditingController();
 
   Future<void> sendReview(Click event, Emitter<AppState> emit) async {
-    try {
-      if (ratting.value != -1) {
-        emit(Loading());
+    if (globalKey.currentState!.validate()) {
+      try {
+        if (ratting.value != -1) {
+          emit(Loading());
 
-        Map data = {
-          "customer_id": repo.userId,
-          "product_id": "${event.arguments}",
-          "rating": ratting.value,
-          "feedback": commentTEC.text.trim(),
-        };
+          Map data = {
+            "customer_id": repo.userId,
+            "product_id": "${event.arguments}",
+            "rating": (ratting.value ?? 0) + 1,
+            "feedback": commentTEC.text.trim(),
+          };
 
-        Either<ServerFailure, Response> response =
-            await repo.sendFeedback(data);
+          Either<ServerFailure, Response> response =
+              await repo.sendFeedback(data);
 
-        response.fold((fail) {
-          AppCore.showSnackBar(
-              notification: AppNotification(
-                  message: fail.error,
-                  isFloating: true,
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Colors.red));
-          emit(Error());
-        }, (success) {
-          emit(Done());
-        });
-      } else {
-        AppCore.showToast(
-          getTranslated("please_select_your_rate"),
-        );
-        emit(Start());
+          response.fold((fail) {
+            AppCore.showSnackBar(
+                notification: AppNotification(
+                    message: fail.error,
+                    isFloating: true,
+                    backgroundColor: Styles.IN_ACTIVE,
+                    borderColor: Colors.red));
+            emit(Error());
+          }, (success) {
+            CustomNavigator.pop();
+            AppCore.showSnackBar(
+                notification: AppNotification(
+                    message: success.data["message"],
+                    isFloating: true,
+                    backgroundColor: Styles.ACTIVE,
+                    borderColor: Colors.transparent));
+            emit(Done());
+          });
+        } else {
+          AppCore.showToast(
+            getTranslated("oops_select_your_rate"),
+          );
+          emit(Start());
+        }
+      } catch (e) {
+        AppCore.showSnackBar(
+            notification: AppNotification(
+                message: e.toString(),
+                backgroundColor: Styles.IN_ACTIVE,
+                isFloating: true));
+        emit(Error());
       }
-    } catch (e) {
-      AppCore.showSnackBar(
-          notification: AppNotification(
-              message: e.toString(),
-              backgroundColor: Styles.IN_ACTIVE,
-              isFloating: true));
-      emit(Error());
     }
   }
 }

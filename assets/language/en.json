@@ -223,6 +223,10 @@
   "there_is_no_result": "There are no similar items",
   "search_result": "Search Result",
   "continue_shopping": "Continue Shopping",
+  "oops_select_your_rate": "Oops, Select your rate!",
+  "your_feedback": "Your Feedback",
+  "enter_your_feedback": "Enter your feedback...",
+  "send_your_feedback": "Send your feedback",
   "order_has_been_confirmed": "Your order has been confirmed successfully",
   "you_can_track_your_order_from_the_order_history": "You can track your order from the order history"
 }
