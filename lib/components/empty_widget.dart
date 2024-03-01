@@ -42,11 +42,13 @@ class EmptyState extends StatelessWidget {
           !isSvg
               ? customImageIcon(
                   imageName: img ?? Images.logo,
+                  color: Styles.PRIMARY_COLOR,
                   width: imgWidth ?? context.width * 0.45,
                   height: imgHeight ?? context.height * 0.19,
                 ) //width: MediaQueryHelper.width*.8,),
               : customImageIconSVG(
                   imageName: img ?? SvgImages.appLogo,
+                  color: Styles.PRIMARY_COLOR,
                   width: imgWidth ?? context.width * 0.45,
                   height: imgHeight ?? context.height * 0.19,
                 ),

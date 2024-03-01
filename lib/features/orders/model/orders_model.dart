@@ -1,6 +1,5 @@
 import 'package:stepOut/data/config/mapper.dart';
 
-
 class OrdersModel extends SingleMapper {
   String? message;
   List<MyOrderItem>? data;
@@ -38,24 +37,47 @@ class OrdersModel extends SingleMapper {
 class MyOrderItem {
   int? id;
   String? title;
+  int? status;
   String? image;
-  bool? isStore;
-  MyOrderItem({this.id, this.isStore = true, this.image, this.title});
+  String? total;
+  DateTime? createdAt;
+  MyOrderItem(
+      {this.id,
+      this.image,
+      this.total,
+      this.createdAt,
+      this.status,
+      this.title});
 
   MyOrderItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
-    title = json['title'];
-    isStore = true;
+    status = json['status'];
+    total = json['total'];
+    createdAt = json['created_at'] != null
+        ? DateTime.tryParse(json['created_at'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['image'] = image;
-    data['title'] = title;
-    data['is_store'] = isStore;
+    data['status'] = status;
+    data['total'] = total;
+    data['created_at'] = createdAt?.toIso8601String();
 
     return data;
   }
+}
+
+enum OrderStatus {
+  preOrdered,
+  ordered,
+  processing,
+  shipping,
+  delivered,
+  finished,
+  canceled,
+  returned
 }

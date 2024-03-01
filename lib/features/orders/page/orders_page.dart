@@ -11,6 +11,7 @@ import 'package:stepOut/features/orders/model/orders_model.dart';
 import 'package:stepOut/features/orders/repo/orders_repo.dart';
 import 'package:stepOut/features/orders/widgets/order_card.dart';
 
+import '../../../app/core/app_event.dart';
 import '../../../components/empty_widget.dart';
 import '../../../data/config/di.dart';
 import '../bloc/my_orders_bloc.dart';
@@ -27,7 +28,8 @@ class OrdersPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => OrdersBloc(repo: sl<OrdersRepo>()),
+          create: (context) =>
+              OrdersBloc(repo: sl<OrdersRepo>())..add(Click(arguments: 0)),
           child: Column(
             children: [
               const OrdersTabBar(),
@@ -50,10 +52,13 @@ class OrdersPage extends StatelessWidget {
                             horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
                         data: List.generate(
                             10,
-                            (index) => CustomShimmerContainer(
-                                  height: 120.h,
-                                  radius: 20,
-                                  width: context.width,
+                            (index) => Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                                  child: CustomShimmerContainer(
+                                    height: 120.h,
+                                    radius: 20,
+                                    width: context.width,
+                                  ),
                                 )),
                       );
                     }
@@ -62,6 +67,9 @@ class OrdersPage extends StatelessWidget {
                         customPadding: EdgeInsets.symmetric(
                             horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
                         data: [
+                          SizedBox(
+                            height: 100.h,
+                          ),
                           EmptyState(
                             txt: state is Empty
                                 ? null
@@ -70,12 +78,7 @@ class OrdersPage extends StatelessWidget {
                         ],
                       );
                     }
-                    return ListAnimator(
-                      customPadding: EdgeInsets.symmetric(
-                          horizontal: Dimensions.PADDING_SIZE_DEFAULT.w),
-                      data: List.generate(
-                          10, (index) => OrderCard(order: MyOrderItem(id: 1))),
-                    );
+                    return const SizedBox();
                   },
                 ),
               ),

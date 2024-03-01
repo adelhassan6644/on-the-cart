@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
+import 'package:stepOut/features/order_details/model/order_details_model.dart';
 
 import '../../../app/core/styles.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../components/custom_network_image.dart';
 
 class OrderItemCard extends StatelessWidget {
-  const OrderItemCard({super.key});
+  const OrderItemCard({super.key, this.order});
+  final OrderItem? order;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
-          vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL.h),
+      margin:
+          EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL.h),
       decoration: BoxDecoration(
         border: Border.all(color: Styles.BORDER_COLOR),
         color: Styles.WHITE_COLOR,
@@ -27,7 +29,7 @@ class OrderItemCard extends StatelessWidget {
             width: 120.w,
             height: 120.h,
             radius: 20,
-            image: "",
+            image: order?.product?.image ?? "",
           ),
           Expanded(
             child: Padding(
@@ -40,7 +42,7 @@ class OrderItemCard extends StatelessWidget {
                 children: [
                   ///Name
                   Text(
-                    "Item Tile",
+                    order?.product?.name ?? "",
                     textAlign: TextAlign.start,
                     style: AppTextStyles.semiBold
                         .copyWith(fontSize: 14, color: Styles.HEADER),
@@ -50,28 +52,28 @@ class OrderItemCard extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 4.h),
                     child: Text(
-                      "${getTranslated("count")}12",
+                      "${getTranslated("count")}${order?.quantity ?? 0}",
                       textAlign: TextAlign.start,
                       style: AppTextStyles.medium
                           .copyWith(fontSize: 14, color: Styles.DETAILS_COLOR),
                     ),
                   ),
 
-                  ///Item Color
-                  Container(
-                    width: 30,
-                    height: 30,
-                    margin: EdgeInsets.symmetric(vertical: 4.h),
-                    decoration: BoxDecoration(
-                        color: Colors.blueAccent,
-                        borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: Styles.BORDER_COLOR)),
-                    child: const SizedBox(),
-                  ),
+                  // ///Item Color
+                  // Container(
+                  //   width: 30,
+                  //   height: 30,
+                  //   margin: EdgeInsets.symmetric(vertical: 4.h),
+                  //   decoration: BoxDecoration(
+                  //       color: Colors.blueAccent,
+                  //       borderRadius: BorderRadius.circular(4),
+                  //       border: Border.all(color: Styles.BORDER_COLOR)),
+                  //   child: const SizedBox(),
+                  // ),
 
                   ///Item Price
                   Text(
-                    "${100} ${getTranslated("sar")}",
+                    "${order?.product?.finalPrice} ${getTranslated("sar")}",
                     textAlign: TextAlign.center,
                     style: AppTextStyles.medium
                         .copyWith(fontSize: 14, color: Styles.DETAILS_COLOR),

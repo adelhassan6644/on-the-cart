@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 
+import '../../../app/core/app_event.dart';
 import '../bloc/my_orders_bloc.dart';
 import 'orders_tab.dart';
 
@@ -30,7 +31,15 @@ class OrdersTabBar extends StatelessWidget {
                   title: context.read<OrdersBloc>().tabTitles[index],
                   icon: context.read<OrdersBloc>().tabIcons[index],
                   isSelected: (snapshot.hasData ? snapshot.data : 0) == index,
-                  onTap: () => context.read<OrdersBloc>().updateCurrentTab(index),
+                  onTap: () {
+                    context.read<OrdersBloc>().add(Click(
+                        arguments: index == 0
+                            ? 0
+                            : index == 1
+                                ? 5
+                                : 6));
+                    context.read<OrdersBloc>().updateCurrentTab(index);
+                  },
                 );
               },
             ),

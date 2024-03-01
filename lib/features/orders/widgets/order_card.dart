@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stepOut/app/core/dimensions.dart';
+import 'package:stepOut/app/core/extensions.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/features/orders/model/orders_model.dart';
 import '../../../app/core/styles.dart';
@@ -50,27 +51,17 @@ class OrderCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ///Name
-                      Text(
-                        order.title ?? "Item Tile",
-                        textAlign: TextAlign.start,
-                        style: AppTextStyles.semiBold
-                            .copyWith(fontSize: 14, color: Styles.HEADER),
-                      ),
-
                       ///Order ID
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 6.h),
-                        child: Text(
-                          "${getTranslated("order_id")} :#${order.id ?? 0}",
-                          textAlign: TextAlign.start,
-                          style: AppTextStyles.medium.copyWith(
-                              fontSize: 14, color: Styles.DETAILS_COLOR),
-                        ),
+                      Text(
+                        "${getTranslated("order_id")} :#${order.id ?? 0}",
+                        textAlign: TextAlign.start,
+                        style: AppTextStyles.medium.copyWith(
+                            fontSize: 14, color: Styles.DETAILS_COLOR),
                       ),
 
                       ///Order Status
                       Container(
+                        margin: EdgeInsets.symmetric(vertical: 6.h),
                         padding: EdgeInsets.symmetric(
                             horizontal: 8.w, vertical: 4.h),
                         decoration: BoxDecoration(
@@ -78,12 +69,21 @@ class OrderCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         child: Text(
-                          order.title ?? "Order Status",
+                          OrderStatus.values[order.status ?? 0].name,
                           textAlign: TextAlign.start,
                           style: AppTextStyles.semiBold.copyWith(
                               fontSize: 14, color: Styles.PRIMARY_COLOR),
                         ),
-                      )
+                      ),
+
+                      ///Order Created At
+                      Text(
+                        (order.createdAt ?? DateTime.now())
+                            .dateFormat(format: "d/MMM/yyyy h:m a"),
+                        textAlign: TextAlign.start,
+                        style: AppTextStyles.semiBold
+                            .copyWith(fontSize: 14, color: Styles.HEADER),
+                      ),
                     ],
                   ),
                 ),
