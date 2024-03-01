@@ -14,14 +14,14 @@ class SuggestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => CustomNavigator.push(Routes.searchResult,
-          arguments: suggestionItem.title),
+      onTap: () => CustomNavigator.push(Routes.itemDetails,
+          arguments: suggestionItem.id),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 8.h),
         decoration: const BoxDecoration(
             border: Border(bottom: BorderSide(color: Styles.DISABLED))),
         child: Text(
-          suggestionItem.title ?? "",
+          suggestionItem.name ?? "",
           style: AppTextStyles.medium.copyWith(
             fontSize: 14,
             color: Styles.DISABLED,

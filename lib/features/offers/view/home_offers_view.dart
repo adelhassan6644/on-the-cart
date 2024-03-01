@@ -27,6 +27,7 @@ class HomeOffersView extends StatelessWidget {
               color: const Color(0xFFffeaeb),
               borderRadius: BorderRadius.circular(20)),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SectionTitle(
                 title: getTranslated("offers_this_week"),

@@ -108,7 +108,7 @@ class SearchBody extends StatelessWidget {
             data: List.generate(
                 8,
                 (index) => SuggestionCard(
-                      suggestionItem: SuggestionItem(title: "Suggestion Item"),
+                      suggestionItem: SuggestionItem(name: "Suggestion Item"),
                     )),
           ),
         );

@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/extensions.dart';
-import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_network_image.dart';
 import 'package:stepOut/main_models/items_model.dart';
 import 'package:stepOut/main_widgets/wishlist_button.dart';
 import 'package:stepOut/navigation/custom_navigation.dart';
 import 'package:stepOut/navigation/routes.dart';
-import '../app/core/app_event.dart';
 import '../app/core/styles.dart';
 import '../app/core/text_styles.dart';
-import '../data/config/di.dart';
-import '../features/cart/bloc/cart_bloc.dart';
 import 'discount_widget.dart';
+import 'final_price.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({super.key, this.item});
@@ -25,17 +22,6 @@ class ItemCard extends StatelessWidget {
         InkWell(
           onTap: () => CustomNavigator.push(Routes.itemDetails,
               arguments: item?.id ?? 1),
-          // onTap: () => sl<CartBloc>().add(Add(
-          //   arguments: ItemModel(
-          //       id: 3,
-          //       image:
-          //           "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          //       title: "Test Add To Cart 1",
-          //       price: 100,
-          //       size: "XL",
-          //       color: "#151416",
-          //       count: 1),
-          // )),
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -76,11 +62,10 @@ class ItemCard extends StatelessWidget {
                       SizedBox(height: 6.h),
 
                       ///Price
-                      Text(
-                        "${item?.price ?? 100} ${getTranslated("sar")}",
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.medium.copyWith(
-                            fontSize: 14, color: Styles.DETAILS_COLOR),
+                      FinalPriceWidget(
+                        finalPrice: item?.finalPrice ?? 0,
+                        price: item?.price ?? 0,
+                        isExistDiscount: item?.discount != null,
                       ),
                     ],
                   ),
@@ -94,11 +79,12 @@ class ItemCard extends StatelessWidget {
           left: 8,
           child: WishlistButton(item: item),
         ),
-        Positioned(
-          top: 12,
-          right: 1,
-          child: DiscountWidget(discount: item?.discount),
-        ),
+        if (item?.discount != null)
+          Positioned(
+            top: 12,
+            right: 1,
+            child: DiscountWidget(discount: item!.discount!),
+          ),
       ],
     );
   }

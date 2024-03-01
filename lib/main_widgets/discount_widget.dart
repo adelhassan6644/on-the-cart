@@ -5,8 +5,8 @@ import 'package:stepOut/app/core/text_styles.dart';
 import '../app/core/styles.dart';
 
 class DiscountWidget extends StatelessWidget {
-  const DiscountWidget({super.key, this.discount});
-  final String? discount;
+  const DiscountWidget({super.key, required this.discount});
+  final double discount;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +19,7 @@ class DiscountWidget extends StatelessWidget {
         ),
       ),
       child: Text(
-        "- ${discount ?? "10"} %",
+        "- ${discount * 100} %",
         textAlign: TextAlign.center,
         style: AppTextStyles.medium
             .copyWith(fontSize: 14, color: Styles.WHITE_COLOR),

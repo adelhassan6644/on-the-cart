@@ -1,6 +1,5 @@
 import 'package:stepOut/data/config/mapper.dart';
 
-import '../../../main_models/base_model.dart';
 
 class SuggestionModel extends SingleMapper {
   String? message;
@@ -38,19 +37,19 @@ class SuggestionModel extends SingleMapper {
 
 class SuggestionItem {
   int? id;
-  String? title;
+  String? name;
 
-  SuggestionItem({this.id, this.title});
+  SuggestionItem({this.id, this.name});
 
   SuggestionItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
+    name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['title'] = title;
+    data['name'] = name;
     return data;
   }
 }

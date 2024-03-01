@@ -41,7 +41,8 @@ class OrdersBloc extends Bloc<AppEvent, AppState> {
     try {
       emit(Loading());
 
-      Either<ServerFailure, Response> response = await repo.getMyOrders();
+      Either<ServerFailure, Response> response =
+          await repo.getMyOrders(event.arguments as int);
 
       response.fold((fail) {
         AppCore.showSnackBar(

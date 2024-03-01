@@ -8,11 +8,11 @@ import '../../../data/error/failures.dart';
 class OrdersRepo extends BaseRepo {
   OrdersRepo({required super.dioClient, required super.sharedPreferences});
 
-
-  Future<Either<ServerFailure, Response>> getMyOrders() async {
+  Future<Either<ServerFailure, Response>> getMyOrders(status) async {
     try {
-      Response response =
-          await dioClient.get(uri: EndPoints.getMyOrders(userId));
+      Response response = await dioClient.get(
+          uri: EndPoints.getMyOrders(userId),
+          queryParameters: {"status": status});
       if (response.statusCode == 200) {
         return Right(response);
       } else {
