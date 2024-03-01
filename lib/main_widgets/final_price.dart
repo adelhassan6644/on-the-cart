@@ -27,7 +27,7 @@ class FinalPriceWidget extends StatelessWidget {
         children: [
           if (isExistDiscount)
             TextSpan(
-              text: "$price ${getTranslated("sar")}",
+              text: "  $price ${getTranslated("sar")}",
               style: AppTextStyles.regular.copyWith(
                 fontSize: 12,
                 color: Styles.HINT_COLOR,

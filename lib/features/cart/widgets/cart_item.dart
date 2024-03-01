@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:stepOut/app/core/app_core.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/core/styles.dart';
+import 'package:stepOut/app/localization/language_constant.dart';
 import 'package:stepOut/components/custom_network_image.dart';
 import 'package:stepOut/features/cart/bloc/cart_bloc.dart';
 import 'package:stepOut/main_models/items_model.dart';
 import 'package:stepOut/main_widgets/final_price.dart';
 import '../../../app/core/app_event.dart';
 import '../../../app/core/text_styles.dart';
-import '../../../app/core/extensions.dart';
 import '../../../data/config/di.dart';
+import '../../../main_widgets/discount_widget.dart';
 import '../../../main_widgets/wishlist_button.dart';
 
 class CartItem extends StatelessWidget {
@@ -25,8 +27,22 @@ class CartItem extends StatelessWidget {
           border: Border.all(color: Styles.BORDER_COLOR)),
       child: Row(
         children: [
-          CustomNetworkImage.containerNewWorkImage(
-              height: 120.h, width: 120.h, radius: 14),
+          Stack(
+            children: [
+              CustomNetworkImage.containerNewWorkImage(
+                height: 120.h,
+                width: 120.h,
+                radius: 14,
+                image: item.image ?? "",
+              ),
+              if (item.discount != null)
+                Positioned(
+                  top: 12,
+                  right: 1,
+                  child: DiscountWidget(discount: item.discount!),
+                ),
+            ],
+          ),
           SizedBox(width: 16.w),
           Expanded(
               child: Column(
@@ -82,13 +98,11 @@ class CartItem extends StatelessWidget {
               //     ],
               //   ),
               // ),
-
-              ///Count & Price
+              ///Count
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    margin: EdgeInsets.symmetric(vertical: 4.h),
                     padding:
                         EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                     decoration: BoxDecoration(
@@ -98,8 +112,14 @@ class CartItem extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            item.count++;
-                            sl<CartBloc>().add(Update(arguments: item));
+                            if (item.count <= (item.stock ?? 0)) {
+                              item.count++;
+                              sl<CartBloc>().add(Update(arguments: item));
+                            } else {
+                              AppCore.showToast(
+                                getTranslated("there_is_no_products_any_more"),
+                              );
+                            }
                           },
                           child: const Icon(
                             Icons.add,
@@ -134,12 +154,16 @@ class CartItem extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(child: SizedBox(width: 6.w)),
-                  FinalPriceWidget(
-                      price: item.price ?? 0,
-                      finalPrice: item.finalPrice,
-                      isExistDiscount: item.discount != null)
                 ],
+              ),
+
+              ///Price
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.h),
+                child: FinalPriceWidget(
+                    price: item.price ?? 0,
+                    finalPrice: item.finalPrice,
+                    isExistDiscount: item.discount != null),
               )
             ],
           ))

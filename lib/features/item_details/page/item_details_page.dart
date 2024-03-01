@@ -204,19 +204,23 @@ class ItemDetailsPage extends StatelessWidget {
                           Expanded(
                             child: BlocBuilder<CartBloc, AppState>(
                               builder: (context, state) {
-                                List<ItemModel> items = [];
-                                if (state is Done) {
-                                  items = state.list as List<ItemModel>;
-                                }
                                 bool isAdded = false;
-                                isAdded = items.any((e) => e.id == 1);
+                                if (state is Done) {
+                                  isAdded = (state.list as List<ItemModel>)
+                                      .any((e) => e.id == model.id);
+                                }
+
                                 return CustomButton(
-                                  text: getTranslated(isAdded
-                                      ? "added_to_cart"
-                                      : "add_to_cart"),
+                                  text: getTranslated(
+                                      !((model.stock ?? 0) > model.count)
+                                          ? "out_of_stock"
+                                          : isAdded
+                                              ? "added_to_cart"
+                                              : "add_to_cart"),
                                   onTap: () {
                                     if (sl<ProfileBloc>().isLogin) {
-                                      if (!isAdded) {
+                                      if (!isAdded &&
+                                          ((model.stock ?? 0) > model.count)) {
                                         sl<CartBloc>().add(Add(
                                           arguments: model,
                                         ));

@@ -37,6 +37,7 @@ class ItemsModel extends SingleMapper {
 class ItemModel extends LocaleSingleMapper {
   int? id;
   int count = 1;
+  int? stock;
   String? image;
   String? name;
   String? description;
@@ -53,6 +54,7 @@ class ItemModel extends LocaleSingleMapper {
   ItemModel(
       {this.id,
       this.count = 1,
+      this.stock,
       this.description,
       this.rate,
       this.ratingCount,
@@ -70,6 +72,7 @@ class ItemModel extends LocaleSingleMapper {
     image = json['image'];
     description = json['description'];
     name = json['name'];
+    stock = json['stock'];
     rate = json['rate'];
     ratingCount = json['ratingCount'];
     discountPrice = json['discount_price'] != null
@@ -89,6 +92,7 @@ class ItemModel extends LocaleSingleMapper {
     data['id'] = id;
     data['count'] = count;
     data['image'] = image;
+    data['stock'] = stock;
     data['name'] = name;
     data['price'] = price;
     data['discount_price'] = discountPrice;

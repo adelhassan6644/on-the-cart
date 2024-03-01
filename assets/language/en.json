@@ -182,6 +182,8 @@
   "wishlist": "Wishlist",
   "continue": "Continue",
   "default_address": "Default Address",
+  "there_is_no_products_any_more": "There's no products any more",
+  "out_of_stock": "Out of Stock",
   "add_address": "+ Add Address",
   "address_added_successfully": "The Address is Added Successfully",
   "address": "Address",
