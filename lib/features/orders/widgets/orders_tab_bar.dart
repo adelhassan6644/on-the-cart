@@ -34,7 +34,7 @@ class OrdersTabBar extends StatelessWidget {
                   onTap: () {
                     context.read<OrdersBloc>().add(Click(
                         arguments: index == 0
-                            ? 0
+                            ? 8
                             : index == 1
                                 ? 5
                                 : 6));

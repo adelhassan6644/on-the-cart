@@ -29,7 +29,7 @@ class OrdersPage extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           create: (context) =>
-              OrdersBloc(repo: sl<OrdersRepo>())..add(Click(arguments: 0)),
+              OrdersBloc(repo: sl<OrdersRepo>())..add(Click(arguments: 8)),
           child: Column(
             children: [
               const OrdersTabBar(),
