@@ -53,7 +53,7 @@ class MyOrderItem {
     id = json['id'];
     image = json['image'];
     status = json['status'];
-    total = json['total'];
+    total = json['total'].toString();
     createdAt = json['created_at'] != null
         ? DateTime.tryParse(json['created_at'])
         : null;
