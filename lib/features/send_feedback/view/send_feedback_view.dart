@@ -66,6 +66,7 @@ class SendFeedbackView extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               CustomButton(
+                isLoading: state is Loading,
                 text: getTranslated("submit"),
                 onTap: () =>
                     context.read<SendFeedbackBloc>().add(Click(arguments: id)),
