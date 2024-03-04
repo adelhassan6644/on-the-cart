@@ -286,7 +286,7 @@ class OrderDetailsPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        if (OrderStatus.values[model.status ?? 0] !=
+                        if (OrderStatus.values[model.status ?? 0] ==
                             OrderStatus.finished)
                           Padding(
                               padding: EdgeInsets.symmetric(

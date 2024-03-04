@@ -104,28 +104,29 @@ class _CartState extends State<Cart> {
                 ),
               ],
             ),
-            BlocBuilder<CartBloc, AppState>(
-              builder: (context, state) {
-                return Visibility(
-                  visible: state is Done,
-                  child: Positioned(
-                    bottom: 20,
-                    child: CustomButton(
-                        svgIcon: sl<LanguageBloc>().isLtr
-                            ? SvgImages.arrowRightCart
-                            : SvgImages.arrowLeft,
-                        iconSize: 18,
-                        onTap: () => CustomNavigator.push(Routes.checkOut),
-                        textColor: Styles.PRIMARY_COLOR,
-                        iconColor: Styles.PRIMARY_COLOR,
-                        backgroundColor: Styles.WHITE_COLOR,
-                        withBorderColor: true,
-                        width: 150.w,
-                        text: getTranslated("continue", context: context)),
-                  ),
-                );
-              },
-            )
+            if (sl<CartBloc>().isLogin)
+              BlocBuilder<CartBloc, AppState>(
+                builder: (context, state) {
+                  return Visibility(
+                    visible: state is Done,
+                    child: Positioned(
+                      bottom: 20,
+                      child: CustomButton(
+                          svgIcon: sl<LanguageBloc>().isLtr
+                              ? SvgImages.arrowRightCart
+                              : SvgImages.arrowLeft,
+                          iconSize: 18,
+                          onTap: () => CustomNavigator.push(Routes.checkOut),
+                          textColor: Styles.PRIMARY_COLOR,
+                          iconColor: Styles.PRIMARY_COLOR,
+                          backgroundColor: Styles.WHITE_COLOR,
+                          withBorderColor: true,
+                          width: 150.w,
+                          text: getTranslated("continue", context: context)),
+                    ),
+                  );
+                },
+              )
           ],
         ),
       )),
