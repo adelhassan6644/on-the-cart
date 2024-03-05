@@ -86,7 +86,7 @@ class CartBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> onDelete(Delete event, Emitter<AppState> emit) async {
     try {
-      await repo.removeItem(id: "${(event.arguments as ItemModel).id}");
+      await repo.removeItem(id: "${(event.arguments as ItemModel).id}", model: event.arguments as ItemModel,);
       add(Get());
     } catch (e) {
       AppCore.showSnackBar(

@@ -5,7 +5,7 @@ class CartModel extends SingleMapper {
   double total = 0;
   CartModel({required List<ItemModel> data}) {
     for (ItemModel model in data) {
-      total += (model.price ?? 0);
+      total += (model.discount ?? model.price! * model.count);
     }
   }
 

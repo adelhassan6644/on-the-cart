@@ -16,6 +16,8 @@ class EndPoints {
   static const String resend = 'send-verification-email';
   static const String verifyEmail = 'check-verification-code';
 
+
+
   ///Profile
   static getProfile(id) => 'customer/$id';
   static updateProfile(id) => 'customer/$id';
@@ -49,6 +51,12 @@ class EndPoints {
   static editAddresses(id) => 'address/update/$id';
   static deleteAddresses(id) => 'address/destroy/$id';
   static const String addAddress = 'address';
+  ///cart
+  static const String addToCart = '/cart/add';
+  static updateQuantity(id) => 'cart/update/quantity/$id';
+  static removeItame(id) => '/cart/remove/$id';
+  static getCart(id) => '/cart/$id';
+
 
   ///Order
   static getMyOrders(id) => 'order/$id';
@@ -56,7 +64,7 @@ class EndPoints {
 
   ///Search
   static const String search = 'product/search';
-  static const String checkOut = 'checkOut';
+  static const String checkOut = 'order/store';
 
   ///Setting
   static const String aboutUs = 'about_us';

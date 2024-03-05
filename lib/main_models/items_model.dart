@@ -36,6 +36,7 @@ class ItemsModel extends SingleMapper {
 
 class ItemModel extends LocaleSingleMapper {
   int? id;
+  int? cartProductId;
   int count = 1;
   int? stock;
   String? image;
@@ -49,10 +50,12 @@ class ItemModel extends LocaleSingleMapper {
   double? discountPrice;
   double? discount;
   String? color;
-  double get finalPrice => discountPrice != null ? discountPrice ?? 0 : price!;
+  double get finalPrice => discountPrice != null ? discountPrice ?? 0 : price??0;
 
   ItemModel(
-      {this.id,
+      {
+        this.id,
+        this.cartProductId,
       this.count = 1,
       this.stock,
       this.description,
@@ -66,9 +69,10 @@ class ItemModel extends LocaleSingleMapper {
       this.color,
       this.discount});
 
-  ItemModel.fromJson(Map<String, dynamic> json) {
+  ItemModel.fromJson(Map<String, dynamic> json,{quantity,cartProductId}) {
     id = json["id"] is String ? int.parse(json['id']) : json['id'];
-    count = json['count'] ?? 1;
+    this.  cartProductId = cartProductId;
+    count = json['count'] ?? quantity??1;
     image = json['image'];
     description = json['description'];
     name = json['name'];

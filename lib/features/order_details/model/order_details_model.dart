@@ -31,8 +31,8 @@ class OrderDetailsModel extends SingleMapper {
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    address = json['customer_address'] != null
-        ? AddressItem.fromJson(json['customer_address'])
+    address = json['address'] != null
+        ? AddressItem.fromJson(json['address'])
         : null;
     captainId = json['captain_id'];
     shippingFees = json['shipping_fees'];

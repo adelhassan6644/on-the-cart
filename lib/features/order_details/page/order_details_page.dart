@@ -277,8 +277,8 @@ class OrderDetailsPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                model.address?.addressDetails ??
-                                    "addressDetails",
+                                "${model.address?.addressDetails ?? ""}"
+                                " ${model.address?.address ?? ""}",
                                 textAlign: TextAlign.start,
                                 style: AppTextStyles.medium.copyWith(
                                     fontSize: 14, color: Styles.DETAILS_COLOR),

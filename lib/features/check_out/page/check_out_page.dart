@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stepOut/app/core/app_event.dart';
 import 'package:stepOut/app/core/app_state.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/app/localization/language_constant.dart';
@@ -63,23 +64,8 @@ class CheckOutPage extends StatelessWidget {
                           text: getTranslated("confirm_order"),
                           isLoading: state is Loading,
                           onTap: () {
-                            Future.delayed(
-                              Duration.zero,
-                              () => CustomSimpleDialog.parentSimpleDialog(
-                                  canDismiss: false,
-                                  icon: Images.success,
-                                  customListWidget: ConfirmationDialog(
-                                    title: getTranslated(
-                                        "order_has_been_confirmed"),
-                                    description: getTranslated(
-                                        "you_can_track_your_order_from_the_order_history"),
-                                    withOneButton: true,
-                                    txtBtn: getTranslated("continue_shopping"),
-                                    onContinue: () => CustomNavigator.push(
-                                        Routes.dashboard,
-                                        clean: true),
-                                  )),
-                            );
+                            context.read<CheckOutBloc>().add(Click());
+
                           },
                           backgroundColor: snapshot.hasData
                               ? Styles.PRIMARY_COLOR

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stepOut/app/core/app_event.dart';
 import 'package:stepOut/app/core/dimensions.dart';
 import 'package:stepOut/features/addresses/bloc/addresses_bloc.dart';
 import 'package:stepOut/features/addresses/model/addresses_model.dart';
@@ -10,6 +11,7 @@ import '../../../app/core/styles.dart';
 import '../../../app/core/text_styles.dart';
 import '../../../app/localization/language_constant.dart';
 import '../../../components/custom_button.dart';
+import '../../../data/config/di.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../../../navigation/routes.dart';
 
@@ -30,6 +32,7 @@ class DeliveryAddress extends StatelessWidget {
           ),
         ),
         BlocBuilder<AddressesBloc, AppState>(
+          bloc: sl<AddressesBloc>()..add(Click()),
           builder: (context, state) {
             if (state is Done) {
               List<AddressItem> address = (state.model as AddressesModel).data!;
