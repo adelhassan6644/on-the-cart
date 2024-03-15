@@ -22,7 +22,7 @@ class ProfileRepo extends BaseRepo {
           uri: EndPoints.updateProfile(userId), data: FormData.fromMap(body));
 
       if (response.statusCode == 200) {
-        setUserData(response.data["data"]);
+        // setUserData(response.data["data"]);
         return Right(response);
       } else {
         return left(ServerFailure(response.data['message']));
