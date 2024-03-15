@@ -91,9 +91,20 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
 
       if (checkData() || profileImage.value != null) {
         if (profileImage.value != null) {
-          body.addAll({
-            "image": await MultipartFile.fromFile(profileImage.value!.path)
-          });
+          body.addAll(
+              {"image": MultipartFile.fromFileSync(profileImage.value!.path)});
+        }
+
+        if (_boolCheckString(nameTEC.text.trim(), "name")) {
+          body["name"] = nameTEC.text.trim();
+        }
+
+        if (_boolCheckString(mailTEC.text.trim(), "email")) {
+          body["email"] = mailTEC.text.trim();
+        }
+
+        if (_boolCheckString(phoneTEC.text.trim(), "phone")) {
+          body["phone"] = phoneTEC.text.trim();
         }
 
         Either<ServerFailure, Response> response =
